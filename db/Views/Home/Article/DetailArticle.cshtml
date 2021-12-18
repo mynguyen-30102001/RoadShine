@@ -1,0 +1,102 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@model TeamplateHotel.Models.DetailArticle
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var language = Request.Cookies["LanguageID"].Value;
+    List<ShowObject> listlike = CommentController.GetArticlesLike(language);
+    List<ShowObject> articlerelated = CommentController.ArticleRelated(language);
+}
+
+@section css
+{
+    <link href="~/Content/css/feature.css" rel="stylesheet" />
+}
+
+<section id="blog_content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="cmsmasters_row_outer" style="margin-bottom: 20px;">
+                    <div class="cmsmaster_row_pa">
+                        <a href="@Model.Article.Image" data-fancybox="gallery"><img src="@Model.Article.Image" width="100%"  alt="@Model.Article.Title"/></a>
+                        <div class="cmsmaster-slide-details-header">
+                            <div>
+                                <h3>@Model.Article.Title</h3>
+                            </div>
+                            <div style="padding: 15px 0">
+                                <span class="cmsmasters_post_date">@Model.Article.CreateDate</span>
+                            </div>
+                            <div class="cmsmasters_feature_desctiption">
+                                @Html.Raw(Model.Article.Content)
+                            </div>
+                            <div class="share-socialnetwork">
+                                <h3>Share This Post</h3>
+                                <ul>
+                                    <li><a href="#">FACEBOOK</a></li>
+                                    <li><a href="#">TWITTER</a> </li>
+                                    <li><a href="#">PINTEREST</a></li>
+                                </ul>
+                            </div>
+                            <div class="articel_related">
+                                <h3>Related Posts</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="owl-carousel owl-theme owl-loaded" id="hhh">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage">
+                                                @foreach (var item in articlerelated)
+                                                {
+                                                    <div class="owl-item">
+                                                        <div class="col">
+                                                            <div>
+                                                                <a href="/@item.MenuAlias/@item.ID/@item.Alias"><img src="@item.Image" width="100%"  alt="@item.Title"/></a>
+                                                            </div>
+                                                            <div class="cmsmaster-slide-article">
+                                                                <span>@item.DateTime</span>
+                                                            </div>
+                                                            <div class="cmsmaster-slide-article-related">
+                                                                <h3><a href="/@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h3>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="articel_you_like">
+                    <h4>YOU MAY ALSO LIKE</h4>
+                    @foreach (var item in listlike)
+                    {
+                        <div class="articel_like">
+                            <img src="@item.Image" alt="@item.Title"/>
+                            <h5><a href="/@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h5>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@*<section>
+    <div>
+        <h4 style="text-align: center">Comment Facebook </h4>
+    </div>
+</section>*@

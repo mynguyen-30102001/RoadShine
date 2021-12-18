@@ -1,0 +1,65 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    var lan = Request.Cookies["LanguageID"].Value;
+    lan = "en";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    List<Menu> menuDescription = new List<Menu>();
+    //List<Menu> menuChild = CommentController.GetMenuChild(lan, menu.ID);
+
+}
+<main>
+    <div class="overview over-home">
+        <div class="over-left">
+            <div class="over-img_left over-img">
+                <img src="@company.Logo" alt="@company.Name">
+            </div>
+            <ul class="nav nav-menu menu-parents">
+                @foreach (var item in menus.Select((value, index) => new { Value = value, Index = index }))
+                {
+                    List<Menu> menuChild = CommentController.GetMenuChild(lan, item.Value.ID);
+                    menuDescription.AddRange(menuChild);
+                    var active = item.Index == 0 ? "active" : "";
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link @active">@item.Value.Title</a>
+                        <ul class="menu__list nav">
+                            <li class="menu__item">
+                                @foreach (var item2 in menuChild.Select((value, index) => new { Value = value, Index = index }))
+                                {
+                                    <a class="menu__link" data-toggle="tab" href="#menu_@item2.Value.ID">@item2.Value.Title</a>
+                                }
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="main-menu_wp">
+            <div class="main-menu">
+                <div class="logo">
+                    <a href="/"><img src="@company.Logo" alt="@company.Name"></a>
+                </div>
+            </div>
+        </div>
+        <div class="over-right">
+            <div class="over-img">
+                <img src="@menu.Image" alt="">
+            </div>
+            <div class="tab-content over-content">
+                @foreach (var item in menuDescription.Select((value, index) => new { Value = value, Index = index }))
+                {
+                    var active3 = item.Index == 0 ? "active" : "fade";
+                    <div class="tab-pane  @active3" id="menu_@item.Value.ID">
+                        <p class="mb-0">
+                            @Html.Raw(item.Value.Description)
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>

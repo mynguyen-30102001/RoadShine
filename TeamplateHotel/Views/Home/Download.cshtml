@@ -1,0 +1,82 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@model  TeamplateHotel.Models.ShowObject
+@{
+    ViewBag.Title = "Product New";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    var lan = Request.Cookies["LanguageID"].Value;
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+}
+
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-about&newproduct.jpg">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-download">
+        <div class="container">
+            <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+                <h2>DOWNLOAD</h2>
+                <p>We are one of the largest tire companies in China with more than 40 years history. We focus on supplying high quality tires with most competitive price, fastest delivery and best service.</p>
+            </div>
+            <div class="download">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 wow fadeInUp" data-wow-duration=".8s">
+                        <div class="item">
+                            <div class="pic">
+                                <a class="img-box" target="_blank" href="https://drive.google.com/file/d/13jM84rdXSb2zegWKKZet38bTdvdo8Rmp/view">
+                                    <img class="lazy" src="~/Content/assets/image/295ddc0f443989c6.png" width="200" height="260" alt="" />
+                                </a>
+                            </div>
+                            <div class="note">
+                                <h3>ROADSHINE TBR catalogue</h3>
+                                <p>Great tires from a trusted company.</p>
+                                <a class="down" href="https://drive.google.com/file/d/13jM84rdXSb2zegWKKZet38bTdvdo8Rmp/view" target="_blank">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-xs-12 col-sm-6 wow fadeInUp" data-wow-duration=".8s">
+                        <div class="item">
+                            <div class="pic">
+                                <a class="img-box" target="_blank" href="http://www.hongtyre.com/res/roadshine-pcr-catalogue.pdf">
+                                    <img class="lazy" src="~/Content/assets/image/152aee195db58523.png" width="200" height="260" alt="" />
+                                </a>
+                            </div>
+                            <div class="note">
+                                <h3>ROADSHINE PCR catalogue</h3>
+                                <p>Great tires from a trusted company.</p>
+                                <a class="down" href="http://www.hongtyre.com/res/roadshine-pcr-catalogue.pdf" target="_blank">Download</a>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="col-xs-12 col-sm-6 wow fadeInUp" data-wow-duration=".8s">
+                    <div class="item">
+                        <div class="pic">
+                            <a class="img-box" target="_blank" href="https://drive.google.com/file/d/1_AJKBaqVvPdHzYqQCXSaH6dTaC9ffk78/view">
+                                <img class="lazy" src="~/Content/assets/image/152aee195db58523.png" width="200" height="260" alt="" />
+                            </a>
+                        </div>
+                        <div class="note">
+                            <h3>GOLDPARTNER TBR catalogue</h3>
+                            <p>Great tires from a trusted company.</p>
+                            <a class="down" href="https://drive.google.com/file/d/1_AJKBaqVvPdHzYqQCXSaH6dTaC9ffk78/view" target="_blank">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page wow fadeInUp" data-wow-duration="1s">
+            <a class="first-child" href="http://www.hongtyre.com/download1.html?">Prev</a>
+            <a href="http://www.hongtyre.com/download1.html?pageid=1" class="active">1</a>
+            <a class="last-child" href="http://www.hongtyre.com/download1.html?pageid=1">Next</a>
+        </div>
+    </div>
+</div>
+    </div>
+

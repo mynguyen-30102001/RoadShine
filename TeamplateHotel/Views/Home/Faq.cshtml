@@ -1,0 +1,44 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Article> faqArticles = CommentController.GetArticles(menu.ID);
+    int count = 0;
+}
+<div class="faq-wp box">
+    <div class="container">
+        <div class="faq-head">
+            <h1 class="faq-title">Frequently Asked Questions</h1>
+            <h3 class="faq-subtitle">SELECT A QUESTION BELOW</h3>
+        </div>
+        <div class="accordion" id="accordion-faq">
+            @foreach (var item in faqArticles.Select((value, index) => new { Value = value, Index = index }))
+            {
+                count++;
+                <div class="card card-faq">
+                    <div class="card-header card-header_faq" id="heading_@count">
+                        <button class="faq-btn" type="button" data-toggle="collapse" data-target="#c-item_@count"
+                                aria-expanded="true" aria-controls="c-item_@count">
+                            <span class="QA">Q</span>
+                            <p>@item.Value.Title</p>
+                            <span class="arrow"><i class="fal fa-chevron-up"></i></span>
+                        </button>
+                    </div>
+
+                    <div id="c-item_@count" class="collapse coll-body " aria-labelledby="heading_@count"
+                         data-parent="#accordion-faq">
+                        <div class="card-body card-body_faq">
+                            <div class="card-body_text">
+                                <span class="QA">A</span>
+                                <div class="card-text">
+                                    @Html.Raw(item.Value.Content)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

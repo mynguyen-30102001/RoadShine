@@ -1,0 +1,97 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@model TeamplateHotel.Models.Detaiproject
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+
+    var language = Request.Cookies["LanguageID"].Value;
+    List<ShowObject> listlike = CommentController.GetArticlesLike(language);
+    List<ShowObject> articlerelated = CommentController.ArticleRelated(language);
+}
+@section css{
+
+    <link href="~/Content/assets/css/detailProject.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section bg-image" data-bg="/Content/assets/images/bg/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="page-banner text-center">
+                    <h2>@menu.Title</h2>
+                    <ul class="page-breadcrumb">
+                        <li><a href="/">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Home")</a></li>
+                        <li>@menu.Title</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<section class="section" id="gallery">
+    <div class="container fadeInUp appear animated">
+        <div class="row mt150" style="background: none">
+            <div class="col-xs-12">
+                <div class="gioi_thieu_home">
+                    <h2 class="lined-heading"><span>@Model.Poject.Title</span></h2>
+                    <p class="text-center">
+                        @*<span class="social-content">
+                                <span class="mr10">Share</span>
+                                <a href="https://facebook.com/sharer.php?u=https://grandtouranehotel.com/en/gallery-4/overview/" class="item-link" target="_blank" title="Share Facebook"><img src="/images/share_face.jpg"></a>&nbsp;&nbsp;
+                                <a href="https://twitter.com/share?url=https://grandtouranehotel.com/en/gallery-4/overview/" class="item-link" target="_blank" title="Share Twitter"><img src="/images/share_twitter.jpg"></a>&nbsp;&nbsp;
+                                <a href="https://plus.google.com/share?url=https://grandtouranehotel.com/en/gallery-4/overview/" class="item-link" target="_blank"><img src="/images/share_google.jpg"></a>
+                            </span>*@
+                        @*<span class="social-content">
+                                <span class="item-separate"></span>
+                                <a href="mailto:info@grandtouranehotel.com,reservations@grandtouranehotel.com" class="item-link" title="Email"><img src="/images/share_mail.jpg"></a>
+                                <span class="item-separate"></span>
+                                <a href="tel:+842363778888" class="item-link" title="Phone"><img src="/images/share_phone.jpg"></a>
+                            </span>*@
+                    </p>
+                    <div class="row gallery isotope" style="position: relative; overflow: hidden;  ">
+                        @foreach (var item in Model.PojectGalleries)
+                        {
+
+                            <div class="col-md-3 element-item gallery-@item.ID" data-category="transition">
+                                <div class="gallery_item">
+                                    <a href="@item.ImageLarge" data-title="@item.PojectID" data-fancybox="gallery">
+                                        <img src="@item.ImageLarge" class="img-fluid" />
+                                    </a>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section script
+{
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var fancyGallery = $("#images").find("a");
+            fancyGallery.attr("rel", "gallery").fancybox({
+                type: "image"
+            });
+            $('#fancyLaunch').on('click', function () {
+                fancyGallery.eq(0).click();
+            });
+        });
+    </script>
+
+}

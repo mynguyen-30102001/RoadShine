@@ -1,0 +1,105 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using PagedList.Mvc
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+@using PagedList
+@model PagedList.IPagedList<Poject>
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    var language = Request.Cookies["LanguageID"].Value;
+    List<ShowObject> listlike = CommentController.GetArticlesLike(language);
+}
+@section css
+{
+    <link href="~/Content/assets/css/project.css" rel="stylesheet" />
+}
+<!--  Page Banner Section Start -->
+<div class="page-banner-section section bg-image" data-bg="@menu.Image">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="page-banner text-center">
+                    <h2>@menu.Title</h2>
+                    <ul class="page-breadcrumb">
+                        <li><a href="/">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Home")</a></li>
+                        <li>@menu.Title</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<section id="project-page">
+    <div class="container">
+        <div class="filter">
+            <ul>
+                <li class="active"><a href="bat-dong-san-nha-dat">@menu.Title</a></li>
+                @*<li><a href="bat-dong-san-du-lich">Bất động sản du lịch</a></li>*@
+            </ul>
+        </div>
+        <div class="wrap-project row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="item">
+                        <div class="title">
+                            <div class="left">
+                                <span class="pjj">@menu.Title</span>
+                                <a href="@item.MenuAlias/@item.PojectID/@item.Alias">@item.Title</a>
+                                <span class="web"></span>
+                            </div>
+                        </div>
+                        <div class="wrap-intro">
+                            @*<div class="img">
+                                    <a href="vung-tau/khu-do-thi-chi-linh">
+                                        <img class="img-responsive" src="https://www.dic.vn/uploads/files/2017/11/07/thumbs-360-180-2--1/3.-TT-Chi-Linh.jpg">
+                                        <div class="hover">
+                                            <button class="btn btn-red">Xem chi tiết <i class="fa fa-angle-double-right"></i></button>
+                                        </div>
+                                    </a>
+                                </div>*@
+                            <div class="san_pham">
+                                <a class="image" href="@item.MenuAlias/@item.PojectID/@item.Alias">
+                                    <img src="@item.Image" style="height:250px">
+                                    <span class="overlay"></span>
+                                    <span class="line"></span>
+                                </a>
+                                <a class="ten_san_pham" href="@item.MenuAlias/@item.PojectID/@item.Alias">@item.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="img">
+                        <a href="vung-tau/khu-do-thi-chi-linh">
+                            <img class="img-responsive" src="@item.Image">
+                            <div class="hover">
+                                <button class="btn btn-red">Xem chi tiết <i class="fa fa-angle-double-right"></i></button>
+                            </div>
+                        </a>
+                    </div>*@
+
+            }
+
+
+            <div class="cleafix"></div>
+        </div>
+    </div>
+    <nav class="" style="text-align: center;">
+        <ul class="pagination">
+        </ul>
+    </nav>
+    <div class="clearfix"></div>
+</section>
+
+@*<div class="row mb-0 mb-xs-35 mb-sm-35">
+    <div class="col">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        / @Model.PageCount
+        <br />@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+       
+    </div>
+</div>*@

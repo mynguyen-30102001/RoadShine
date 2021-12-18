@@ -1,0 +1,542 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Areas.Administrator.EntityModel
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+
+
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var language = Request.Cookies["LanguageID"].Value;
+    List<Slider> listSlide = CommentController.GetListSlider(language);
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+
+    List<TypeMenu> typeMenus = CommentController.GetTypeMenusShowHome(language);
+
+    List<TypeMenu> lstTypeMenus = CommentController.GetAllTypeMenus(language);
+    List<TheDish> dishes = CommentController.GetTheMenuShowHome();
+    List<Menu> detaiMenus = CommentController.MenuDetail(language);
+    List<ShowObject> articelhome = CommentController.HotArticles(language);
+    string alias = "";
+
+    List<EF_TheDish> listTheDis = CommentController.GetTheDishesMenu(language);
+    int i = 0;
+
+}
+
+
+
+<div id="silder">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach (var slider in listSlide)
+            {
+                <li data-target="#carouselExampleIndicators" data-slide-to="@i" class=""></li>
+                i++;
+            }
+
+        </ol>
+        <div class="carousel-inner">
+            @foreach (var item in listSlide.Select((value, index) => new { Value = value, Index = index }))
+            {
+                var active = item.Index == 0 ? "active" : string.Empty;
+                <div class="carousel-item @active">
+                    <img class="d-block w-100" src="@item.Value.Image" alt="@item.Value.Title" />
+                </div>
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        </a>
+    </div>
+</div>
+
+<div id="slider">
+    <div class="container-fluid">
+
+        <div class="col-md-4 offset-md-4 slider-content">
+            <div class="title-header">
+                <div class="title-p">
+                    <p>
+                        japanese cuisine & online delivery
+                    </p>
+                    <div class="slider-body">
+                        <img src="https://sushico.cmsmasters.net/wp-content/uploads/2018/10/sushi-1.png" alt="@company.Name" width="100%" height="182" />
+                    </div>
+                    <div class="slider-end">
+                        <div class="btnMake">
+                            <a href="/ReservationBook" style="text-decoration: none;color: #ffffff"> Make a Reservation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<section id="header-content">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="box">
+                <div class="card-heade">
+                    Monday - Saturday : Service 12:00 pm <br> 9 Doyers St #1, New York, NY 10013
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="cmsmasters_row_hi518oo36n" style="height: auto;">
+    <div class="cmsmasters_row_outer_parent">
+        <div class="cmsmasters_row_outer">
+            <div class="cmsmasters_row_inner">
+                <div class="cmsmasters_s">
+                    <div class="cmsmasters_heading_w">
+                        <h5 class="cmsmasters_heading">OUR SPECIAL</h5>
+                    </div>
+                    <div class="cmsmasters_heading_wb2sroyyd9">
+                        <h2 class="cmsmasters_heading">Order sushi in your town.</h2>
+                    </div>
+                    <div class="cmsmasters_heading_wb2">
+                        <h2 class="cmsmasters_heading"> Food Delivery to the house from “Sushi Town”</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cmsmasters_row_2">
+    <div class="container">
+        <div class="row" style="padding: 0 7%">
+            @foreach (var item in typeMenus.Take(4).OrderBy(a => a.Index))
+            {
+                <div class="col-lg-3 col-md-6 col-xs-12" style="padding: 0 8px;">
+                    <div class="one_fourth" style="background-image: url(@item.Image);
+                                                                                                                                                                                                                                                                       ">
+                        <div class="cmsmasters_column_inner" style="background:#00000080;">
+                            @foreach (var itemMenu in detaiMenus)
+                            {
+
+                                if (itemMenu.Type == SystemMenuType.Menu)
+                                {
+                                    <h2 class="cmsmasters_heading"><a href="/@itemMenu.Alias">@item.NameTypeMenu</a></h2>
+
+                                }
+
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+@foreach (var item in typeMenus.Take(1).OrderBy(a => a.Index))
+{
+    <section class="cmsmasters_row_3">
+        <div class="cmsmasters_row_inner">
+            <div class="cmsmasters_s">
+                <div class="cmsmasters_heading_w">
+                    <h5 class="cmsmasters_heading">OUR SPECIAL</h5>
+                </div>
+                <div class="cmsmasters_heading_wb2sroyyd9">
+
+                    <h2 class="cmsmasters_heading">@item.NameTypeMenu</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 20px">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="cmsmasters_column one_half">
+                        <div class="cmsmasters_column_inner1">
+                            <div class="cmsmasters_menu">
+                                @foreach (var itemDish in dishes.Where(a => a.Type == item.Id).Take(5))
+                                {
+                                    if (itemDish.PromotionPrice == null || itemDish.PromotionPrice == 0)
+                                    {
+                                        <div class="cmsmasters_menu_item">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title">@itemDish.NameMenu</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.Price</h6>
+                                                </div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="cmsmasters_menu_item menu_best">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title">The green dragon in tobiko</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.PromotionPrice</h6>
+                                                </div>
+                                                <div class="cmsmasters_menu_best_feature">RECOMMENDED</div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="cmsmasters_column one_half">
+                        <div class="cmsmasters_column_inner1">
+                            <div class="cmsmasters_menu">
+
+                                @foreach (var itemDish in dishes.Where(a => a.Type == item.Id).Skip(5).Take(5))
+                                {
+                                    if (itemDish.PromotionPrice == null || itemDish.PromotionPrice == 0)
+                                    {
+                                        <div class="cmsmasters_menu_item">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title">@itemDish.NameMenu</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.Price</h6>
+                                                </div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="cmsmasters_menu_item menu_best">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title">The green dragon in tobiko</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.PromotionPrice</h6>
+                                                </div>
+                                                <div class="cmsmasters_menu_best_feature">RECOMMENDED</div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+<section class="cmsmasters_row_4">
+    <div style="text-align: center">
+        @foreach (var itemMenu in detaiMenus)
+        {
+
+            if (itemMenu.Type == SystemMenuType.Menu)
+            {
+                <a href="/@itemMenu.Alias">
+                    <span>View our Menu</span>
+                </a>
+            }
+
+
+        }
+
+    </div>
+</section>
+
+<section class="cmsmasters_row_5">
+    <div class="cmsmasters_column_5">
+        <div class="cmsmasters_heading5">
+            <h5 class="cmsmasters_heading">MONDAY – SATURDAY : SERVICE 24:00 PM</h5>
+        </div>
+        <div class="cmsmasters_heading5_1">
+            <h2>Come In And Eat With Us</h2>
+        </div>
+        <div class="cmsmasters_heading5_2">
+            <span>
+                Our chief making his debut in his hometown Chicago, crafts a menu drawn from his culinary
+                influences from French technique Asian heritage. His skills are very impressive.
+            </span>
+        </div>
+
+        <div class="cmsmasters_heading5_3">
+            <a href="/ReservationBook"><span>Make a Reservation</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="cmsmasters_row_6">
+    <div class="cmsmasters_row_inner">
+        <div class="cmsmasters_s">
+            <div class="cmsmasters_heading_w">
+                <h5 class="cmsmasters_heading">OUR RESTAURANT MENU</h5>
+            </div>
+            <div class="cmsmasters_heading_wb2sroyyd9">
+                <h2 class="cmsmasters_heading">Variety of Flavours from Sushi Town.</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cmsmasters_row_7">
+    <div id="grid">
+        <div class="row cmsmasters_row_7_1 " style="position: relative">
+            <div class="boxx" style="width: 50%; float: left; ">
+                @if (listTheDis.Count > 0)
+                {
+                    if (listTheDis != null)
+                    {
+                        <img src="@listTheDis[0].Image" width="100%" style="max-height: 390px;height: 100%;" alt="@listTheDis[0].MetaTitle" />
+                        <div class="boxx-content">
+                            <a href="@listTheDis[0].MenuAlias" class="content-alias">@listTheDis[0].NameTypeMenu</a>
+                            <h3 class="title"><a href="/@listTheDis[0].MenuAlias/@listTheDis[0].ID/@listTheDis[0].Alias">@listTheDis[0].NameMenu</a></h3>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="boxx" style="width: 25%; float: left;">
+                @if (listTheDis.Count > 1)
+                {
+                    <img src="@listTheDis[1].Image" width="100%" style="max-height: 390px;height: 100%;" alt="@listTheDis[1].MetaTitle" />
+                    <div class="boxx-content">
+                        <a href="@listTheDis[1].MenuAlias" class="content-alias">@listTheDis[1].NameTypeMenu</a>
+                        <h3 class="title"><a href="/@listTheDis[1].MenuAlias/@listTheDis[1].ID/@listTheDis[1].Alias">@listTheDis[1].NameMenu</a></h3>
+                    </div>
+                }
+            </div>
+            <div class="boxx" style="width: 25%; float: left;">
+                @if (listTheDis.Count > 2)
+                {
+                    if (listTheDis != null)
+                    {
+                        <img src="@listTheDis[2].Image" width="100%" style="max-height: 390px;height: 100%;" alt="@listTheDis[2].MetaTitle" />
+                        <div class="boxx-content">
+                            <a href="@listTheDis[2].MenuAlias" class="content-alias">@listTheDis[2].NameTypeMenu</a>
+                            <h3 class="title"><a href="/@listTheDis[2].MenuAlias/@listTheDis[2].ID/@listTheDis[2].Alias">@listTheDis[2].NameMenu</a></h3>
+                        </div>
+                    }
+                }
+            </div>
+            <div style="width: 50%; float: left;">
+                <div class="boxx" style="width: 50%; float: left;">
+                    @if (listTheDis.Count > 3)
+                    {
+                        if (listTheDis != null)
+                        {
+                            <img src="@listTheDis[3].Image" width="100%" style="max-height: 390px;height: 100%;" alt="@listTheDis[3].MetaTitle" />
+                            <div class="boxx-content">
+                                <a href="@listTheDis[3].MenuAlias" class="content-alias">@listTheDis[3].NameTypeMenu</a>
+                                <h3 class="title"><a href="/@listTheDis[3].MenuAlias/@listTheDis[3].ID/@listTheDis[3].Alias">@listTheDis[3].NameMenu</a></h3>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="boxx" style="width: 50%; float: left;">
+                    @if (listTheDis.Count > 4)
+                    {
+                        if (listTheDis != null)
+                        {
+                            <img src="@listTheDis[4].Image" width="100%" style="max-height: 390px;height: 100%;" alt="@listTheDis[4].MetaTitle" />
+                            <div class="boxx-content">
+                                <a href="@listTheDis[4].MenuAlias" class="content-alias">@listTheDis[4].NameTypeMenu</a>
+                                <h3 class="title"><a href="/@listTheDis[4].MenuAlias/@listTheDis[4].ID/@listTheDis[4].Alias">@listTheDis[4].NameMenu</a></h3>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="boxx" style="width: 100%; float: left;">
+                    @if (listTheDis.Count > 5)
+                    {
+                        if (listTheDis != null)
+                        {
+                            <img src="@listTheDis[5].Image" width="100%" style="max-height: 390px;height: 100%;" alt="@listTheDis[5].MetaTitle" />
+                            <div class="boxx-content">
+                                <a href="@listTheDis[5].MenuAlias" class="content-alias">@listTheDis[5].NameTypeMenu</a>
+                                <h3 class="title"><a href="/@listTheDis[5].MenuAlias/@listTheDis[5].ID/@listTheDis[5].Alias">@listTheDis[5].NameMenu</a></h3>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+            <div class="boxx" style="width: 50%; float: left;">
+                @if (listTheDis.Count > 6)
+                {
+                    if (listTheDis != null)
+                    {
+                        <img src="@listTheDis[6].Image" width="100%" style="max-height: 780px;height: 100%;" alt="@listTheDis[6].MetaTitle" />
+                        <div class="boxx-content">
+                            <a href="@listTheDis[6].MenuAlias" class="content-alias">@listTheDis[6].NameTypeMenu</a>
+                            <h3 class="title"><a href="/@listTheDis[6].MenuAlias/@listTheDis[6].ID/@listTheDis[6].Alias">@listTheDis[6].NameMenu</a></h3>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cmsmasters_row_8">
+    <div style="margin: 20px 15px">
+        <div class="row">
+            <div class="col-lg-6 col-xs-12">
+                <div class="cmsmasters_background_clip" style="background-image: url('../../files/images/Food/sashimi assortiments 15p.jpg');"></div>
+            </div>
+            <div class="col-lg-6 col-xs-12">
+                <div style="background-color: #1d1c28; margin-left: -10px">
+                    <div id="cmsmasters_fb">
+                        <div class="featured_block_inner">
+                            <div class="cmsmasters_heading5">
+                                <h5 class="cmsmasters_heading">MONDAY – SATURDAY : SERVICE 24:00 PM</h5>
+                            </div>
+                            <div class="cmsmasters_heading5_1">
+                                <h2>Events & Business Meetings</h2>
+                            </div>
+                            <div class="cmsmasters_heading5_2">
+                                <span>
+                                    Christine making his debut in his hometown Chicago, crafts a
+                                    straight-forward yet progressive menu drawn from his culinary
+                                    influences from French technique.
+                                </span>
+                            </div>
+                            <div class="cmsmasters_heading5_3">
+                                <a href="/ReservationBook"><span>Book a Table</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cmsmasters_row_9">
+    <div class="cmsmasters_row_inner">
+        <div class="cmsmasters_s">
+            <div class="cmsmasters_heading_w">
+                <h5 class="cmsmasters_heading">THE LATEST NEWS</h5>
+            </div>
+            <div class="cmsmasters_heading_wb2sroyyd9">
+                <h2 class="cmsmasters_heading">Our Blog and Events.</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cmsmasters_row_10" style="margin-bottom: 100px">
+    <div class="container">
+        <div class="row">
+            <div class="owl-carousel owl-theme owl-loaded" id="demo">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        @foreach (var item in articelhome)
+                        {
+                            <div class="owl-item">
+                                <div class="col">
+                                    <div>
+                                        <a href="@item.MenuAlias/@item.ID/@item.Alias"></a><img src="@item.Image" width="100%" alt="@item.Title" />
+                                    </div>
+                                    <div class="cmsmaster-slide-article">
+                                        <span>@item.DateTime</span>
+                                    </div>
+                                    <div class="cmsmaster-slide-article-header">
+                                        <h3><a href="@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h3>
+                                    </div>
+                                    <div class="cmsmaster-slide-article-content">
+                                        <p>@Html.Raw(item.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cmsmasters_row_11" style="background-image: url('https://sushico.cmsmasters.net/wp-content/uploads/2018/10/home-1-10.jpg'); background-position: center;">
+    <div class="cmsmasters_column_5">
+        <div class="cmsmasters_heading5">
+            <h5 class="cmsmasters_heading"></h5>
+        </div>
+        <div class="cmsmasters_heading5_1">
+            <h2>Discover Our Story</h2>
+        </div>
+        <div class="cmsmasters_heading5_2">
+            <span>
+                Our chief making his debut in his hometown Chicago, crafts a menu drawn from his culinary
+                influences from French technique Asian heritage. His skills are very impressive.
+            </span>
+        </div>
+
+        <div class="cmsmasters_heading5_3">
+            <a href="#"><span>About Us</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+    <div class="cmsmasters_footer">
+        <div class="cmsmasters_row_inner">
+            <div class="cmsmasters_image_c">
+                @*<img src="https://sushico.cmsmasters.net/wp-content/uploads/2018/11/Footer.png" />*@
+                <img src="@company.Logo" width="20%" alt="@company.Name" />
+            </div>
+            <div class="cmsmasters_heading5">
+                <h5 class="cmsmasters_heading">MONDAY – SATURDAY : SERVICE 24:00 PM</h5>
+            </div>
+            <div class="cmsmasters_heading5">
+                <h5 class="cmsmasters_heading">9 DOYERS ST #1, NEW YORK, NY 10013</h5>
+            </div>
+            <div class="cmsmasters_heading5_3">
+                <a href="/ReservationBook"><span>Make a Reservation</span></a>
+            </div>
+
+            <div style="padding-top: 20px">
+                <ul style="padding: 0; margin-bottom: 0;">
+                    <li class="logos">
+                        <a href="#"><i class="fa fa-facebook-square"></i></a>
+                    </li>
+                    <li class="logos">
+                        <a href="#"><i class="fa fa-pinterest-square"></i></a>
+                    </li>
+                    <li class="logos">
+                        <a href="#"><i class="fa fa-twitter-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+﻿@using TeamplateHotel.Handler
+@{
+    ViewBag.Title = "Messages";
+}
+
+<div class="container n-ding">
+    <div class="row">
+        <div class=" seafood">
+            <div class="col-md-12 col-sm-12 ">
+                <h2 class="title">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Messages")</h2>
+                <strong>@Html.Raw(ViewBag.Messages)</strong>
+
+            </div>
+        </div>
+
+    </div>
+</div>

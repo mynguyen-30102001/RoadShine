@@ -1,0 +1,32 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@{
+    List<Slider> sliders = CommentController.listsiler();
+}
+
+<section id="home-slider">
+    <div class="overlay"></div>
+    <!-- SLIDER IMAGES -->
+    <div id="owl-main" class="owl-carousel">
+        @foreach (var item in sliders)
+        {
+            <div class="item"><img src="@item.Image" alt="@item.Title"></div>
+        }
+    </div>
+    <!-- SLIDER CONTENT -->
+    <div class="slide-content">
+        <div class="voffset100"></div>
+        <span class="logointro"><img src="/Content/images/essence-restaurant-logo_intro.png" alt="Essence restaurant" /></span>
+        <div id="owl-main-text" class="owl-carousel">
+            @foreach (var item in sliders)
+            {
+                <div class="item"><h2>@item.Title</h2></div>
+            }
+        </div>
+        <div class="slide-sep"></div>
+        <p>Love changes shapes. Its ESSENCE remains!</p>
+    </div>
+    <!-- BOTTOM ANIMATED ARROW -->
+    <a href="#about" class="page-scroll menu-item"><div class="mouse"><span></span></div></a>
+</section>

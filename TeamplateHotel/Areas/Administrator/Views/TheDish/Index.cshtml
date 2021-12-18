@@ -1,0 +1,136 @@
+﻿
+@model TeamplateHotel.Areas.Administrator.EntityModel.ETheMenu
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+
+<form action="@Url.Action("UpdateIndex", "TheDish")" method="POST" id="updateIndex">
+    @{
+        <div class="optionShow">
+            <div class="optionShow-title">Lọc</div>
+            <div class="item-option">
+                <div class="title-item-option">Nhóm thực đơn:</div>
+                <div class="content-item-option">@Html.DropDownList("ListMenu")</div>
+            </div>
+        </div>
+    }
+    <div id="jtable-main-container"></div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#jtable-main-container').jtable({
+                title: '@ViewBag.Title',
+                paging: true, //Enable paging
+                pageSize: 20, //Set page size (default: 10)
+                sorting: true, //Enable sorting
+                defaultSorting: 'Name ASC', //Set default sorting
+                selecting: true, //Enable selecting
+                multiselect: true, //Allow multiple selecting
+                selectingCheckboxes: true, //Show checkboxes on first column
+                columnResizable: true, //Actually, no need to set true since it's default
+                columnSelectable: true, //Actually, no need to set true since it's default
+                saveUserPreferences: true, //Actually, no need to set true since it's default
+                toolbar: {
+                    items: [
+                        {
+                            icon: '/Areas/Administrator/Content/img/add.png',
+                            text: 'Thêm mới',
+                            click: function() {
+                                window.location = '@Url.Action("Create", "TheDish")';
+                            }
+                        }, {
+                            icon: '/Areas/Administrator/Content/img/Ordering.png',
+                            text: 'Sắp xếp',
+                            click: function() {
+                                $("#updateIndex").submit();
+                            }
+                        }
+                    ]
+                },
+                actions: {
+                    listAction: '@Url.Action("List", "TheDish")',
+                    deleteAction: '@Url.Action("Delete", "TheDish")',
+                },
+                fields: {
+                    Id: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+
+                    NameMenu: {
+                        title: 'Tên món ăn',
+                        width: '13%',
+                        display: function(data) {
+                            return '<a href="/admin/TheDish/Update/' +
+                                data.record.Id +
+                                '">' +
+                                data.record.NameMenu +
+                                '</a>';
+                        }
+                    },
+
+                    NameTypeMenu: {
+                        title: 'Nhóm thực đơn',
+                    },
+                    Price: {
+                        title: '@Html.DisplayNameFor(u => u.Price)',
+                        width: '5%',
+                    },
+
+                    PromotionPrice: {
+                        title: '@Html.DisplayNameFor(u => u.PromotionPrice)',
+                        width: '5%',
+                    },
+
+                    Description: {
+                        title: '@Html.DisplayNameFor(u => u.Description)',
+                        width: '20%',
+                    },
+
+                    ShowHome: {
+                        title: '@Html.DisplayNameFor(c => c.ShowHome)',
+                        width: '8%',
+                        type: 'checkbox',
+                        values: { 'false': 'Không', 'true': 'Có' },
+                        defaultValue: 'true'
+                    },
+
+
+                    Status: {
+                        title: '@Html.DisplayNameFor(c => c.Status)',
+                        width: '8%',
+                        type: 'checkbox',
+                        values: { 'false': 'Không', 'true': 'Có' },
+                        defaultValue: 'true'
+                    },
+                    '':
+                    {
+                        title: '',
+                        width: '2%',
+                        sorting: false,
+                        display: function(data) {
+                            return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="editRecord(' +
+                                data.record.Id +
+                                ')"><span>Edit</span></button>';
+                        }
+                    }
+                }
+            });
+            $('#jtable-main-container').jtable('load');
+        });
+    </script>
+</form>
+
+
+<script>
+
+    function editRecord(advId) {
+        window.location = '@Url.Action("Update","TheDish")' + '/' + advId;
+    }
+
+    $("#ListMenu").change(function () {
+        $('#jtable-main-container').jtable('load', { menuId : $("#ListMenu").val() });
+    });
+</script>
+

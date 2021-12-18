@@ -1,0 +1,103 @@
+﻿@model TeamplateHotel.Areas.Administrator.EntityModel.ETypeMenu
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+
+<form action="@Url.Action("UpdateIndex", "TypeMenu")" method="POST" id="updateIndex">
+    <div id="jtable-main-container"></div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#jtable-main-container').jtable({
+                title: '@ViewBag.Title',
+                paging: true, //Enable paging
+                pageSize: 20, //Set page size (default: 10)
+                sorting: true, //Enable sorting
+                defaultSorting: 'Name ASC', //Set default sorting
+                selecting: true, //Enable selecting
+                multiselect: true, //Allow multiple selecting
+                selectingCheckboxes: true, //Show checkboxes on first column
+                columnResizable: true, //Actually, no need to set true since it's default
+                columnSelectable: true, //Actually, no need to set true since it's default
+                saveUserPreferences: true, //Actually, no need to set true since it's default
+                toolbar: {
+                    items: [ {
+                        icon: '/Areas/Administrator/Content/img/Ordering.png',
+                        text: 'Sắp xếp',
+                        click: function () {
+                            $("#updateIndex").submit();
+                        }
+                    }]
+                },
+                actions: {
+                    listAction: '@Url.Action("List", "TypeMenu")',
+                    deleteAction: '@Url.Action("Delete", "TypeMenu")',
+                    updateAction: '@Url.Action("Update", "TypeMenu")',
+                    createAction: '@Url.Action("Create", "TypeMenu")'
+                },
+                fields: {
+                    Id: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    NameTypeMenu: {
+                        title: '@Html.DisplayNameFor(u => u.NameTypeMenu)',
+                        width: '13%',
+                     },
+                    Alias: {
+                        title: '@Html.DisplayNameFor(u => u.Alias)',
+                        width: '5%',
+                        edit: false,
+                        create: false,
+
+
+                    },
+                    Description: {
+                        title: '@Html.DisplayNameFor(u => u.Description)',
+                        width: '20%',
+                    },
+                    Image: {
+                        title: '@Html.DisplayNameFor(c => c.Image)',
+                        width: '8%',
+                        display: function(data) {
+                            return '<img src="' + data.record.Image + '" width="60px" height="60px"/>';
+                        },
+                        inputClass: 'upload'    
+                    },
+                    ShowHome: {
+                        title: '@Html.DisplayNameFor(c => c.ShowHome)',
+                        width: '8%',
+                        type: 'checkbox',
+                        values: { 'false': 'Không', 'true': 'Có' },
+                        defaultValue: 'true'
+                    },
+
+                    Index: {
+                        title: '@Html.DisplayNameFor(c => c.Index)',
+                        width: '4%',
+                        sorting: false,
+ 
+                        display: function(data) {
+                            return '<input type="text" name="sort[' + data.record.Id + '].Index" style="width:25px" value="' + data.record.Index + '"/>';
+                        }
+                    },
+                
+                    Status: {
+                        title: '@Html.DisplayNameFor(c => c.Status)',
+                        width: '8%',
+                        type: 'checkbox',
+                        values: { 'false': 'Không', 'true': 'Có' },
+                        defaultValue: 'true'
+                    },
+                }
+            });
+            $('#jtable-main-container').jtable('load');
+          
+        });
+    </script>
+ 
+
+</form>
+
+

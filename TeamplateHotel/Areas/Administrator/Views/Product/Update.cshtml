@@ -1,0 +1,363 @@
+﻿@using System.Web.UI.WebControls.Expressions
+@using TeamplateHotel.Areas.Administrator.EntityModel
+@model TeamplateHotel.Areas.Administrator.EntityModel.EProduct
+
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    int flag = 0;
+    int count = 0;
+}
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class=" icon-plus-sign"></i>
+            <h3>@(ViewBag.cmd == "Update" ? "Edit Product" : "Edit Product")</h3>
+        </div> <!-- /widget-header -->
+        <form id="productfrom">
+            <div class="widget-content">
+                @Html.ValidationSummary(true)
+                @Html.TextBoxFor(c => c.ProductID, new { @class = "span4", style = "display:none" })
+                <div class="control-group" id="">
+                    <label class="control-label" for="MenuID">Chuyên mục sản phẩm<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.DropDownListFor(p => p.MenuID, new SelectList(ViewBag.ListMenu, "Value", "Text"), new { @class = "span3" })
+                        @Html.ValidationMessageFor(p => p.MenuID)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Title">Tên sản phẩm<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.ProductName, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.ProductName)
+                    </div>
+                </div>
+
+
+                @*<div class="control-group">
+            <label class="control-label" for="CodeBooking">Chuyên mục món ăn<span class="asterisk" style="display: inline; float: none">*</span></label>
+            <div class="controls">
+
+                @if (ViewBag.cmd == "Create")
+                {
+                    @Html.DropDownListFor(m => m.TypeMenuID, (IEnumerable<SelectListItem>)ViewBag.ListMenuID, new { @class = "span4", style = "width: 300px;display: inline;", multiple = "multiple" })
+                }
+                else
+                {
+                    <span class="multiselect-native-select">
+                        <select class="span4" id="TypeMenuID" multiple="multiple" name="TypeMenuID" style="width: 300px;display: inline;">
+                            @foreach (var i in ViewBag.ListMenuID.Items)
+                            {
+                                if (Model.TypeMenuID != null)
+                                {
+                                    if (Model.TypeMenuID.FirstOrDefault(a => a == i.Text) != null)
+                                    {
+                                        <option selected value="@i.Text">@i.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i.Text">@i.Value</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="@i.Text">@i.Value</option>
+                                }
+
+                            }
+                        </select>
+
+                    </span>
+                }
+            </div>
+        </div>*@
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Alias, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Alias, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Alias)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Image, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload" })
+                        @Html.ValidationMessageFor(c => c.Image)
+                    </div>
+                </div>
+
+                @*<div class="control-group">
+                    @Html.LabelFor(c => c.TBR, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.CheckBoxFor(c => c.TBR)
+                    </div>
+                </div>*@
+            <div class="control-group">
+                <label class="control-label" for="Title">TBR</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.TBR, "true")  Có</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.TBR, "false") Không</label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Title">PCR</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.PCR, "true")  Có</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.PCR, "false") Không</label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Title">OTR</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.OTR, "true")  Có</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.OTR, "false") Không</label>
+                </div>
+            </div><br />
+            <div class="control-group">
+                <label class="control-label" for="Title">Status</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.Status, "true")  Có</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.Status, "false") Không</label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Title">Sản phẩm mới</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.BestSale, "true")  Có</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.BestSale, "false") Không</label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-top: 40px">
+                @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(c => c.Description, new { @class = "basic-ckeditor" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Content">Mô tả chi tiết<span class="asterisk">*</span></label>
+                <div class="controls">
+                    <p>
+                        <span class="error-login">@Html.ValidationMessageFor(a => a.Content)</span>
+                    </p>
+                    @Html.TextAreaFor(c => c.Content, new { @class = "full-ckeditor" })
+                </div>
+            </div>
+            <div class="control-group" style="margin-top: 40px">
+                <label class="control-label" for="Title">Thông số kỹ thuật </label>
+                <div class="controls">
+                    @Html.TextAreaFor(c => c.Technicadata, new { @class = "full-ckeditor" })
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <h3 class="mg-h">Thêm hình ảnh </h3>
+                    <ul class="adminformlist">
+                        <li class="imgthumb">
+                            <label>Hình ảnh </label>
+                            <input type="text" id="img-thumb" style="min-width: 190px" class="upload" />
+                            <button type="button" id="add" class="btn btn-primary">Insert</button>
+                        </li>
+                        <li>
+                            <ul style="width: 100%; height: auto; clear: both" class="allImage" id="">
+                                @foreach (var gallery in Model.ProductGalleries)
+                                {
+                                    <li>
+                                        <input id="ProductGalleries@(flag)__ImageThump" name="ProductGalleries[@(flag)].ImageThump" type="hidden" value="@(gallery.ImageLarge)" />
+                                        <input id="ProductGalleries@(flag)__ImageLage" name="ProductGalleries[@(flag)].ImageLage" type="hidden" value="@(gallery.ImageLarge)" />
+                                        <img src="@(gallery.ImageSmall)" width="100" />
+                                    </li>
+                                    flag++;
+                                }
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="form-actions">
+                @if (ViewBag.cmd == "Create")
+                {
+                    <input id="create" type="submit" value="Create" class="btn btn-primary" />
+                }
+                else
+                {
+                    <input id="update" type="submit" value="Update" class="btn btn-primary" />
+                }
+                <a href="@Url.Action("Index", "Product")" class="btn">Cancel</a>
+            </div>
+
+</div>
+        </form>
+    </div>
+</div>
+
+
+<link href="~/Content/Selecterbootrap/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Content/Selecterbootrap/bootstrap-3.3.2.min.js"></script>
+<script src="~/Content/Selecterbootrap/prettify.js"></script>
+<script src="~/Content/Selecterbootrap/bootstrap-multiselect.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script type="text/javascript">
+
+    function bindRightClick() {
+        $('.allImage li').unbind();
+        $('.allImage li').bind('contextmenu', function (e) {
+            $('#context-menu').css('left', e.pageX + 'px');
+            $('#context-menu').css('top', e.pageY + 'px');
+            $('#context-menu').show();
+            e.preventDefault();
+            curentImg = $(this);
+            return false;
+        });
+    }
+    function sapxep() {
+        var temp = 0;
+        $(".allImage li").each(function () {
+            $(this).find('input').each(function () {
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+                var abc = name.substring(name.indexOf('[') + 1, name.indexOf(']'));
+                //console.log('name: ' + name + ' and : ' + abc);
+                var idreplace = id.replace(abc, temp);
+                var namereplace = name.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                $(this).attr("name", namereplace);
+            });
+            temp++;
+        });
+        bindRightClick();
+    }
+
+    function loadHtmlForImage(val) {
+        if ($('#GalleryProducts_' + val + '__ImageSmall').length > 0) {
+            return loadHtmlForImage(++val);
+        } else {
+            //console.log(val);
+            var image = '<input id="ProductGalleries' + val + '__ImageThump" name="ProductGalleries[' + val + '].ImageThump" type="hidden" value="' + $('#img').val() + '"/>';
+            var thumb = '<input id="ProductGalleries' + val + '__ImageLage" name="ProductGalleries[' + val + '].ImageLage" type="hidden" value="' + $('#img-thumb').val() + '"/>';
+             var img = '<img src="' + $('#img').val() + '" width="100" height="80" />';
+            return ('<li>' + image + thumb + title + img + '</li>');
+        }
+    }
+
+    $(document).ready(function () {
+         bindUl();
+        AutoAlias("ProductName", "Alias");
+        CreateCkEditor();
+
+        $('#TypeMenuID').multiselect();
+
+      
+        //if ($("#HotelId option").length == 1) {
+        //    $("#HotelId").closest(".control-group").hide();
+        //}
+
+
+        bindRightClick();
+        $('html').click(function (e) {
+            $('#context-menu').hide();
+        });
+        $('#context-menu').click(function (e) {
+            e.stopPropagation();
+            $(curentImg).remove();
+            sapxep();
+            $('#context-menu').hide(100);
+        });
+        $(window).resize(function () {
+            $('#context-menu').hide();
+        });
+        //
+        var count = 0;
+        //Thêm ảnh
+        //$('#add').click(function () {
+        //    if ($('#img').val() == "") {
+        //        alert("Please select image");
+        //    } else {
+        //        var data = '';
+        //        while (true) {
+        //            if ($('#GalleryProducts_0__ImageSmall').length == 0) {
+        //                data = loadHtmlForImage(0);
+        //                count = 1;
+        //            } else {
+        //                data = loadHtmlForImage(count++);
+        //            }
+        //            break;
+        //        }
+        //        $('.allImage').append(data);
+        //        sapxep();
+        //        bindRightClick();
+        //        $('#img-title').val('');
+        //        $('#img-thumb').val('');
+        //        $('#img').val('');
+        //    }
+
+        //});
+
+        //Thêm ảnh
+        $('#add').click(function () {
+            if ($('#img').val() == "") {
+                alert("Xin vui lòng chọn ảnh");
+            } else {
+                var data = '';
+                while (true) {
+                    if ($('#GalleryProducts_0__ImageSmall').length == 0) {
+                        data = loadHtmlForImage(0);
+                        count = 1;
+                    } else {
+                        data = loadHtmlForImage(count++);
+                    }
+                    break;
+                }
+                $('.allImage').append(data);
+                sapxep();
+                bindRightClick();
+                 $('#img-thumb').val('');
+                $('#img').val('');
+            }
+
+        });
+    });
+
+</script>
+
+<script>
+
+    $("#update").click(function (e) {
+        var editors = $("textarea");
+        $(this).attr('disabled', 'disabled');
+        $("#Description").val(CKEDITOR.instances['Description'].getData());
+        if (editors.length) {
+            editors.each(function () {
+                var instance = CKEDITOR.instances[$(this).attr("id")];
+                if (instance && $(this).attr("id") !== 'Description') {
+                    instance.destroy(true);
+                    $(this).val(instance.getData());
+                    $(this).hide();
+                }
+            });
+        }
+        var form = $("#productfrom").serialize();
+        $.ajax({
+            type: 'POST',
+            url: "/admin/Product/Update",
+            data: form,
+            dataType: 'json',
+            success: function (data) {
+                if (data.success === true) {
+                    bootbox.alert("Sửa thông tin thành công",
+                        function () {
+                            window.location = "/admin/Product/Index";
+                        });
+                } else {
+                    bootbox.alert("Lỗi");
+                    $(this).removeAttr('disabled');
+                }
+            },
+            error: function () {
+                bootbox.alert("Lỗi");
+                $(this).removeAttr('disabled');
+            }
+        });
+    });
+</script>

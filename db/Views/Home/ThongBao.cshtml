@@ -1,0 +1,51 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    ViewBag.Title = "ThongBao";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+}
+
+<section class="tb-mess">
+    <div class="container">
+        <div class="row">
+            <div class="text-center tb-mess-title">
+                <h1>Chúc mừng bạn khởi tạo phần mềm thành công</h1>
+                <h5>Chúng tôi vừa gửi 1 email chứa thông tin đăng kí và tài khoản đăng nhập của bạn</h5>
+            </div>
+            <div class="img-mess">
+                <img src="~/Content/Img/thongbao.png" width="50%" alt="12" />
+            </div>
+            <div class="text-center tb-mess-title-sm">
+                <h5>ASIKY luôn sẵn sàng tư vấn và hỗ trợ bạn trong suốt quá trìnhvận hành, sự dụng phần mềm</h5>
+                <h5>Hãy liên hệ với chúng tôi theo số điện thoại : @company.Tel Email : @company.Email để được hỗ trợ một cách nhanh nhất</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .tb-mess {
+        margin:30px 0 40px;
+    }
+    .tb-mess-title h1{
+        margin-top: 20px;
+        font-size: 2.5em;
+        font-weight: 300;
+    }
+
+        .tb-mess-title h5 {
+            font-weight: 300;
+            font-size: 1.3em;
+            line-height: 1.5em;
+        }
+    .tb-mess-title-sm h5 {
+        font-weight: 300;
+        font-size: 1.1em;
+        line-height: 1.5em;
+    }
+    .img-mess{
+        margin:0 0 30px;
+        width:100%;
+        text-align:center;
+    }
+</style>

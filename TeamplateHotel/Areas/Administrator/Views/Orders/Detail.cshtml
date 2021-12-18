@@ -1,0 +1,333 @@
+﻿@using System.Globalization
+﻿@model  ProjectLibrary.Database.Order
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+
+
+<div class="span12">
+    <div class="widget ">
+
+        <div class="widget-header">
+            <i class=" icon-info-sign"></i>
+            <h3>Chi tiết đặt phòng</h3>
+            <a href="@Url.Action("Index","Orders")" class="btn btn-primary" style="margin: 5px; float: right;">Quay lại</a>
+        </div> <!-- /widget-header -->
+        <div class="widget-content">
+            <div id="infobook">
+                <div class="container-h2"><h2>Thông tin đặt hàng</h2></div>
+                <div class="infotitlebook"><span>Code: </span> <span class="infob">@Model.Code</span></div>
+
+                <div class="infotitlebook"><span>Ngày khởi tạo: </span> <span class="infob">@Model.DateBook.ToString()</span></div>
+
+                <div class="infotitlebook"><span>Ngày hoàn thành: </span> <span class="infob">@Model.CompletionDate.ToString()</span></div>
+
+                <div class="infotitlebook"><span>Product Details: </span> <span class="infob">@ViewBag.Product</span></div>
+
+                <div id="infobookproduct">
+                    @if ((bool)Model.Jacket)
+                    {
+                        <div class="container-h3"><h2>Jacket</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityJacket</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitJacket</span></div>
+                        <div class="infotitlebook"><span>Button: </span> <span class="infob">@Model.ButtonJacket</span></div>
+                        <div class="infotitlebook"><span>Lapel: </span> <span class="infob">@Model.LapelJacket</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketJacket</span></div>
+                        <div class="infotitlebook"><span>Vents: </span> <span class="infob">@Model.VentsJacket</span></div>
+                        <div class="infotitlebook"><span>Breasted: </span> <span class="infob">@Model.BreastedJacket</span></div>
+                    }
+                    else if ((bool)Model.Vest)
+                    {
+                        <div class="container-h3"><h2>Vest</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityVest</span></div>
+                        <div class="infotitlebook"><span>Number of Button: </span> <span class="infob">@Model.NumberOfButton</span></div>
+                        <div class="infotitlebook"><span>Breasted: </span> <span class="infob">@Model.BreastedVest</span></div>
+                    }
+                    else if ((bool)Model.Pants)
+                    {
+                        <div class="container-h3"><h2>Pants</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityPants</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitPants</span></div>
+                        <div class="infotitlebook"><span>Pleat: </span> <span class="infob">@Model.PleatPants</span></div>
+                        <div class="infotitlebook"><span>Back Pocket: </span> <span class="infob">@Model.BackPocket</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketPants</span></div>
+                        <div class="infotitlebook"><span>Cuff: </span> <span class="infob">@Model.CuffPants</span></div>
+                    }
+                    else if ((bool)Model.Coat)
+                    {
+                        <div class="container-h3"><h2>Coat</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityCoat</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitCoat</span></div>
+                        <div class="infotitlebook"><span>Button: </span> <span class="infob">@Model.ButtonCoat</span></div>
+                        <div class="infotitlebook"><span>Breast: </span> <span class="infob">@Model.BreastCoat</span></div>
+                        <div class="infotitlebook"><span>Lapel: </span> <span class="infob">@Model.LapelCoat</span></div>
+                    }
+                    else if ((bool)Model.Shirt)
+                    {
+                        <div class="container-h3"><h2>Shirt</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityShirt</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitShirt</span></div>
+                        <div class="infotitlebook"><span>Collar: </span> <span class="infob">@Model.CollarShirt</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketShirt</span></div>
+                        <div class="infotitlebook"><span>Cuff: </span> <span class="infob">@Model.CuffShirt</span></div>
+                    }
+                    else if ((bool)Model.Suit)
+                    {
+                        <div class="container-h3"><h2>Jacket</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityJacket</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitJacket</span></div>
+                        <div class="infotitlebook"><span>Button: </span> <span class="infob">@Model.ButtonJacket</span></div>
+                        <div class="infotitlebook"><span>Lapel: </span> <span class="infob">@Model.LapelJacket</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketJacket</span></div>
+                        <div class="infotitlebook"><span>Vents: </span> <span class="infob">@Model.VentsJacket</span></div>
+                        <div class="infotitlebook"><span>Breasted: </span> <span class="infob">@Model.BreastedJacket</span></div>
+
+                        <div class="container-h3"><h2>Pants</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityPants</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitPants</span></div>
+                        <div class="infotitlebook"><span>Pleat: </span> <span class="infob">@Model.PleatPants</span></div>
+                        <div class="infotitlebook"><span>Back Pocket: </span> <span class="infob">@Model.BackPocket</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketPants</span></div>
+                        <div class="infotitlebook"><span>Cuff: </span> <span class="infob">@Model.CuffPants</span></div>
+                    }
+                    else
+                    {
+                        <div class="container-h3"><h2>Jacket</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityJacket</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitJacket</span></div>
+                        <div class="infotitlebook"><span>Button: </span> <span class="infob">@Model.ButtonJacket</span></div>
+                        <div class="infotitlebook"><span>Lapel: </span> <span class="infob">@Model.LapelJacket</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketJacket</span></div>
+                        <div class="infotitlebook"><span>Vents: </span> <span class="infob">@Model.VentsJacket</span></div>
+                        <div class="infotitlebook"><span>Breasted: </span> <span class="infob">@Model.BreastedJacket</span></div>
+
+                        <div class="container-h3"><h2>Pants</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityPants</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitPants</span></div>
+                        <div class="infotitlebook"><span>Pleat: </span> <span class="infob">@Model.PleatPants</span></div>
+                        <div class="infotitlebook"><span>Back Pocket: </span> <span class="infob">@Model.BackPocket</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketPants</span></div>
+                        <div class="infotitlebook"><span>Cuff: </span> <span class="infob">@Model.CuffPants</span></div>
+
+                        <div class="container-h3"><h2>Vest</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityVest</span></div>
+                        <div class="infotitlebook"><span>Number of Button: </span> <span class="infob">@Model.NumberOfButton</span></div>
+                        <div class="infotitlebook"><span>Breasted: </span> <span class="infob">@Model.BreastedVest</span></div>
+
+                        <div class="container-h3"><h2>Shirt</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityShirt</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitShirt</span></div>
+                        <div class="infotitlebook"><span>Collar: </span> <span class="infob">@Model.CollarShirt</span></div>
+                        <div class="infotitlebook"><span>Pocket: </span> <span class="infob">@Model.PocketShirt</span></div>
+                        <div class="infotitlebook"><span>Cuff: </span> <span class="infob">@Model.CuffShirt</span></div>
+
+                        <div class="container-h3"><h2>Coat</h2></div>
+                        <div class="infotitlebook"><span>Quantity: </span> <span class="infob">@Model.QuantityCoat</span></div>
+                        <div class="infotitlebook"><span>Fit: </span> <span class="infob">@Model.FitCoat</span></div>
+                        <div class="infotitlebook"><span>Button: </span> <span class="infob">@Model.ButtonCoat</span></div>
+                        <div class="infotitlebook"><span>Breast: </span> <span class="infob">@Model.BreastCoat</span></div>
+                        <div class="infotitlebook"><span>Lapel: </span> <span class="infob">@Model.LapelCoat</span></div>
+                    }
+                </div>
+                <div class="infotitlebook"><span>Material Selection: </span> <span class="infob">@Model.Material</span></div>
+                <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                    <div class="swatch_detail">
+                        <div class="swatch_description">
+                            <h3>@Model.NameMaterial</h3>
+                        </div>
+                    </div>
+                    <img src="@Model.ImageMaterial" alt="swatch_thumb" id="swatch_thumb_material" id="swatch_thumb_material">
+                </div>
+                
+                <div id="infobookproduct">
+                    <div class="container-h3"><h2>Jacket/Shirt Measurements</h2></div>
+                    <div class="infotitlebook"><span>Total length: </span> <span class="infob">@Model.TotalLength</span></div>
+                    <div class="infotitlebook"><span>Length: </span> <span class="infob">@Model.LengthJacketShirt</span></div>
+                    <div class="infotitlebook"><span>Shoulder: </span> <span class="infob">@Model.Shoulder</span></div>
+                    <div class="infotitlebook"><span>N to S: </span> <span class="infob">@Model.NToS</span></div>
+                    <div class="infotitlebook"><span>Sleeve length: </span> <span class="infob">@Model.SleeveLength</span></div>
+                    <div class="infotitlebook"><span>Sleeve width: </span> <span class="infob">@Model.SleeveWidth</span></div>
+                    <div class="infotitlebook"><span>Armshole: </span> <span class="infob">@Model.Armshole</span></div>
+                    <div class="infotitlebook"><span>Chest: </span> <span class="infob">@Model.Chest</span></div>
+                    <div class="infotitlebook"><span>Waist: </span> <span class="infob">@Model.WaistJacketShirt</span></div>
+                    <div class="infotitlebook"><span>Hips: </span> <span class="infob">@Model.HipJacketShirt</span></div>
+                    <div class="infotitlebook"><span>Chest width: </span> <span class="infob">@Model.ChestWidth</span></div>
+                    <div class="infotitlebook"><span>Around neck: </span> <span class="infob">@Model.AroundNeck</span></div>
+                    <div class="infotitlebook"><span>Back Width: </span> <span class="infob">@Model.BackWidth</span></div>
+                </div>
+                <div id="infobookproduct">
+                    <div class="container-h3"><h2>Trousers Measurement</h2></div>
+                    <div class="infotitlebook"><span>Length: </span> <span class="infob">@Model.LengthTrousers</span></div>
+                    <div class="infotitlebook"><span>Hip: </span> <span class="infob">@Model.HipTrousers</span></div>
+                    <div class="infotitlebook"><span>Crotch: </span> <span class="infob">@Model.Crotch</span></div>
+                    <div class="infotitlebook"><span>Thigh width: </span> <span class="infob">@Model.ThighWidth</span></div>
+                    <div class="infotitlebook"><span>Calf width: </span> <span class="infob">@Model.CalfWidth</span></div>
+                    <div class="infotitlebook"><span>Ankle width: </span> <span class="infob">@Model.AnkleWidth</span></div>
+                    <div class="infotitlebook"><span>Waist: </span> <span class="infob">@Model.WaistWidth</span></div>
+                </div>
+                <div class="infotitlebook"><span>Other Request: </span> <span class="infob">@Model.Request</span></div>
+            </div>
+            <div id="infoRight">
+                <div id="infocustumer">
+                    <div class="container-h2"></><h2>Thông tin khách hàng</h2></div>
+                    <div class="infoc"><span>Họ tên: </span> <span class="infod">@Model.FirstName @Model.LastName</span></div>
+                    <div class="infoc"><span>Địa chỉ: </span> <span class="infod">@Model.Address</span></div>
+                    <div class="infoc"><span>Country: </span> <span class="infod">@Model.Country</span></div>
+                    <div class="infoc"><span>City: </span> <span class="infod">@Model.City</span></div>
+                    @*<div class="infoc"><span>Company: </span> <span class="infod">@Model.Company</span></div>*@
+                    <div class="infoc"><span>Email: </span> <span class="infod">@Model.Email</span></div>
+                    <div class="infoc"><span>Số điện thoại: </span> <span class="infod">@Model.Phone</span></div>
+
+                    @*<div class="infoc">
+                            <span>Yêu câu khác: </span>
+                            <span class="infod">@Model.Request</span>
+                        </div>*@
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .swatch_thumb img {
+        width: 100%;
+    }
+    #infobook h2, #infoRight h2 {
+        line-height: 48px;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #146295;
+        margin: 0px 0px 0px 30px;
+    }
+
+    #xacnhan {
+        width: 100%;
+        float: left;
+    }
+
+    .infoc span, .infotitlebook span {
+        color: #121212;
+        display: block;
+        font-size: 1.2em;
+    }
+
+    #infobookproduct {
+        width: 85%;
+        float: left;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        margin: 20px 40px 20px 40px;
+    }
+
+        #infobookproduct h2, #infoRight h2 {
+            line-height: 48px;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #146295;
+            margin: 0px 0px 0px 30px;
+        }
+
+    #infobook {
+        width: 45%;
+        float: left;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        margin-left: 20px;
+    }
+
+    #infoPament {
+        width: 100%;
+        float: left;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        margin-top: 35px;
+    }
+
+    .infotitlebook :first-child {
+        border: none;
+    }
+
+    .infotitlebook, .infoc {
+        width: 100%;
+        float: left;
+        border-top: 1px solid #ccc;
+        line-height: 30px;
+    }
+
+        .infotitlebook span {
+            width: 33%;
+            display: block;
+            height: 100%;
+            float: left;
+            text-align: right;
+            padding-right: 2px;
+            border-left: 1px solid #ccc;
+            padding: 3px 2px 3px 0px;
+        }
+
+            .infotitlebook span.infob {
+                width: 63%;
+                float: left;
+                color: red !important;
+                text-align: left !important;
+                padding-left: 5px;
+            }
+
+    #infoRight {
+        width: 45%;
+        float: left;
+        margin-left: 50px;
+    }
+
+    #infocustumer {
+        width: 100%;
+        float: left;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    .infocustumer .infoc span {
+        width: 30%;
+        float: left;
+    }
+
+    .infoc {
+        width: 100%;
+        float: left;
+    }
+
+        .infoc span {
+            width: 30%;
+            float: left;
+            text-align: right;
+            padding: 3px 3px 3px 0px;
+        }
+
+    .infod {
+        text-align: left !important;
+        padding-left: 6px;
+        color: red !important;
+        border-left: 1px solid #ccc;
+    }
+
+    .infoc span.infod {
+        width: 65%;
+        float: left !important;
+        text-align: left !important;
+        padding-left: 3px;
+    }
+
+    #infoPament .infob {
+        border-left: 1px solid #ccc;
+    }
+</style>

@@ -1,0 +1,78 @@
+﻿﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using PagedList.Mvc
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+@using PagedList
+@model IPagedList<Article>
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-contact.jpg">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-news">
+        <div class="container">
+            <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+                <h2>@menu.Title</h2>
+                <p>@Html.Raw(menu.Description)</p>
+            </div>
+
+            <div class="news">
+                @foreach (var item in Model)
+                {
+                    <div class="item wow fadeInUp" data-wow-duration=".8s">
+                        <div class="pic">
+                            <a class="img-box" href="/@item.MenuAlias/@item.Alias/@item.ID">
+                                <img src="@item.Image" width="600" height="400" alt="@item.Title" />
+                            </a>
+                            @*<div class="date">
+                                <h3>06-10</h3>
+                                <p>2020</p>
+                            </div>*@
+                        </div>
+                        <div class="note">
+                            <h3>
+                                <a href="/@item.MenuAlias/@item.Alias/@item.ID">@item.Title</a>
+                            </h3>
+
+                            <a href="/@item.MenuAlias/@item.Alias/@item.ID"></a>
+                            <p>@Html.Raw(item.Description)</p>
+                            <a class="more" href="/@item.MenuAlias/@item.Alias/@item.ID"></a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            <div class="page wow fadeInUp " data-wow-duration="1s">
+                @*<a class="first-child" href="http://www.hongtyre.com/news.html?">Prev</a>*@
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                new PagedListRenderOptions()
+                {
+                    ClassToApplyToFirstListItemInPager = "first-child",
+                    ClassToApplyToLastListItemInPager = "last-child",
+                    //LinkToPreviousPageFormat = "Prev",
+                    //LinkToNextPageFormat = "Next",
+                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                    LiElementClasses = new List<string> { "" },
+
+
+                })
+                @*<a class="last-child" href="http://www.hongtyre.com/news.html?pageid=1">Next</a>*@
+            </div>
+        </div>
+    </div>
+</div>

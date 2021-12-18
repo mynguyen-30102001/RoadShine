@@ -1,0 +1,206 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@using PagedList.Mvc
+@model  PagedList.IPagedList<EF_Product>
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+@section css {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <link href="~/Content/css/menupage.css" rel="stylesheet" />
+    <link href="~/Content/css/contact.css" rel="stylesheet" />
+    <link href="~/Content/css/shop.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">
+                    SHOP
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="middle_inner">
+    <div class="content_wrap fullwidth">
+        <!-- Start Content -->
+        <div class="middle_content entry">
+            <div class="cmsmasters_woo_wrap_result">
+                <div class="woocommerce-notices-wrapper"></div>
+                <p class="woocommerce-result-count">
+                    Showing @Model.Count  results
+                </p>
+                @*<form class="woocommerce-ordering" method="get">
+                    <select id="sort" name="orderby" class="orderby" aria-label="Shop order">
+                        <option value="0">Default sorting</option>
+                        <option value="1">Sort by popularity</option>
+                        <option value="2">Sort by average rating</option>
+                        <option value="3">Sort by latest</option>
+                        <option value="4">Sort by price: low to high</option>
+                        <option value="5">Sort by price: high to low</option>
+                    </select>
+                    <input type="hidden" name="paged" value="1">
+                </form>*@
+            </div>
+            <ul class="products columns-4 cmsmasters_products">
+
+                @foreach (var item in Model)
+                {
+                    <li class="product type-product post-13183 status-publish instock product_cat-rolls product_tag-cucumber product_tag-roll has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
+                        <article class="cmsmasters_product">
+                            <figure class="cmsmasters_product_img">
+                                <a href="/@item.MenuAlias/@item.ProductID/@item.Alias">
+                                    <img width="600" height="600" src="@item.Image" class="attachment-woocommerce_single size-woocommerce_single" alt="@item.ProductName"
+                                         sizes="(max-width: 600px) 100vw, 600px">
+                                </a>
+                                @if (item.PromotionPrice > 0)
+                                {
+                                    <span class="onsale">Sale</span>
+
+                                }
+                            </figure>
+                            <div class="cmsmasters_product_inner">
+                                <div class="cmsmasters_product_cat entry-meta">
+                                    @for (int i = 0; i < item.Type.Count; i++)
+                                    {
+                                        <a href="#" class="cmsmasters_cat_color cmsmasters_cat_58" rel="category tag">@item.Type[i].NameTypeMenu</a>
+                                    }
+                                </div>
+                                <header class="cmsmasters_product_header entry-header">
+                                    <h4 class="cmsmasters_product_title entry-title">
+                                        <a href="/@item.MenuAlias/@item.ProductID/@item.Alias">
+                                            @item.ProductName
+                                        </a>
+                                    </h4>
+                                </header>
+                                <div class="cmsmasters_product_info">
+
+                                    <div class="cmsmasters_star_rating" itemscope="" itemtype="http://schema.org/AggregateRating" title="Rated 4.00 out of 5">
+                                        <div class="cmsmasters_star_trans_wrap">
+                                            <span><i class="fa fa-star"></i></span>
+                                            <span><i class="fa fa-star"></i></span>
+                                            <span><i class="fa fa-star"></i></span>
+                                            <span><i class="fa fa-star"></i></span>
+                                            <span><i class="fa fa-star"></i></span>
+
+                                        </div>
+                                        <div class="cmsmasters_star_color_wrap" data-width="width:80%" style="width:80%">
+                                            <div class="cmsmasters_star_color_inner">
+                                                <span><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+
+                                            </div>
+                                        </div>
+                                        <span class="rating dn">
+                                            <strong itemprop="ratingValue">4.00</strong> out of
+                                            5
+                                        </span>
+                                    </div>
+                                    <div class="cmsmasters_product_price">
+
+                                        <span class="price">
+                                            @if (item.PromotionPrice == 0 || item.PromotionPrice == null)
+                                            {
+
+
+                                                <span class="woocommerce-Price-amount amount"><span><span class="woocommerce-Price-currencySymbol">$</span></span>@item.Price</span>
+
+                                            }
+                                            else
+                                            {
+                                                <del>
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <span>
+                                                            <span class="woocommerce-Price-currencySymbol">$</span>
+                                                        </span>@item.Price
+                                                    </span>
+                                                </del>
+                                                <ins>
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <span>
+                                                            <span class="woocommerce-Price-currencySymbol">$</span>
+                                                        </span>@item.PromotionPrice
+                                                    </span>
+                                                </ins>
+                                            }
+
+
+                                        </span>
+                                        <div class="cmsmasters_product_after_hover">
+                                            @*<a class="btn btn-success btn-sm" href="/Themvaogio?sanPhamID=@item.ProductID"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>*@
+                                            <a href="/Themvaogio?sanPhamID=@item.ProductID" class="button add_to_cart_button cmsmasters_add_to_cart_button product_type_simple ajax_add_to_cart" title="Add to Cart"><span>Add to Cart</span></a>
+                                            @*<a href="https://sushico.cmsmasters.net/cart/" class="button added_to_cart wc-forward" title="View Cart">
+                                                    <span>
+                                                        View
+                                                        Cart
+                                                    </span>
+                                                </a>*@
+                                            <a href="@item.MenuAlias/@item.ProductID/@item.Alias" data-product_id="13183" data-product_sku="" class="button cmsmasters_details_button">
+                                                <span>
+                                                    Show
+                                                    Details
+                                                </span>
+                                            </a>
+                                        </div>
+                                        @*<a class="btn btn-success btn-sm" href="@Url.Action("Addtocart", "Cart", new { ProductID = Url.RequestContext.RouteData.Values["id"] })">  Thêm vào giỏ </a>*@
+
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                }
+            </ul>
+
+        </div>
+        <!-- Finish Content -->
+
+    </div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="text-center" style="width: 100%">
+
+            @Html.PagedListPager(Model, page => "/" + menu.Alias + "?page=" + page)
+
+
+        </div>
+    </div>
+
+</div>
+
+@section script{
+    @*<script>
+        $(document).ready(function () {
+            $('#sort').on('change',
+                function (e) {
+                    debugger
+                    var sort = $(this).val();
+                    var menu = '@menu';
+                    $.ajax({
+                        url: "/Home/",
+                        method: "POST",
+                        data: {
+                            sort: sort,
+                            menu: menu
+                        },
+                        success: function (response) {
+                            alert('Test');
+                        }
+                    });
+                });
+        });
+    </script>*@
+}

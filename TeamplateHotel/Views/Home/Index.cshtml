@@ -1,0 +1,117 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+
+@{
+    ViewBag.Home = true;
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    var lan = Request.Cookies["LanguageID"].Value;
+    lan = "en";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    Menu menuOffer = CommentController.MenuOffer(lan);
+    List<Slider> listSlider = CommentController.GetListSlider(Request.Cookies["LanguageID"].Value);
+    //List<Menu> menuChild = CommentController.GetMenuChild(lan, menu.ID);
+}
+<div class="swiper-slide">
+    <div class="banner">
+        <div class="index-banner">
+            <div class="owl-carousel owl-theme" id="sync1">
+                @foreach (var itemSlide in listSlider)
+                {
+                    if (itemSlide.ViewAll == true)
+                    {
+                        <div class="item">
+                            <a href="javascript:;" target="_self">
+                                <img src="@itemSlide.Image">
+                            </a>
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+        <div id="sync2" class="sync2 owl-carousel">
+            @foreach (var itemSlide1 in listSlider)
+            {
+                if (itemSlide1.ViewAll == true)
+                {
+                    <div class="item">
+                        <a class="img-box"><img src="@itemSlide1.Image" width="600" height="480" /></a>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+</div>
+<div class="swiper-slide">
+    <div class="box box-about">
+        <div class="box-center">
+            <div class="about">
+                <div class="text">
+                    <h3>GREAT TIRES FROM A TRUSTED COMPANY</h3>
+                    <p><b>We are one of the largest tire companies in China with more than 40 years history. We focus on supplying high quality tires with most competitive price, fastest delivery and best service.</b></p>
+                    <a class="more" href="#profile.html">Read more</a>
+                </div>
+                <div class="info">
+                    <ul>
+                        <li>
+                            <div class="item">
+                                <div class="img-box">
+                                    <h3 class="counter">40</h3>
+                                    <p>Years of Experience</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="img-box">
+                                    <h3 class="counter">100</h3>
+                                    <p>Servicing Countries and Regions</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="img-box">
+                                    <h3 class="counter">500</h3>
+                                    <p>Developed Tire Sizes and Patterns</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="img-box">
+                                    <h3 class="counter">60,000</h3>
+                                    <p>Sqm Bonded Warehouse</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="img-box">
+                                    <h3 class="counter">700,000</h3>
+                                    <p>Pcs of Regular Stocks</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="swiper-slide">
+    <div class="box box-product">
+        <div class="box-center">
+            <div class="text">
+                <h3><a href="#tires/new-product.html">New Products</a></h3>
+                <p><a href="#tires/new-product.html">We keep developing new products to meet the demand of our partners. If you have any demand which you cannot find in our current production, pls feel free to inform us.</a></p>
+                <div class="pic">
+                    <a href="#tires/new-product.html"><img src="~/Content/assets/image/9c33984eb38318fe.png" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

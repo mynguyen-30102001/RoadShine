@@ -1,0 +1,62 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu;
+    var language = Request.Cookies["LanguageID"].Value;
+
+    ShowObject lstArticle = CommentController.AboutArticles(language) ?? new ShowObject();
+    int i = 0;
+    string active = "";
+}
+@section css{
+    <link href="~/Content/css/feature.css" rel="stylesheet" />
+
+
+
+}
+ 
+
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">@menu.Title</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<hr />
+<div class="container n-ding">
+
+    <div class="row">
+        @*<div class="col-md-6 col-md-offset-1 col-sm-6 ">
+                <img src="@articleWellcome.Image" width="100%" />
+            </div>*@
+        <div class="col-md-12 col-md-offset-1 col-sm-6 ">
+            @*<h2 class="title">@articleWellcome.Title</h2>*@
+            <p>@Html.Raw(lstArticle.Content)</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+@*<div class="container">
+        <div class="row">
+
+            @foreach ( var item in gallary)
+            {
+                <img src="@item.LargeImage" width="100%"/>
+            }
+        </div>
+    </div>*@
+
+

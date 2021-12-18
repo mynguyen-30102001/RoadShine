@@ -1,0 +1,176 @@
+﻿
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.MetaDesctiption">
+    <meta name="keywords" itemprop="keywords" content="@ViewBag.MetaKeyword">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel='stylesheet' id='fonts-css' href='http://fonts.googleapis.com/css?family=Yellowtail%7CCabin%3A400%2C500%2C600%2C700%2C400italic%2C700italic%7CLibre+Baskerville%3A400italic%7CGreat+Vibes%7COswald%3A400%2C300%2C700%7COpen+Sans%3A300italic%2C400italic%2C600italic%2C700italic%2C400%2C300%2C600%2C700&#038;ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='/Content/wp-content/themes/elixir-jellythemes/css/bootstrap.min.css?ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='elixir-css' href='/Content/wp-content/themes/elixir-jellythemes/css/elixir-elegant.css?ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='carousel-css' href='/Content/wp-content/themes/elixir-jellythemes/js/owl-carousel/owl.carousel.css?ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='carousel-theme-css' href='/Content/wp-content/themes/elixir-jellythemes/js/owl-carousel/owl.theme.css?ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='carousel-transitions-css' href='/Content/wp-content/themes/elixir-jellythemes/js/owl-carousel/owl.transitions.css?ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='Swipebox-css' href='/Content/wp-content/themes/elixir-jellythemes/css/swipebox.css?ver=4.1.10' type='text/css' media='all' />
+    <link rel='stylesheet' id='theme-style-css' href='/Content/wp-content/themes/elixir-jellythemes/style.css?ver=4.1.10' type='text/css' media='all' />
+    <script type='text/javascript' src='/Content/wp-includes/js/jquery/jquery.js'></script>
+    <script type='text/javascript' src='/Content/wp-includes/js/jquery/jquery-migrate.min.js'></script>
+    <style type="text/css">
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    </style>
+	<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5b1a2bb68859f57bdc7bf55d/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</head>
+<body class="page-template-multipage  single-section">
+    <div id="mask">
+        <div class="loader">
+            <img src="/Content/wp-content/themes/elixir-jellythemes/svg-loaders/tail-spin-elegant.svg" alt='loading'>
+        </div>
+    </div>
+    @RenderBody()
+    <section id="contact" class="section contact dark" style="background-color:; ">
+        <div class="container">
+            <div class="row jt_row jt_row-fluid nomargins">
+                <div class="col-md-12 jt_col  ">
+                    <div>
+                        <h2 class="section-title">Contact</h2>
+                        <div class="row jt_row vc_inner jt_row-fluid nomargins">
+                            <div class="col-md-4 jt_col  ">
+                                <div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 jt_col  ">
+                                <div>
+                                    <div class="section-subtitle">No 22 Ta Hien St., HoanKiem Dist., Old quarter, Hanoi, Vietnam</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 jt_col  ">
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vc_row-full-width"></div>
+                        <form action="@Url.Action("SubmidContact","SendContact")" method="post" id="contactform" class="contact-form">
+                            <div class="col-md-6 jt_col column_container">
+                                <input type="text" id="name" name="Name" class="name required" placeholder="Name">
+                                <input type="email" id="email" name="Email" class="email required" placeholder="Email">
+                                <input type="text" id="subject" name="Subject" placeholder="Subject">
+                            </div>
+                            <div class="col-md-6 jt_col column_container">
+                                <textarea id="message" name="Message" class="text area required" placeholder="Message" rows="10"></textarea>
+                            </div>
+                            <div class="col-md-4 col-md-offset-4 jt_col column_container">
+                                <div class="formSent"><strong>Your Message Has Been Sent!</strong> Thank you for contacting us.</div>
+                                <input type="submit" class="button contact center" value="Submit">
+                            </div>
+
+                        </form>
+
+                        <div class="voffset100"></div>
+                    </div>
+                </div>
+            </div><div class="vc_row-full-width"></div>
+            <div class="row jt_row jt_row-fluid">
+                <div class="col-md-12 jt_col  ">
+                    <div>
+                        <div class="voffset50"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="vc_row-full-width"></div>
+
+        </div>
+    </section>
+
+    <section id="location" class="section location " style="background-color:; ">
+        <div class="">
+            <div class="row jt_row jt_row-fluid">
+                <div class="col-md-12 jt_col  ">
+                    <div>
+
+                        <div id="maps" data-lat="21.034561" data-lon="105.852012" data-marker="My Company" style="display: none">
+                            <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                            <div class="map-content">
+                                <div class="wpgmappity_container inner-map" id="wpgmappitymap" style="display: none"></div>
+                            </div>
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9537527193297!2d105.8498559148831!3d21.034536392957087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abbf66dc68d1%3A0x28cec9291020be57!2sEssence+Cafe+Restaurant!5e0!3m2!1svi!2s!4v1461733053553" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                    </div>
+                </div>
+            </div><div class="vc_row-full-width"></div>
+
+        </div>
+    </section>
+
+    <footer id="footer" class="section" role="contentinfo">
+        <div class="container">
+            <ul class="social">
+                <li>
+                    <a href="www.facebook.com/essencehanoihotel" class="icon fb"><i class="fa fa-facebook"></i></a>
+                <li>
+                <li>
+                    <a href="http://twitter.com" class="icon tw"><i class="fa fa-twitter"></i></a>
+                <li>
+
+                <li>
+                    <a href="http://pinterest.com" class="icon in"><i class="fa fa-pinterest"></i></a>
+                <li>
+                <li>
+                    <a href="http://plus.google.com" class="icon go"><i class="fa fa-google-plus"></i></a>
+                <li>
+            </ul>
+        </div>
+    </footer>
+    <a href="#home" class="cd-top">Top</a>
+    <!-- BEGIN Scripts-->
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/modernizr.custom.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/classie.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/pathLoader.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/owl-carousel/owl.carousel.min.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/jquery.inview.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/jquery.nav.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/jquery.form.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/jquery.validate.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/bootstrap.min.js'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var jellythemes = { "theme_path": "http:\/\/www.jellythemes.com\/themes\/elixirwp\/wp-content\/themes\/elixir-jellythemes", "color": "", "style": "elegant" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/default.js'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var jellythemes = { "theme_path": "http:\/\/www.jellythemes.com\/themes\/elixirwp\/wp-content\/themes\/elixir-jellythemes", "color": "", "style": "elegant" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/plugins.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/plugins/js_composer/assets/lib/isotope/dist/isotope.pkgd.min.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/plugins/js_composer/assets/lib/prettyphoto/js/jquery.prettyPhoto.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/themes/elixir-jellythemes/js/jquery.swipebox.js'></script>
+    <script type='text/javascript' src='/Content/wp-content/plugins/js_composer/assets/js/js_composer_front.js'></script>
+</body>
+</html>
+

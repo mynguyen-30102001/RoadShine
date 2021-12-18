@@ -1,0 +1,115 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@model TeamplateHotel.Models.EF_TheDishs
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var language = Request.Cookies["LanguageID"].Value;
+    List<ShowObject> articlerelated = CommentController.ArticleRelated(language);
+}
+
+@section css
+{
+    <link href="~/Content/css/feature.css" rel="stylesheet" />
+}
+
+<section id="blog_content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="cmsmasters_row_outer" style="margin-bottom: 20px;">
+                    <div class="cmsmaster_row_pa">
+                        <a href="@Model.TheDish.Image" data-fancybox="gallery"><img src="@Model.TheDish.Image" width="100%" alt="@Model.TheDish.MetaTitle" /></a>
+                        <div class="cmsmaster-slide-details-header">
+                            <div>
+                               <h3>@Model.TheDish.NameMenu</h3>
+                            </div>
+
+                            <div class="cmsmasters_feature_desctiption">
+                                @Html.Raw(Model.TheDish.Description)
+                            </div>
+                            <div class="share-socialnetwork">
+                                <h3>Share This Post</h3>
+                                <ul>
+                                    <li><a href="#">FACEBOOK</a></li>
+                                    <li><a href="#">TWITTER</a> </li>
+                                    <li><a href="#">PINTEREST</a></li>
+                                </ul>
+                            </div>
+                            <div class="articel_related">
+                                <h3>Related Posts</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="owl-carousel owl-theme owl-loaded" id="hhh">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage">
+                                                @foreach (var item in articlerelated)
+                                                {
+                                                    <div class="owl-item">
+                                                        <div class="col">
+                                                            <div>
+                                                                <a href="/@item.MenuAlias/@item.ID/@item.Alias"><img src="@item.Image" width="100%"  alt="@item.Title"/></a>
+                                                            </div>
+                                                            <div class="cmsmaster-slide-article">
+                                                                <span>@item.DateTime</span>
+                                                            </div>
+                                                            <div class="cmsmaster-slide-article-related">
+                                                                <h3><a href="/@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h3>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="articel_you_like">
+                    <h3>Project details</h3>
+
+                    <div class="articel_like">
+                        Likes: <p style="float: right; margin-bottom: 0">6</p>
+                    </div>
+                    <div class="articel_like">
+                        Author: <p style="float: right; margin-bottom: 0">cmsmasters</p>
+                    </div>
+                    <div class="articel_like">
+                        Date: <p style="float: right; margin-bottom: 0">January 10, 2015</p>
+                    </div>
+                    <div class="articel_like">
+                        Categories: <p style="float: right; margin-bottom: 0">Fish</p>
+                    </div>
+                    <div class="articel_like">
+                        Material: <p style="float: right; margin-bottom: 0">Fish</p>
+                    </div>
+                    <div class="articel_like">
+                        Sauce: <p style="float: right; margin-bottom: 0">White</p>
+                    </div>
+                    <div class="articel_like">
+                        Spice: <p style="float: right; margin-bottom: 0">Salt, Pepper</p>
+                    </div>
+                    <div class="articel_like">
+                        Calories: <p style="float: right; margin-bottom: 0">180 kcal</p>
+                    </div>
+                    <div class="articel_like">
+                        Weight: <p style="float: right; margin-bottom: 0">380 g</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

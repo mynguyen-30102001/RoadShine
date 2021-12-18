@@ -1,0 +1,75 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    var lan = Request.Cookies["LanguageID"].Value;
+    lan = "en";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> menuChild = CommentController.GetMenuChild(lan, menu.ID);
+}
+@*@Html.Partial("~/Views/Share/Banner.cshtml")*@
+
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-about&newproduct.jpg">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-why">
+        <div class="container">
+            <div class="why">
+                <div class="wleft wow fadeInUp" data-wow-duration=".8s">
+                    <div class="pic">
+                        <a class="img-box">
+                            <img class="lazy" data-src="data/thumb/res/en/20181205/e5d5496fa71265ec.jpg_20181205151127_620x460.jpg" width="620" height="460" />
+                        </a>
+                    </div>
+                    <div class="text">
+                        <a href="profile.html">
+                            <h3>COMPANY PROFILE</h3>
+                            <p>We are one of the largest tire companies in China with more than 40 years history. We focus on supplying high quality tires with most competitive price, fastest delivery and best service.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="wright wow fadeInUp" data-wow-duration=".8s">
+                    <div class="title-in">
+                        <h2>WHY <span style="color:#eb1d27;">ROADSHINE</span></h2>
+                    </div>
+                    <div class="text">
+                        <p>
+                            <span style="font-size: 16px;">
+                                <strong><span style="font-size: 16px; color: rgb(255, 0, 0);">1.RICH EXPERIENCE</span></strong>
+                            </span>
+                        </p>
+                        <p><span style="font-size: 16px;">Profound understanding of the tire industry .</span></p>
+                        <p><br /></p>
+                        <p><span style="color: rgb(255, 0, 0); font-size: 16px;"><strong>2.WIDE RANGE OF PRODUCTS</strong></span></p>
+                        <p><span style="font-size: 16px;">Full range of TBR, PCR, OTR etc in production.</span></p>
+                        <p><br /></p>
+                        <p><span style="color: rgb(255, 0, 0); font-size: 16px;"><strong>3.MOST RELIABLE QUALITY</strong></span></p>
+                        <p><span style="font-size: 16px;">Best R&amp;D team with dependable quality control system. Good reputation.</span></p>
+                        <p><br /></p>
+                        <p><span style="color: rgb(255, 0, 0); font-size: 16px;"><strong>4.MOST COMPETITIVE PRICE</strong></span></p>
+                        <p><span style="font-size: 16px;">Our price is lower than most of the competitors with similar quality.</span></p>
+                        <p><br /></p>
+                        <p><span style="color: rgb(255, 0, 0); font-size: 16px;"><strong>5.FASTEST DELIVERY</strong></span></p>
+                        <p><span style="font-size: 16px;">1500X40’HQ regular stock. Prompt shipment for most of the orders.</span></p>
+                        <p><br /></p>
+                        <p><span style="color: rgb(255, 0, 0); font-size: 16px;"><strong>6.BEST MARKET PROTECTION</strong></span></p>
+                        <p><span style="font-size: 16px;">Full market protection. Strict control for the shipment to transit ports.</span></p>
+                        <p><br /></p>
+                        <p><span style="color: rgb(255, 0, 0); font-size: 16px;"><strong>7.SINCEREST SERVICE</strong></span></p>
+                        <p><span style="font-size: 16px;">Quick solutions for the problems from all the customers.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

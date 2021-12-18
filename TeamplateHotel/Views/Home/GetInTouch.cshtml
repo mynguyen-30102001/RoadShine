@@ -1,0 +1,138 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+<div class="contact-wp box">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="contact-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="cotact-left">
+                                <div class="contact-logo">
+                                    <h3>DUCCIO</h3>
+                                </div>
+                                <h1 class="contact-title">@menu.Title</h1>
+                                <div class="contact-element">
+                                    <div class="contact-line">
+                                        <h5 class="contact-subtitle">For general enquiries:</h5>
+                                    </div>
+                                    <div class="contact-line">
+                                        <a href="tel:@company.Tel">@company.Tel</a>
+                                    </div>
+                                    <div class="contact-line">
+                                        <a href="mailto:@company.Email">@company.Email</a>
+                                    </div>
+                                    <div class="contact-line">
+                                        <a href="mailto:@company.Email">@company.Email</a>
+                                    </div>
+                                    <div class="contact-line">
+                                        <a href="@company.Website">@company.Website</a>
+                                    </div>
+                                </div>
+                                <div class="contact-element">
+                                    <div class="contact-line my-5">
+                                        <b>Online : </b>
+                                    </div>
+                                    <ul class="contact-social">
+                                        <li>
+                                            <a href="@company.Facebook"><i class="fab fa-facebook-f"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="@company.Youtube"><i class="fab fa-youtube"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="@company.Instagram"><i class="fab fa-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <p class="contact-note">@Html.Raw(menu.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="cotact-right">
+                                <div class="contact-element">
+                                    <div class="contact-line">
+                                        <h5 class="contact-subtitle">Head office address:</h5>
+                                    </div>
+                                    <div class="contact-line">
+                                        <span>38 Tran Phu St,</span>
+                                    </div>
+                                    <div class="contact-line">
+                                        <span>Ba Dinh District,</span>
+                                    </div>
+                                    <div class="contact-line">
+                                        <span>Hanoi, Vietnam</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div id="wraploadding">
+    <div id="imgloadding"><img src="/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading" /></div>
+</div>
+
+@section script
+{
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#contact-form").validate();
+        });
+
+        function LoadingSendEmail() {
+            $("#wraploadding").show();
+            $("#wraploadding").css("width", $(window).width());
+            $("#wraploadding").css("height", $(window).height());
+            $("#imgloadding ").css("top", ($(window).height() / 2) - 80);
+        }
+        validate
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#contact-form").validate({
+            rules: {
+                'FullName': {
+                    required: true,
+                },
+
+                'Email': {
+                    required: true,
+                    email: true
+                },
+                'Request': {
+                    required: true,
+                }
+
+            },
+            messages: {
+                'FullName': "This field is required",
+                'Email': "This field is required",
+                'Request': "This field is required",
+            },
+            submitHandler: function (form) {
+                form.submit();
+                LoadingSendEmail();
+            }
+        });
+
+    </script>
+}*@
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿@using PagedList
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@using PagedList.Mvc
+@using TeamplateHotel.Handler
+@model  List<Article>
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    var lan = Request.Cookies["LanguageID"].Value;
+
+}
+<div class="offer-main scroll-pos box">
+    <div class="container-fluid mb-5">
+        @foreach (var item in Model.Take(2).Select((value, index) => new { Value = value, Index = index }))
+        {
+            var mb = item.Index == 0 ? "mb-5" : "";
+            <div class="offer__item @mb">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="offer__img">
+                            <img src="@item.Value.Image" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="offer__content">
+                            <h3 class="offer__title">
+                                <a class="offer__title" href="/@item.Value.MenuAlias/@item.Value.Alias/@item.Value.ID">@item.Value.Title</a>
+                            </h3>
+                            <div class="offer__text">
+                                <p>
+                                    @Html.Raw(item.Value.Description)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            @foreach (var item in Model.Skip(2))
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="off-b__item">
+                        <div class="off-b__img">
+                            <img src="@item.Image" alt="@item.Title">
+                        </div>
+                        <h4 class="off-b__title">
+                            <a href="/@item.MenuAlias/@item.Alias/@item.ID">@item.Title</a>
+                        </h4>
+                        <div class="off-b__text">
+                            <p>
+                                @Html.Raw(item.Description)
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <a href="/@item.MenuAlias/@item.Alias/@item.ID" class="off-b__link">CONTINUE >></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿@using ProjectLibrary.Config
+@using TeamplateHotel.Areas.Administrator.EntityModel
+@model EEmployee
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    int flag = 0;
+}
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class=" icon-plus-sign"></i>
+            <h3>@ViewBag.Title</h3>
+        </div> <!-- /widget-header -->
+
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Update", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="control-group">
+                    <label class="control-label" for="Title">Tên nhân viên<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.FullName, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.FullName)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">chức danh<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Job, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Job)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Image">Hình đại diện<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload" })
+                        @Html.ValidationMessageFor(c => c.Image)
+                        <p class="help-img">Nên chọn ảnh có kích thước @ConfigImage.InfoImageRoom</p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Image">số điện thoại<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Phone, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Phone)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">skype<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Skype, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Skype)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">facebook<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Facebook, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Facebook)
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <a href="@Url.Action("Index", "Employee")" class="btn">Cancel</a>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        bindUl();
+        AutoAlias("Title", "Alias");
+        CreateCkEditor();
+    });
+
+</script>

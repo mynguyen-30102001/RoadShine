@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div style="height: 1500px">
+    <div id="container" ></div>
+    <button id="showmore">Click Show</button>
+    <div id="progress" style="display:none">
+        <h4>Loading...</h4>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js" integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    var pageSize = 5;
+    var pageIndex = 0;
+
+    $(document).ready(function () {
+        GetData();
+
+        $('#showmore').click(function() {
+            GetData();
+        });
+    });
+
+    function GetData() {
+        $.ajax({
+            method: "GET",
+            url: "/GetData",
+            data:{"pageindex":pageIndex,"pagesize":pageSize},
+            dataType: 'JSON',
+            contentType: "application/json",
+            success: function (response) {
+                if (response.status) {
+                     var data = response.data;
+                    if (data != null) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("#container").append("<h2>" + 
+                                data[i].ProductName + "</h2>");
+                        }
+                        pageIndex++;
+                    }
+                }
+            },
+            beforeSend: function () {
+                $("#progress").show();
+            },
+            complete: function () {
+                $("#progress").hide();
+            },
+            error: function () {
+                console.log("Error while retrieving data!");
+ 
+            }
+        });
+    }
+</script>

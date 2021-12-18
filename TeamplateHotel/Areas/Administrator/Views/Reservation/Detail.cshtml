@@ -1,0 +1,62 @@
+﻿@using System.Globalization
+﻿@model  ProjectLibrary.Database.Reservation
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<div id="detail-lh">
+    
+    <div>
+        <label>Ngày Đặt Bàn </label> <p>@Model.CheckIn.ToString("dd,MMMM,yyyy") </p>
+    </div>
+    <div>
+        <label>Thời gian đặt bàn </label> <p>  @Model.TimeB </p>
+    </div>
+    <div>
+        <label>Số người : </label> <p>  @Model.NumberPeople </p>
+    </div>
+    <div>
+        <label>Họ tên </label> <p>@Model.Name</p>
+    </div>
+
+    <div>
+        <label>Số điện thoại </label> <p>@Model.Tel</p>
+    </div>
+
+    <div>
+        <label>Email </label> <p>@Model.Email</p>
+    </div>
+
+    <div>
+        <label>Ngày khởi tạo </label> <p>@Model.CreateDate.ToString("dd,MMMM,yyyy : hh:mm:ss tt")</p>
+    </div>
+    <div>
+        <label>Lời nhắn </label> <p>@Model.MessageB</p>
+    </div>
+</div>
+<style>
+    #detail-lh div {
+        border: 1px solid #ddd;
+        margin: 0px;
+        border-bottom: none;
+        display: block;
+        width: 100%;
+        float: left;
+    }
+    #detail-lh div:last-child {
+        border-bottom: 1px solid #ddd;
+    }
+    #detail-lh div p {
+        width: 69%;float: right;
+        border-left: 1px solid #ddd;
+        padding: 10px 10px;
+        margin: 0px;
+    }
+    #detail-lh div label {
+        width: 28%;text-align: right;
+        height: 100%;
+        display: block;
+        float: left;
+        font-weight: bold;
+        line-height: 32px;
+    }
+</style>

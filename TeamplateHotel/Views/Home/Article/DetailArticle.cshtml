@@ -1,0 +1,84 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@model TeamplateHotel.Models.DetailArticle
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var lan = Request.Cookies["LanguageID"].Value;
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> menuAboutandArticle = CommentController.GetMenuAboutandArticle(lan);
+    //List<Menu> menuChild = new List<Menu>();
+    //if (menu.ParentID == 0)
+    //{
+    //    menuChild = CommentController.GetMenuChild(lan, menu.ID);
+    //}
+    //else
+    //{
+    //    menuChild = CommentController.GetMenuChild(lan, menu.ParentID);
+    //}
+}
+    <div class="banner banner-in">
+        <div class="owl-theme">
+            <div class="item">
+                <a href="javascript:;">
+                    <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-tires.jpg">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="wrap wrap-news-show">
+            <div class="container">
+                <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+                    <h2>@menu.Title</h2>
+                    <p>@Html.Raw(menu.Description)</p>
+                </div>
+                <div class="wrap-sort wow fadeInUp" data-wow-duration=".8s">
+                    <ul>
+                        @foreach (var item in menuAboutandArticle.Where(a => a.ParentID == 0).ToList())
+                        {
+                            var menuChild = menuAboutandArticle.Where(a => a.ParentID == item.ID).ToList();
+                            if (menuChild.Count > 0)
+                            {
+                                foreach (var item1 in menuChild)
+                                {
+                                    if (item1.Alias == menu.Alias)
+                                    {
+                                        <li class="active">
+                                            <a href="@item1.Alias">@item1.Title</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="">
+                                            <a href="@item1.Alias">@item1.Title</a>
+                                        </li>
+                                    }
+                                }
+                            }
+                        }
+
+                    </ul>
+                </div>
+                <div class="news-show">
+                    <div class="title-news wow fadeInUp" data-wow-duration=".8s">
+                        @*<h1>@Model.Article.Title</h1>*@
+                        @*<span>June 10, 2020</span>*@
+                    </div>
+                    <div class="text wow fadeInUp" data-wow-duration=".8s">
+                        @Html.Raw(Model.Article.Content)
+                        <p><span style="font-family: arial, helvetica, sans-serif; font-size: 20px;"><img src="@Model.Article.Image" /></span></p>
+                        <p><br /></p>
+                    </div>
+                    <div class="relate">
+                        <ul>
+                            <!-- <a class="prev" href="javascrip:;">&nbsp;</a> -->
+                            <!-- <a class="next" href="javascrip:;">&nbsp;</a> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

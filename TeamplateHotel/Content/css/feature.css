@@ -1,0 +1,389 @@
+@media screen,
+print {
+    div.cmsmasters_menu_item,
+    .menu_best {
+        text-align: left;
+    }
+    h1 {
+        padding: 0;
+        margin: 0 0 20px;
+    }
+    .headline,
+    .headline_outer {
+        width: 100%;
+        position: relative;
+    }
+    .headline_inner {
+        position: relative;
+        width: 980px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
+    body .headline {
+        background-color: transparent;
+    }
+    .headline_outer {
+        background-position: top center;
+        position: relative;
+        z-index: 1;
+    }
+    .headline_outer .headline_color {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .headline_outer .headline_inner {
+        padding: 20px 20px 40px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .headline_outer .headline_inner .headline_aligner {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .headline_outer .headline_inner .headline_text {
+        max-width: 100%;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+    }
+    .headline_outer .headline_inner .headline_text:before {
+        line-height: 1em;
+        width: 1em;
+        height: 1em;
+        margin: auto !important;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    .headline_outer .headline_inner .headline_text .entry-title {
+        word-wrap: break-word;
+        margin: 0;
+    }
+    .headline_outer .headline_inner.align_center {
+        text-align: center;
+    }
+    .headline_outer .headline_inner.align_center .headline_text {
+        text-align: center;
+    }
+    .headline_outer .headline_inner.align_center .headline_text:before {
+        bottom: auto;
+    }
+}
+
+
+/*! CSS Used from: Embedded */
+
+.headline_outer {
+    background-image: url(https://sushico.cmsmasters.net/wp-content/uploads/2018/10/menu-1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.headline_aligner {
+    min-height: 380px;
+}
+
+
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/theme-framework/theme-style/css/adaptive.css?ver=1.0.0 ; media=screen, print */
+
+@media screen,
+print {
+    @media only screen and (min-width: 1440px) {
+        .headline_inner {
+            width: 1200px;
+        }
+    }
+    @media only screen and (max-width: 1024px) {
+        .headline_outer {
+            background-attachment: scroll;
+        }
+        .headline_inner {
+            width: 100%;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        #page .headline_outer .headline_inner {
+            padding: 40px 20px;
+        }
+        #page .headline_outer .headline_inner .headline_aligner {
+            display: none;
+        }
+        #page .headline_outer .headline_inner .headline_text {
+            display: block;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 320px) {
+        .headline_inner {
+            width: 320px;
+        }
+    }
+}
+
+
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/uploads/cmsmasters_styles/sushico.css?ver=1.0.0 ; media=screen */
+
+@media screen {
+    h1,
+    .headline_outer .headline_inner .headline_text .entry-title {
+        font-size: 64px;
+        line-height: 70px;
+        font-weight: normal;
+        font-style: normal;
+        text-transform: none;
+        text-decoration: none;
+    }
+    @media only screen and (max-width: 600px) {
+        .headline_outer .headline_inner .headline_text .entry-title {
+            font-size: 44px;
+            line-height: 50px;
+        }
+    }
+    h1 {
+        color: #34384c;
+    }
+    .headline_outer,
+    .headline_outer .entry-title {
+        color: #ffffff;
+    }
+    .headline_outer {
+        background-color: #ffffff;
+    }
+    .headline_outer {
+        border-color: #d8d8d8;
+    }
+     ::selection {
+        background: #b8b8b8;
+        color: #ffffff;
+    }
+     ::-moz-selection {
+        background: #b8b8b8;
+        color: #ffffff;
+    }
+}
+
+
+/*! CSS Used fontfaces */
+
+#cmsmasters_row_feature {
+    background-image: url(https://sushico.cmsmasters.net/wp-content/uploads/2018/10/home-1-2.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+#cmsmasters_row_feature .cmsmasters_row_outer_parent {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 0.1px 0;
+    z-index: 2;
+    width: 100%;
+    position: relative;
+}
+
+#cmsmasters_row_feature .cmsmasters_row_outer {
+    width: 100%;
+    position: relative;
+}
+
+.cmsmasters_ss .cmsmasters_heading_w .cmsmasters_heading {
+    color: rgba(104, 104, 104, 0.6);
+    text-align: center;
+    display: inline-block;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cmsmasters_ss .cmsmasters_heading_wb2sroyyd9 .cmsmasters_heading {
+    font-size: 42px;
+    line-height: 60px;
+    color: #34384c;
+}
+
+.cmsmasters_ss .cmsmasters_heading_wb2 .cmsmasters_heading {
+    font-size: 45px;
+    line-height: 60px;
+    color: #34384c;
+}
+
+.cmsmasters_ss {
+    padding: 0 22% 0 22%;
+}
+
+#form_feature .cmsmasters_row_inner {
+    position: relative;
+    width: 980px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.cmsmasters_submit {
+    margin-top: 20px;
+}
+
+.cmsmasters_submit a {
+    text-decoration: none;
+}
+
+.cmsmasters_submit span {
+    font-size: 20px;
+    color: #34384c;
+    border-bottom: 2px solid #b8b8b8;
+}
+
+.cmsmasters_submit span:hover {
+    border-bottom: 2px solid red;
+}
+
+#blog_content {
+    margin-top: 40px;
+}
+
+.cmsmaster-slide-blog-header {
+    padding: 15px 20px;
+}
+
+.cmsmaster-slide-blog-header h3 a {
+    color: #34384c;
+    font-family: 'Bellefair', Times, 'Century Schoolbook L', serif;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+.cmsmaster-slide-blog-header h3 a:hover {
+    color: #f11a2f;
+    border-bottom: 1px solid #f11a2f;
+}
+
+.cmsmaster-slide-blog-header .cmsmasters_post_date {
+    font-size: 15px;
+    font-weight: 600;
+    color: #b8b8b8;
+}
+
+
+/* Details blog */
+
+.cmsmaster-slide-details-header {
+    padding: 15px 0px;
+}
+
+.cmsmaster-slide-details-header h3 a {
+    color: #34384c;
+    font-family: 'Bellefair', Times, 'Century Schoolbook L', serif;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+.cmsmaster-slide-details-header h3 a:hover {
+    color: #f11a2f;
+    border-bottom: 1px solid #f11a2f;
+}
+
+.cmsmaster-slide-details-header .cmsmasters_post_date {
+    font-size: 15px;
+    font-weight: 600;
+    color: #b8b8b8;
+}
+
+.share-socialnetwork h3,
+.articel_related h3 {
+    font-family: 'Bellefair', Times, 'Century Schoolbook L', serif;
+    color: #34384c;
+    margin-bottom: 20px;
+}
+
+.share-socialnetwork ul li {
+    display: inline-block;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.share-socialnetwork ul li a {
+    color: #b8b8b8;
+    text-decoration: none;
+}
+
+.share-socialnetwork ul li a:hover {
+    color: #f11a2f;
+}
+
+.cmsmaster-slide-article-related h3 a {
+    color: #34384c;
+    font-family: 'Bellefair', Times, 'Century Schoolbook L', serif;
+    font-size: 23px;
+    text-decoration: none;
+}
+
+
+/* ____________ */
+
+.cmsmasters_feature_desctiption {
+    padding-bottom: 15px;
+}
+
+.cmsmaster_readmore a {
+    color: #34384c !important;
+    font-weight: 600;
+}
+
+.cmsmaster_readmore a:hover {
+    color: #f11a2f !important;
+}
+
+.cmsmaster_row_pa {
+    padding: 0 10%;
+}
+
+.articel_like {
+    width: 100%;
+    float: left;
+    margin-bottom: 8px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 8px;
+}
+
+.articel_like img {
+    width: 90px;
+    float: left;
+    margin-right: 10px;
+    overflow: hidden;
+    border: 1px solid #f2f2f2;
+    margin-top: 3px;
+    padding: 5px;
+}
+
+.articel_you_like h4 {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #34384c;
+}
+
+.articel_like h5 {
+    font-size: 17px;
+}
+
+.articel_like h5 a {
+    color: #34384c;
+    text-decoration: none;
+}
+
+.articel_like h5 a:hover {
+    color: #f11a2f;
+}
+
+@media only screen and ( max-width: 769px) {
+    .cmsmaster_row_pa {
+        padding: 0 0 !important;
+    }
+}

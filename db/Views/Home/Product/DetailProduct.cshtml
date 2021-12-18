@@ -1,0 +1,321 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@model TeamplateHotel.Models.DetaiProduct
+@{
+    ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+
+}
+
+@section css {
+
+    <link href="~/Content/css/menupage.css" rel="stylesheet" />
+    <link href="~/Content/css/contact.css" rel="stylesheet" />
+    <link href="~/Content/css/shop.css" rel="stylesheet" />
+}
+
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">
+                    @Model.Product.ProductName
+                </h1>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<section id="shopdetails">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="caption">
+                            <a href="@Model.Product.Image" data-fancybox="gallery"><img src="@Model.Product.Image" width="100%"  alt="@Model.Product.MetaTitle"/></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="cmsmaster_product_title_info">
+                            <div class="posted_in">
+                                <span>
+                                    <a href="#">FISH</a>
+                                    <a href="#">ROLLS</a>
+                                </span>
+                            </div>
+                            <div class="cmsmasters_product_title_wrap">
+                                <h2 class="product_title entry-title">@Model.Product.ProductName</h2>
+                            </div>
+                            <div>
+                                <p class="price">
+                                    @if (Model.Product.PromotionPrice == 0 || Model.Product.PromotionPrice == null)
+                                    {
+
+
+                                        <span> <span>$</span>@Model.Product.Price</span>
+
+                                    }
+                                    else
+                                    {
+                                        <del>
+                                            <span class="woocommerce-Price-amount amount">
+                                                <span>
+                                                    <span class="woocommerce-Price-currencySymbol">$</span>
+                                                </span>@Model.Product.Price
+                                            </span>
+                                        </del>
+                                        <ins>
+                                            <span class="woocommerce-Price-amount amount">
+                                                <span>
+                                                    <span class="woocommerce-Price-currencySymbol">$</span>
+                                                </span>@Model.Product.PromotionPrice
+                                            </span>
+                                        </ins>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="cmsmasters_product_content">
+                            <span>
+                                @*@Html.Raw(Model.Product.Description)*@
+                            </span>
+                            <form class="cart" action="/Themvaogio?sanPhamID=@Model.Product.ProductID&?newQuantity=" method="post" enctype="multipart/form-data">
+
+                                <div class="quantity">
+                                    <label class="screen-reader-text" for="quantity_5d47897415466">@Model.Product.ProductName</label>
+                                    <input type="number" id="quantity_5d47897415466" class="input-text qty text" step="1" min="1" max="" name="newQuantity" value="1" title="Qty" size="4" inputmode="numeric">
+                                </div>
+                                <button type="submit" name="add-to-cart" value="13184" class="single_add_to_cart_button button alt">Add to cart</button>
+                            </form>
+                            <div style="padding-top: 10px;">
+                                <p style="float: left">TAGS :</p>
+                                <p>
+                                    <div class="posted_in">
+                                        <span>
+                                            <a href="#">FISH</a>
+                                            <a href="#">ROLLS</a>
+                                        </span>
+                                    </div>
+                                </p>
+                                <p>RATING :</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 60px; width: 100%">
+                        <div class="col-lg-12">
+                            <div class="wrap">
+                                <a href="#tab1" class="block active">Description</a>
+                                <a href="#tab2" class="block">Additional information</a>
+                                <a href="#tab3" class="block">Reviews (1)</a>
+                                <div id="tab1" class="tab" style="display: block">
+                                    <p>
+                                        @Html.Raw(Model.Product.Description)
+
+                                    </p>
+                                </div>
+                                <div id="tab2" class="tab">
+                                    @Html.Raw(Model.Product.Content)
+
+                                </div>
+                                <div id="tab3" class="tab">1 review for California Roll</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="product_related">
+                            <h3>Related Products</h3>
+                        </div>
+                        <div style="width: 100%;">
+                            <div class="row">
+                                <ul class="products columns-4 cmsmasters_products">
+                                    <div class="owl-carousel owl-theme owl-loaded" id="product_related">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage">
+                                                @foreach (var item in Model.Products)
+                                                {
+                                                    Console.WriteLine(@item.MenuAlias);
+                                                    <div class="owl-item">
+                                                        <div class="col">
+                                                            <li class="product type-product post-13189 status-publish first outofstock product_cat-fish product_cat-rolls product_tag-roll product_tag-salmon has-post-thumbnail shipping-taxable purchasable product-type-simple" style="width: 100%">
+                                                                <article class="cmsmasters_product">
+                                                                    <figure class="cmsmasters_product_img">
+                                                                        <a href="#">
+                                                                            <img width="600" height="600" src="@item.Image" class="attachment-woocommerce_single size-woocommerce_single" alt="@item.MetaTitle"  
+                                                                                 sizes="(max-width: 600px) 100vw, 600px">
+                                                                        </a>
+                                                                        <span class="out-of-stock"><span>Out of stock</span></span>
+                                                                    </figure>
+                                                                    <div class="cmsmasters_product_inner">
+                                                                        <div class="cmsmasters_product_cat entry-meta">
+                                                                            <a href="#" class="cmsmasters_cat_color cmsmasters_cat_91" rel="category tag">Fish</a>
+                                                                            <a href="#"
+                                                                               class="cmsmasters_cat_color cmsmasters_cat_58" rel="category tag">Rolls</a>
+                                                                        </div>
+                                                                        <header class="cmsmasters_product_header entry-header">
+                                                                            <h4 class="cmsmasters_product_title entry-title">
+                                                                                <a href="/@item.MenuAlias/@item.ProductID/@item.Alias">@item.ProductName
+                                                                                </a>
+                                                                            </h4>
+                                                                        </header>
+                                                                        <div class="cmsmasters_product_info">
+
+                                                                            <div class="cmsmasters_star_rating" itemscope="" itemtype="http://schema.org/AggregateRating" title="Rated 4.00 out of 5">
+                                                                                <div class="cmsmasters_star_trans_wrap">
+                                                                                    <span class="cmsmasters_theme_icon_star_empty cmsmasters_star"></span>
+                                                                                    <span class="cmsmasters_theme_icon_star_empty cmsmasters_star"></span>
+                                                                                    <span class="cmsmasters_theme_icon_star_empty cmsmasters_star"></span>
+                                                                                    <span class="cmsmasters_theme_icon_star_empty cmsmasters_star"></span>
+                                                                                    <span class="cmsmasters_theme_icon_star_empty cmsmasters_star"></span>
+                                                                                </div>
+                                                                                <div class="cmsmasters_star_color_wrap" data-width="width:80%" style="width: 80%">
+                                                                                    <div class="cmsmasters_star_color_inner">
+                                                                                        <span class="cmsmasters_theme_icon_star_full cmsmasters_star"></span>
+                                                                                        <span class="cmsmasters_theme_icon_star_full cmsmasters_star"></span>
+                                                                                        <span class="cmsmasters_theme_icon_star_full cmsmasters_star"></span>
+                                                                                        <span class="cmsmasters_theme_icon_star_full cmsmasters_star"></span>
+                                                                                        <span class="cmsmasters_theme_icon_star_full cmsmasters_star"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <span class="rating dn">
+                                                                                    <strong itemprop="ratingValue">4.00</strong> out of
+                                                                                    5
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="cmsmasters_product_price">
+
+                                                                                <span class="price">
+                                                                                    <span class="woocommerce-Price-amount amount">
+                                                                                        <span>
+                                                                                            <span class="woocommerce-Price-currencySymbol">$</span>
+                                                                                        </span>@item.Price
+                                                                                    </span>
+                                                                                </span>
+                                                                                <div class="cmsmasters_product_after_hover">
+                                                                                    <a href="/@item.MenuAlias/@item.ProductID/@item.Alias" data-product_id="13189" data-product_sku="" class="button cmsmasters_details_button">
+                                                                                        <span>
+                                                                                            Show
+                                                                                            Details
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </article>
+                                                            </li>
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div id="product_search">
+                    <form>
+                        <p class="search_field">
+                            <input type="search" placeholder="Search products" />
+                            <input type="hidden" name="post_type" value="product" />
+                        </p>
+                        <p class="search_button">
+                            <button type="submit"></button>
+                        </p>
+                    </form>
+                </div>
+                <aside class="widget">
+                    <h5>Product categories</h5>
+                </aside>
+                <ul class="product-categories">
+                    <li>
+                        <a href="#">Fish</a>
+                    </li>
+                    <li>
+                        <a href="#">Rolls</a>
+                    </li>
+                    <li>
+                        <a href="#">Sushi</a>
+                    </li>
+                </ul>
+                <aside class="widget">
+                    <h5>FEATURED PRODUCTS</h5>
+                    <div class="product_like">
+                        <img src="https://sushico.cmsmasters.net/wp-content/uploads/2018/09/shop-18-300x300.jpg" alt="@menu.Title" />
+                        <h5><a href="#">10 Facts You Did not Know About Japanese Food</a></h5>
+                        <p><span>$</span>55.00</p>
+                    </div>
+                    <div class="product_like"> 
+                        <img src="https://sushico.cmsmasters.net/wp-content/uploads/2018/09/shop-18-300x300.jpg" alt="@menu.Title"  />
+                        <h5><a href="#">10 Facts You Did not Know About Japanese Food</a></h5>
+                        <p><span>$</span>55.00</p>
+                    </div>
+                    <div class="product_like">
+                        <img src="https://sushico.cmsmasters.net/wp-content/uploads/2018/09/shop-18-300x300.jpg"  alt="@menu.Title" />
+                        <h5><a href="#">10 Facts You Did not Know About Japanese Food</a></h5>
+                        <p><span>$</span>55.00</p>
+                    </div>
+                  
+
+                </aside>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+@section script{
+
+    <script>
+        $('#product_related').owlCarousel({
+            margin: 10,
+            responsiveClass: true,
+            items: 3,
+            autoplay: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                600: {
+                    items: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 3,
+                    nav: false,
+                }
+            }
+        })
+
+        $("a.grouped_elements").fancybox();
+    </script>
+}

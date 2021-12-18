@@ -1,0 +1,288 @@
+﻿@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@model ProjectLibrary.Database.Order
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var language = Request.Cookies["LanguageID"].Value;
+
+    List<CartItem> giohang = Session["giohang"] as List<CartItem>;
+
+    var hotel = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+
+}
+@section css {
+
+
+}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section bg-image" data-bg="/Content/assets/images/bg/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="page-banner text-center">
+                    <h2>Checkout</h2>
+                    <ul class="page-breadcrumb">
+                        <li><a href="/">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Home")</a></li>
+                        <li>Checkout</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+@if (giohang.Count == 0 || giohang == null)
+{
+    
+    <br />
+    <br />
+    <div class="container sb-border pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
+        <div class="row">
+            @if (language == "vi")
+            {
+                <div class="col-12">
+                    <h3>Giỏ hàng của bạn đang trống.</h3>
+                    <p>
+                        <br />
+                        <a class="button wc-backward" href="/">
+                            Quay lại
+                        </a>
+                    </p>
+                </div>
+            }
+            else
+            {<div class="col-12">
+                 <h3>Your cart is currently empty.</h3>
+                 <p>
+                     <br />
+                     <a class="button wc-backward" href="/">
+                         Return to shop
+                     </a>
+                 </p>
+             </div>
+
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+}
+else
+{
+    <!--Checkout section start-->
+    <div class="checkout-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 ">
+        <div class="container sb-border pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Checkout Form Start-->
+                    <form  class="checkout-form checkout"  method="post"  action="/checkout/sendcheckout" enctype="multipart/form-data" novalidate="novalidate">
+                        <div class="row row-40">
+
+                            <div class="col-lg-7">
+
+                                <!-- Billing Address -->
+                                <div id="billing-form" class="mb-10">
+                                    <h4 class="checkout-title">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "BillingAddress")</h4>
+
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "FirstName")*</label>
+                                            <input type="text" name="FirstName" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "FirstName")">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "LastName")*</label>
+                                            <input type="text" name="LastName" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "LastName")">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "EmailAddress")*</label>
+                                            <input type="email" name="Email" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "EmailAddress")">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Phonenumber")*</label>
+                                            <input type="text" name="Phone"  placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Phonenumber")">
+                                        </div>
+
+                                        <div class="col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "CompanyName")</label>
+                                            <input type="text" name="Company" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "CompanyName")">
+                                        </div>
+
+                                        <div class="col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Address")*</label>
+                                            <input type="text" name="Address" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Address") ">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Country")*</label>
+                                            <input type="text" name="Country" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Country")">
+
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "City")*</label>
+                                            <input type="text" name="City" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "City")">
+                                        </div>
+
+                                        @*<div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "State")*</label>
+                                            <input type="text" name="" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "State")">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Zip")*</label>
+                                            <input type="text" name="" placeholder="@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Zip")">
+                                        </div>*@
+ 
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="row">
+
+                                    <!-- Cart Total -->
+                                    <div class="col-12 mb-60">
+
+                                        <h4 class="checkout-title">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "CartTotal")</h4>
+
+                                        <div class="checkout-cart-total">
+
+                                            @if (language == "vi")
+                                            {
+                                                <h4>Sản Phẩm x Số Lượng <span>Thành Tiền</span></h4>
+
+                                            }
+                                            else
+                                            {
+                                                <h4>Product <span>Total</span></h4>
+
+                                            }
+                                            <ul>
+                                                @foreach (var item in giohang)
+                                                {
+                                                    <li> @item.TenSanPham &nbsp;&nbsp;&nbsp; x @item.SoLuong <span>$@item.ThanhTien</span></li>
+
+                                                }
+
+
+                                            </ul>
+
+                                            <p>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "SubTotal")<span>$@giohang.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.')</span></p>
+
+                                            <h4>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "GrandTotal") <span>$@giohang.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.')</span></h4>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Payment Method -->
+                                    <div class="col-12 mb-30">
+
+                                        <h4 class="checkout-title">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "PaymentMethod")</h4>
+
+                                        <div class="checkout-payment-method">
+
+                                            @*<div class="single-method">
+                                                    <input type="radio" id="payment_check" name="payment-method" value="check">
+                                                    <label for="payment_check">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "CheckPayment")</label>
+                                                    <p data-method="check">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "")</p>
+                                                </div>*@
+
+
+                                            @*<div class="single-method">
+                                                    <input type="radio" id="payment_cash" name="payment-method" value="cash">
+                                                    <label for="payment_cash">Cash on Delivery</label>
+                                                    <p data-method="cash">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
+                                                </div>
+
+                                                <div class="single-method">
+                                                    <input type="radio" id="payment_paypal" name="payment-method" value="paypal">
+                                                    <label for="payment_paypal">Paypal</label>
+                                                    <p data-method="paypal">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
+                                                </div>
+
+                                                <div class="single-method">
+                                                    <input type="radio" id="payment_payoneer" name="payment-method" value="payoneer">
+                                                    <label for="payment_payoneer">Payoneer</label>
+                                                    <p data-method="payoneer">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
+                                                </div>*@
+
+                                            <div class="single-method">
+                                                <input type="checkbox" id="accept_terms" >
+                                                <label for="accept_terms">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Temp")</label>
+                                            </div>
+
+                                        </div>
+
+                                        <button  type="submit"  class="place-order btn btn-lg btn-round">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Placeorder")</button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Checkout section end-->
+}
+
+
+@section script
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+    <script>
+
+        //validate
+
+        $(".checkout").validate({
+            rules: {
+
+                'FirstName': {
+                    required: true,
+                },
+                'LastName': {
+                    required: true,
+                },
+                'Email': {
+                    required: true,
+                    email: true
+                },
+                'Phone': {
+                    required: true,
+                },
+                
+            },
+            messages: {
+                'FirstName': "Please enter Full Name",
+                'LastName': "Please enter Last Name",
+                'Email': "Please enter email adress",
+                'Phone': "Please enter Phone",
+             },
+            submitHandler: function (form) {
+
+                form.submit();
+                LoadingSendEmail();
+
+            }
+        });
+    </script>
+}

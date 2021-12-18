@@ -1,0 +1,271 @@
+﻿@using System.Linq
+@using TeamplateHotel.Models
+@using TeamplateHotel.Handler
+@model List<TeamplateHotel.Models.CartItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+}
+
+@section css {
+    <link href="~/Content/css/menupage.css" rel="stylesheet" />
+    <link href="~/Content/css/shop.css" rel="stylesheet" />
+    <link href="~/Plugins/toastr/toastr.css" rel="stylesheet" />
+}
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">
+                    Cart
+                </h1>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="middle_inner">
+    <div class="content_wrap fullwidth">
+        @if (Model == null || Model.Count == 0)
+        {<br /><br />
+            <div class="woocommerce">
+                <p class="cart-empty">Your cart is currently empty.</p>
+                <p class="return-to-shop">
+                    <br />
+                    <a class="button wc-backward" href="/">
+                        Return to shop
+                    </a>
+                </p>
+            </div>
+            <br /><br />
+        }
+        else
+        {
+            <div class="middle_content entry">
+
+                <form action="/checkout" method="POST">
+                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="product-remove">&nbsp;</th>
+                                <th class="product-thumbnail">&nbsp;</th>
+                                <th class="product-name">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-subtotal">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (CartItem item in Model)
+                            {
+                                <tr class="woocommerce-cart-form__cart-item cart_item">
+                                    <td class="product-remove">
+                                        <a href="@Url.Action("XoaKhoiGio", "Cart", new {sanPhamID = item.SanPhamID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">x </a>
+                                    </td>
+                                    <td class="product-thumbnail">
+                                        <a href="#"><img width="50" height="50" src="@item.Hinh" alt="@item.TenSanPham"></a>
+                                    </td>
+
+                                    <td class="product-name" data-title="Product">
+                                        <a href="#">@item.TenSanPham</a>
+                                    </td>
+                                    <td class="product-price" data-title="Price">
+                                        <span class="amount"><span><span>$</span></span>@item.DonGia</span>
+                                    </td>
+
+                                    <td class="product-quantity" data-title="Quantity">
+                                        <div class="quantity">
+                                            <input type="hidden" name="sanPhamID" value="@item.SanPhamID" />
+                                            <input type="number" min="1" step="1" max="20" name="newQuantity" value="@item.SoLuong" data-id="@item.SanPhamID" size="5" class="input-text qty text" />
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal" data-title="Total">
+                                        <span>$</span><span class="amount tongtien">@item.ThanhTien</span>
+                                    </td>
+
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="6" class="actions">
+
+                                    <div class="coupon">
+                                        <label for="coupon_code">Coupon:</label> <input type="text" name="PromotionCode" style="height: 49px;" class="input-text" id="PromotionCode" placeholder="Coupon code">
+                                        <span style="font-size" id="info-discout">PromotionCode :<strong id="text-discount">5% </strong> ~ <strong id="text-value-discount"> 120 USD</strong></span>
+                                        <input type="hidden" id="value-discout" value="0" />
+
+                                        <button class="button" id="applyCode" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                                    </div>
+                                    <div>
+                                        @*<a href=""><span id="updatecart" class="button" name="update_cart" value="Update cart">Update cart</span></a>*@
+                                        <button type="button" id="updatecart">Update cart</button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="cart-collaterals">
+                        <h2 style="font-size: 25px;">Cart totals</h2>
+
+                        <table cellspacing="0" class="shop_table shop_table_responsive" style="width: 50%">
+                            <tbody>
+                                <tr class="cart-subtotal">
+                                    <th>Subtotal</th>
+                                    <td class="price_total" data-title="Subtotal" style="text-align: right">
+                                        <span>$</span><span class="amount" id="totalp" data-price="@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.')">@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') </span>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    <td data-title="Total" style="text-align: right"><strong><span>$</span><span class="amount uuu" id="text-total-price">@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') </span></strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div>
+                            <section class="cmsmasters_row_4">
+                                <div style="text-align: left;">
+                                    <button style="color: #675c5c" type="submit" name="add-to-cart" class="updatecart button ">Proceed to checkout</button>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        }
+
+    </div>
+</div>
+
+@section script
+{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Plugins/toastr/toastr.min.js"></script>
+    <script>
+        $('[name=newQuantity]').on('change',
+            function (e) {
+                var checkId = $(this).data('id');
+                var soLuong = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/SuaSoLuong?sanPhamID=' + checkId + '&newQuantity=' + soLuong,
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.status) {
+                            //$("#totalp").text(result.total);
+                            //$(".uuu").text(result.total);
+
+                            //$(e.target).closest(".cart_item").find('.product-subtotal .tongtien').text(result.itemTotal)
+                        }
+
+                    }
+                });
+            });
+    </script>
+    <script>
+        $("#updatecart").click(function () {
+            location.reload();
+        });
+
+    </script>
+
+    <script>
+            var discount = 0;
+        function amountPrice() {
+
+                    //var prics = $('.price_total [data-price]').data('price');
+                    var prics = $("#totalp").text();
+                    priceTour = prics;
+                    discount = $("#value-discout").val();
+
+                    var totalPrice = priceTour * (1 - discount/100);
+                    if (discount > 0) {
+                        $("#text-discount").text(discount + " % ");
+                        $("#text-value-discount").text((priceTour * discount) / 100 + " USD ")
+                        $("#info-discout").show();
+                    }
+                    else {
+                        $("#info-discout").hide();
+                    }
+                    var deposit = $("#text-deposit").val();
+                    var paymentNow = (totalPrice * deposit) / 100;
+                    var vndTotal = (@CodeHelper.GetExrate()* paymentNow).toLocaleString();
+
+                    vndTotal = vndTotal;
+                    var duePayment = 0;
+                    var typePayment = $('input.radio-type-pay:checked').val();
+                    if (typePayment == "1") {
+                        var duePayment = totalPrice - paymentNow;
+                    } else {
+                        duePayment = totalPrice;
+            }
+            $("#text-total-price").text("");
+            $("#text-total-price").text(totalPrice.toFixed(2) + " USD");
+                }
+
+                $(document).ready(function () {
+                amountPrice();
+                $(".datepicker").datepicker({
+                    minDate: new Date(),
+                });
+
+                $("#applyCode").on("click", function (e) {
+                    e.preventDefault();
+                    // lay ma code trong input
+                    var promotionCode = $("#PromotionCode").val();
+                    // lay ma tua
+                    var id = 3;
+
+                    var model = {
+                        code: promotionCode,
+                        IDTour : id
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: "/CheckCode",
+                        data: JSON.stringify(model),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data.Result == "OK") {
+                                // neu ma het
+                                if (data.Message == "1") {
+                                    discount = 0;
+                                    $("#value-discout").val(0);
+                                    amountPrice();
+                                    $("#info-discout").hide();
+                                    toastr.error('Out of code!', 'Error');
+                                }
+                                else {
+                                    $("#value-discout").val(data.rate * 100);
+                                    amountPrice();
+                                    //$('input[name=PromotionCode').val('');
+                                    toastr.success('Code has been applied', 'OK');
+                                }
+
+                            }
+                            else if (data.Result == "ERROR") {
+                                discount = 0;
+                                $("#value-discout").val(0);
+                                amountPrice();
+                                $("#info-discout").hide();
+                                toastr.error('The code has expired or does not exist!', 'Error');
+                            }
+
+                        },
+                        error: function () {
+                            toastr.success(data.messages, 'Success');
+                        }
+                    });
+                });
+
+            });
+    </script>
+}

@@ -1,0 +1,522 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+
+@{
+
+    List<Menu> menus = CommentController.GetMainMenus(Request.Cookies["LanguageID"].Value);
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    var lan = Request.Cookies["LanguageID"].Value;
+    lan = "en";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    //List<Menu> menuChild = CommentController.GetMenuChild(lan, menu.ID);
+    List<Menu> menuSecond = CommentController.GetSecondMenus(lan);
+    //Menu contactMenu = CommentController.ContactMenu(lan);
+    List<Menu> menuChildWithContact = CommentController.GetMenuChild(lan, menu.ParentID);
+    //string homepage = "";
+    //string menulayout = "";
+    //if (ViewBag.HomePage == true)
+    //{
+    //    homepage = "home";
+    //    menulayout = "header-transparent position-absolute";
+    //}
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#bf3030">
+    <title>@menu.MetaTitle</title>
+    <meta name="keywords" content="HONGTYER INTERNATIONAL FZE">
+    <meta name="description" content="HONGTYER INTERNATIONAL FZE">
+    <!-- MEAT 信息 -->
+    <link rel="stylesheet" href="~/Content/assets/js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/js/animate.css/animate.min.css">
+    <link rel="stylesheet" href="~/Content/assets/js/jquery.carousel/jquery.carousel.css">
+    <link rel="stylesheet" href="~/Content/assets/js/jquery.fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" href="~/Content/assets/js/swiper/swiper.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    @RenderSection("css",required:false)
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="#"><img src="@company.Image" /></a>
+            <a class="logotext" href="#"><img src="@company.Logo" /></a>
+        </div>
+        <button class="nav-collapse nav-collapse-xs" id="nav-btn">
+            <span class="btn-line"></span>
+            <span class="btn-line"></span>
+            <span class="btn-line"></span>
+        </button>
+        <div class="right">
+            @*<div class="language-box language-header">
+                    <p class="en">English</p>
+                    <p class="es hidden">Español</p>
+                    <p class="fr hidden">Français</p>
+                    <ul>
+                        <li class="en">
+                            <a href="#">English</a>
+                        </li>
+                        <li class="es">
+                            <a href="#">Español</a>
+                        </li>
+                        <li class="fr">
+                            <a href="#">Français</a>
+                        </li>
+                    </ul>
+                </div>*@
+            <div class="find"></div>
+            <div class="search-box search-lg">
+                <div class="hbg">
+                    <form class="search" action="/search-menu" method="get" id="search-menu">
+                        <p>START TYPING AND PRESS ENTER TO SEARCH</p>
+                        <input class="input-text" type="text" placeholder="" id="wordSearch" name="keySearch" />
+                        <button class="input-submit" type="submit"></button>
+                    </form>
+                    <span class="close-btn"></span>
+                </div>
+            </div>
+            <div class="nav nav-show">
+                <div class="tbl">
+                    <div class="tbl-cell">
+                        <ul class="nav-list1">
+                            @foreach (var item in menus.Where(a => a.ParentID == 0).OrderBy(a => a.Index).ToList())
+                            {
+                                if (item.Type == SystemMenuType.Home)
+                                {
+                                    <li class="active">
+                                        <a href="/">@item.Title</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    if (item.Type == SystemMenuType.OutSite)
+                                    {
+                                        <li>
+                                            <a href="@item.Link" target="_blank">@item.Title</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="/@item.Alias">@item.Title</a>
+                                        </li>
+                                    }
+
+
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <button class="nav-collapse nav-collapse-1" id="nav-xs-btn">
+                    <span class="btn-line"></span>
+                    <span class="btn-line"></span>
+                    <span class="btn-line"></span>
+                </button>
+                <div class="nav-phone">
+                    <ul>
+                        <li>
+                            <a href="#profile.html">about</a>
+                        </li>
+                        <li>
+                            <a href="#news.html">news</a>
+                        </li>
+                        <li>
+                            <a href="#download1">download</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="xs-language">
+                    <a class="active" href="#">English</a>
+                    <span> / </span>
+                    <a href="#">Español</a>
+                    <span> / </span>
+                    <a href="http://fr.hongtyre.com/">Français</a>
+                </div>
+                <div class="nav-2">
+                    <div class="nav-top">
+                        <div class="back-btn back-btn2"></div>
+                        <h2>一级标题</h2>
+                        <button class="nav-collapse nav-collapse-2" id="nav2-btn">
+                            <span class="btn-line"></span>
+                            <span class="btn-line"></span>
+                            <span class="btn-line"></span>
+                        </button>
+                    </div>
+                    <div class="content">
+                        <ul class="nav2-list2">
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav-3">
+                    <div class="nav-top">
+                        <div class="back-btn back-btn3"></div>
+                        <h2>一级标题</h2>
+                        <button class="nav-collapse nav-collapse-2" id="nav2-btn">
+                            <span class="btn-line"></span>
+                            <span class="btn-line"></span>
+                            <span class="btn-line"></span>
+                        </button>
+                    </div>
+                    <div class="content">
+                        <ul class="nav3-list3">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    @if (ViewBag.Home != true)
+    {
+        @RenderBody()
+
+        <div class="box-footer box-footer-in">
+            <div class="footer">
+                <div class="box-center">
+                    <div class="foot">
+                        <ul>
+                            @foreach (var itemMenu in menuSecond.Where(a => a.ParentID == 0).OrderBy(a => a.Index).ToList())
+                            {
+                                var menuSecondChild = menuSecond.Where(a => a.ParentID == itemMenu.ID).OrderBy(a => a.Index).ToList();
+                                <li class="on">
+                                    <div class="item item-1">
+
+                                        <div class="title-foot">
+                                            <h3>@itemMenu.Title</h3>
+                                        </div>
+
+                                        @if (menuSecondChild.Count > 0)
+                                        {
+                                            foreach (var itemMenuChild in menuSecondChild)
+                                            {
+                                                <div class="info-down">
+                                                    <a href="/@itemMenuChild.Alias">@itemMenuChild.Title</a>
+                                                </div>
+                                            }
+
+                                        }
+                                    </div>
+                                </li>
+                            }
+
+                            @*<li class="on">
+                                    <div class="item item-1">
+                                        <div class="title-foot">
+                                            <h3>ABOUT US</h3>
+                                        </div>
+                                        <div class="info-down">
+                                            <a href="profile.html">Profile</a>
+                                            <a href="culture.html">Culture</a>
+                                            <a href="gallery.html">Gallery</a>
+                                            <a href="join-us.html">Join us</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="on">
+                                    <div class="item item-1">
+                                        <div class="title-foot">
+                                            <h3>PRODUCTS</h3>
+                                        </div>
+                                        <div class="info-down">
+                                            <a href="tires/roadshine.html">ROADSHINE</a>
+                                            <a href="tires/goldpartner.html">GOLDPARTNER</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="on">
+                                    <div class="item item-1">
+                                        <div class="title-foot">
+                                            <h3>MORE</h3>
+                                        </div>
+                                        <div class="info-down">
+                                            <a href="product-new.html">New Products</a>
+                                            <a href="news.html">News</a>
+                                            <a href="download1.html">Downloads</a>
+                                        </div>
+                                    </div>
+                                </li>*@
+                            <li class="on">
+                                <div class="item item-2">
+                                    <div class="title-foot">
+                                        <h3>FOLLOW US</h3>
+                                    </div>
+                                    <div class="info-down">
+                                        <div class="share">
+                                            <ul>
+                                                <li class="facebook">
+                                                    <a href="@company.Facebook" title="" target="_blank">Facebook</a>
+                                                </li>
+                                                <li class="twitter">
+                                                    <a href="@company.Twitter" title="" target="_blank">Twitter</a>
+                                                </li>
+                                                <li class="linkedin">
+                                                    <a href="@company.Website" title="" target="_blank">LinkedIn</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="on">
+                                <div class="item item-3">
+                                    <div class="title-foot">
+                                        <h3>CONTACT US</h3>
+                                    </div>
+                                    <div class="info-down">
+                                        <!-- <h4>HONGTYER INTERNATIONAL FZE</h4> -->
+                                        <!-- <p><span>Add:</span></p> -->
+                                        <p>
+                                            <span>Tel:</span>
+                                            <a href="tel:+86-532-86768852">@company.Tel</a> /
+                                            <a href="tel:+86-532-86768126">@company.Hotline</a> /
+                                            <a href="tel:+86-532-86766013">@company.Fax</a>
+                                        </p>
+                                        <p>
+                                            <span>Email:</span>
+                                            <a href="cdn-cgi/l/email-protection#2c5e434d485f444542496c4443424b58555e49024f4341"><span class="__cf_email__" data-cfemail="0e7c616f6a7d6667606b4e666160697a777c6b206d6163">[email&#160;protected]</span></a>
+                                            <br>
+                                            <a href="cdn-cgi/l/email-protection#91f9fefcf4e3d1f9fefff6e5e8e3f4bff2fefc"><span class="__cf_email__" data-cfemail="a0c8cfcdc5d2e0c8cfcec7d4d9d2c58ec3cfcd">[email&#160;protected]</span></a>
+                                            <br>
+                                            <a href="cdn-cgi/l/email-protection#087f6471383e3f3f486067666f7c717a6d266b6765"><span class="__cf_email__" data-cfemail="cdbaa1b4fdfbfafa8da5a2a3aab9b4bfa8e3aea2a0">[email&#160;protected]</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="box-center">
+                    <p>
+                        @company.CopyRight
+                        @*<script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                        <script type="text/javascript">
+                            var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                            document.write(unescape("%3Cspan id='cnzz_stat_icon_1275561915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1275561915%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                        </script>
+                        <a href="http://www.hicheng.net/" target="_blank">Powered by: Hicheng</a>*@
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="swiper-container swiper-container-vertical box-index" id="o-c">
+            <div class="swiper-wrapper">
+                @RenderBody()
+
+                <div class="swiper-slide box-footer">
+                    <div class="swiper-container swiper-container-vertical swiper-container-free-mode" id="i-c1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide swiper-slide-active">
+                                <div class="box-message">
+                                    <div class="box-center">
+                                        <div class="text">
+                                            <h3>Get in Touch</h3>
+                                            <p>For more details on how we can provide innovative support to your project please use this contact form.</p>
+                                            <img src="~/Content/assets/image/picture/logo-brand1.png" alt="" />
+                                        </div>
+                                        <div class="message">
+                                            <form action="/send-contact" method="post" class="form2" id="form-contact2">
+                                                <ul>
+                                                    <li>
+                                                        <input type="text" placeholder="Name" name="fullname" />
+                                                    </li>
+                                                    <li>
+                                                        <input type="text" placeholder="Email" name="email" />
+                                                    </li>
+                                                    <li>
+                                                        <textarea name="content" cols="30" rows="3" placeholder="Message"></textarea>
+                                                    </li>
+                                                    <li>
+                                                        <input type="hidden" name="id" value="book">
+                                                        <input type="hidden" name="_spam" value="">
+                                                        <button class="btn submit send2" type="submit">SUBMIT</button>
+                                                    </li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="box-center">
+                                        <div class="foot">
+                                            <ul>
+                                                @foreach (var itemMenu in menuSecond.Where(a => a.ParentID == 0).OrderBy(a => a.Index).ToList())
+                                                {
+                                                    var menuSecondChild = menuSecond.Where(a => a.ParentID == itemMenu.ID).OrderBy(a => a.Index).ToList();
+                                                    <li class="on">
+                                                        <div class="item item-1">
+
+                                                            <div class="title-foot">
+                                                                <h3>@itemMenu.Title</h3>
+                                                            </div>
+
+                                                            @if (menuSecondChild.Count > 0)
+                                                            {
+                                                                foreach (var itemMenuChild in menuSecondChild)
+                                                                {
+                                                                    <div class="info-down">
+                                                                        <a href="/@itemMenuChild.Alias">@itemMenuChild.Title</a>
+                                                                    </div>
+                                                                }
+
+                                                            }
+                                                        </div>
+                                                    </li>
+                                                }
+
+                                                <li class="on">
+                                                    <div class="item item-2">
+                                                        <div class="title-foot">
+                                                            <h3>FOLLOW US</h3>
+                                                        </div>
+                                                        <div class="info-down">
+                                                            <div class="share">
+                                                                <ul>
+                                                                    <li class="facebook">
+                                                                        <a href="@company.Facebook" title="" target="_blank">Facebook</a>
+                                                                    </li>
+                                                                    <li class="twitter">
+                                                                        <a href="@company.Twitter" title="" target="_blank">Twitter</a>
+                                                                    </li>
+                                                                    <li class="linkedin">
+                                                                        <a href="@company.Website" title="" target="_blank">LinkedIn</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="on">
+                                                    <div class="item item-3">
+                                                        <div class="title-foot">
+                                                            <h3>CONTACT US</h3>
+                                                        </div>
+                                                        <div class="info-down">
+                                                            <!-- <h4>HONGTYER INTERNATIONAL FZE</h4> -->
+                                                            <!-- <p><span>Add:</span></p> -->
+                                                            <p>
+                                                                <span>Tel:</span>
+                                                                <a href="tel:@company.Tel">@company.Tel</a> /
+                                                                <a href="tel:@company.Hotline">@company.Hotline</a> /
+                                                                <a href="tel:@company.Fax">@company.Fax</a>
+                                                            </p>
+                                                            <p>
+                                                                <span>Email:</span>
+                                                                <a href="mailto:@company.Email">@company.Email</a>
+                                                                <br>
+                                                                @*<a href="mailto:homer@hongtyre.com">homer@hongtyre.com</a><br>
+                                                                    <a href="mailto:wly0677@hongtyre.com">wly0677@hongtyre.com</a>*@
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="copyright">
+                                    <div class="box-center">
+                                        <p>
+                                            @company.CopyRight
+                                            @*<script type="text/javascript">
+                                                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                                                document.write(unescape("%3Cspan id='cnzz_stat_icon_1275561915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1275561915%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                                            </script>
+                                            <a href="http://www.hicheng.net/" target="_blank">Powered by: Hicheng</a>*@
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-scrollbar" style="opacity: 0;">
+                            <div class="swiper-scrollbar-drag" style="height: auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    }
+
+    <script src="~/Content/assets/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Content/assets/js/jquery-3.5.1.min.js"></script>
+    <script src="~/Content/assets/js/Validate/jquery-validation-1.13.1/jquery.validate.js"></script>
+    <script src="~/Content/assets/js/Validate/jquery-validation-1.13.1/jquery.validate.min.js"></script>
+    <script src="~/Content/assets/js/jquery.lazyload/jquery.lazyload.min.js"></script>
+    <script src="~/Content/assets/js/jquery.carousel/jquery.carousel.min.js"></script>
+    <script src="~/Content/assets/js/jquery.fancybox/jquery.fancybox.min.js"></script>
+    <script src="~/Content/assets/js/swiper/swiper.min.js"></script>
+    <script src="~/Content/assets/js/jquery.countup.js"></script>
+    <script src="~/Content/assets/js/wow.min.js"></script>
+    <script src="~/Content/assets/js/liMarquee/jquery.liMarquee.js"></script>
+    <script src="~/Content/assets/liuyan.js"></script>
+    <script src="~/Content/assets/main.js"></script>
+
+
+    <script>
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#search-menu").validate({
+            rules: {
+                'keySearch': {
+                    required: true,
+                },
+            },
+            messages: {
+                'keySearch': "Please enter a word to search",
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+
+    </script>
+    <script>
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $('#form-contact2').validate({
+            rules: {
+                'fullname': {
+                    required: true,
+                },
+                'email': {
+                    required: true,
+                    email: true,
+                },
+            },
+            messages: {
+                'fullname': 'Please enter your name',
+                'address': 'Please enter your address',
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        })
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

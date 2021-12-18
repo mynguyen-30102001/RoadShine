@@ -1,0 +1,331 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@{
+    List<Menu> menus = CommentController.GetMainMenus(Request.Cookies["LanguageID"].Value);
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    List<Menu> footerMenus = CommentController.GetSecondMenus(Request.Cookies["LanguageID"].Value);
+    List<ShowObject> newPosts = CommentController.HotArticles(Request.Cookies["LanguageID"].Value).Take(3).ToList();
+    List<Language> languages = CommentController.GetLanguages();
+    //Plugin plugin = CommentController.GetPluigPlugin();
+    Language currentLanguage = languages.FirstOrDefault(a => a.ID == Request.Cookies["LanguageID"].Value);
+    var language = languages.FirstOrDefault(a => a.ID == Request.Cookies["LanguageID"].Value) ?? new Language();
+    List<CartItem> lsCart = Session["giohang"] as List<CartItem>;
+
+    string homepage = "";
+    if (ViewBag.HomePage == true)
+    {
+        homepage = "home";
+    }
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/favicon.ico">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>@ViewBag.MetaTitle</title>
+    <meta name="description" content="@ViewBag.MetaDesctiption">
+    <meta name="keywords" itemprop="keywords" content="@ViewBag.MetaKeyword">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500%2C700" rel="stylesheet" property="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+
+    @RenderSection("css", false)
+
+    @*<style>
+            @Html.Raw(plugin.CSS)
+            </style>
+        @Html.Raw(plugin.JS)*@
+
+
+
+</head>
+
+<body class="header_sticky header-style-1 has-menu-extra">
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+    <div id="boxed">
+        <div id="site-header-wrap">
+            <header id="header" class="header header-container clearfix">
+                <div class="container clearfix" id="site-header-inner">
+                    <!-- <div id="logo" class="logo float-left">
+                    </div> -->
+                    <div class="logo_wrap">
+                        <a href="#" class="logo">
+                            <img src="@company.Logo" />
+                        </a>
+                    </div>
+
+                    <div class="socialnetwork">
+                        <ul style="padding: 0; margin-bottom: 0;">
+                            <li class="logos">
+                                <a href="@company.Facebook"><i class="fa fa-facebook-square"></i></a>
+                            </li>
+                            <li class="logos">
+                                <a href="@company.Instagram"><i class="fa fa-pinterest-square"></i></a>
+                            </li>
+                            <li class="logos">
+                                <a href="#"><i class="fa fa-twitter-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.logo -->
+                    <div class="mobile-button"><span></span></div>
+
+                    <ul class="menu-extra">
+                        <li class="box-cart language">
+                            <img alt="en" width="30" height="20" src="@currentLanguage.Icon">
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            <div class="selectlanguage">
+                                <ul style="padding: 0 !important">
+                                    @if (languages.Count > 1)
+                                    {
+                                        <li id="clearSessionButton">
+                                            @foreach (var item in languages)
+                                            {
+                                                <a href="/SelectLanguge/@item.ID" id="clearSessionButton"><img src="@item.Icon" alt="@item.Name" width="30" height="20" /></a>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <!-- /.nav-shop-cart -->
+                        </li>
+                        <li class="box-cart nav-top-cart-wrapper">
+                            <a class="icon_cart nav-cart-trigger active carts" href="#">
+                                @if (lsCart == null)
+                                {
+                                    <span>0</span>
+                                }
+                                else
+                                { <span>@lsCart.Count</span>
+                            }
+                            </a>
+                            <div class="nav-shop-cart">
+                                <div class="widget_shopping_cart_content">
+                                    <div class="woocommerce-min-cart-wrap">
+                                        <ul class="woocommerce-mini-cart cart_list product_list_widget " style="padding: 0 !important">
+                                            @if (lsCart == null || lsCart.Count == 0)
+                                            {
+                                                <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                    <span>No Items in Shopping Cart</span>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in lsCart)
+                                                {
+                                                    <div style="position: relative; line-height: 40px;">
+                                                        <div>
+                                                            <a href="#" style="text-decoration: none">
+                                                                <img style="float: left; margin-right: 10px;" src="@item.Hinh" width="60" height="50" />
+                                                                <ul style="padding: 0 !important">
+                                                                    <li style="font-size: 15px; color: #34384c;font-weight: bold">@item.TenSanPham </li>
+                                                                </ul>
+                                                            </a>
+                                                            <ul>
+                                                                <li> $@item.DonGia × @item.SoLuong </li>
+                                                            </ul>
+                                                            <div style="position: absolute; right: 0; top: 0">
+                                                                <a href="@Url.Action("XoaKhoiGio" ,"Cart",new { sanPhamID = item.SanPhamID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">×</a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                                <div style="line-height: 25px !important;">
+                                                    <span style=" color: #34384c;">SUBTOTAL : <span>$@lsCart.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') </span></span>
+                                                </div>
+                                                <div style="line-height: 25px !important;">
+                                                    <a style=" color: #34384c; font-weight: bold" href="/lstcart">ViewCart</a> &nbsp;
+                                                    <a style=" color: #34384c;font-weight: bold" href="/checkout">Checkout</a>
+                                                </div>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <!-- /.widget_shopping_cart_content -->
+                                </div>
+                            </div>
+                            <!-- /.nav-shop-cart -->
+                        </li>
+
+                    </ul>
+                    <!-- /.menu-extra -->
+                    <div class="nav-wrap">
+                        <nav id="mainnav" class="mainnav">
+                            <ul class="menu" style="width: 50%;display: inline-block; vertical-align: middle;padding-right: 117px; text-align: right">
+                                @foreach (var item in menus.Where(a => a.ParentID == 0).OrderBy(a => a.Index).Take(3))
+                                {
+                                    if (item.Type == SystemMenuType.Home)
+                                    {
+                                        <li class="active">
+                                            <a href="/" title="@item.Title">@item.Title</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        var menuChilds = menus.Where(a => a.ParentID == item.ID).OrderBy(a => a.Index).ToList();
+                                        if (menuChilds.Count > 0)
+                                        {
+                                            <li>
+                                                <a href="javascript:void(0)">@item.Title</a>
+                                                <ul class="submenu">
+                                                    @foreach (var itemChild in menuChilds)
+                                                    {
+                                                        var menuchild2 = menus.Where(a => a.ParentID == itemChild.ID).OrderBy(a => a.Index).ToList();
+                                                        if (menuchild2.Count > 0)
+                                                        {
+                                                            <li>
+                                                                <a href="javascript:void(0)">@itemChild.Title</a>
+                                                                <ul class="submenu">
+                                                                    @foreach (var itemChild2 in menuchild2)
+                                                                    {
+                                                                        <li><a href="/@itemChild2.Alias">@itemChild2.Title</a></li>
+                                                                    }
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li>
+                                                                <a href="/@itemChild.Alias">@itemChild.Title</a>
+                                                            </li>
+                                                        }
+                                                    }
+
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="/@item.Alias">@item.Title</a></li>
+                                        }
+                                    }
+                                }
+                            </ul>
+
+                            <ul class="menu" style="width: 50% ;display: inline-block;vertical-align: middle; float: right; padding-left: 117px;">
+
+                                @foreach (var item in menus.Where(a => a.ParentID == 0).OrderBy(a => a.Index).Skip(3).Take(3))
+                                {
+                                    var menuChilds = menus.Where(a => a.ParentID == item.ID).OrderBy(a => a.Index).ToList();
+                                    if (menuChilds.Count > 0)
+                                    {
+                                        <li>
+                                            <a href="javascript:void(0)">@item.Title</a>
+                                            <ul class="submenu">
+                                                @foreach (var itemChild in menuChilds)
+                                                {
+                                                    var menuchild2 = menus.Where(a => a.ParentID == itemChild.ID).OrderBy(a => a.Index).ToList();
+                                                    if (menuchild2.Count > 0)
+                                                    {
+                                                        <li>
+                                                            <a href="javascript:void(0)">@itemChild.Title</a>
+                                                            <ul class="submenu">
+                                                                @foreach (var itemChild2 in menuchild2)
+                                                                {
+                                                                    <li><a href="/@itemChild2.Alias">@itemChild2.Title</a></li>
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li>
+                                                            <a href="/@itemChild.Alias">@itemChild.Title</a>
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/@item.Alias">@item.Title</a></li>
+                                    }
+
+                                }
+                            </ul>
+                        </nav>
+                        <!-- /.mainnav -->
+                    </div>
+
+                    <!-- /.nav-wrap -->
+                </div>
+                <!-- /.container-fluid -->
+            </header>
+        </div>
+        <!-- Full Page Image Header with Vertically Centered Content -->
+        @RenderBody()
+
+        <section class="privacy">
+            <div class="footer_inner">
+                <span class="footer_copyright">
+                    <div class="footer_copyright_content">
+                        <a href="#">Copyright © 2019 IZUSHI </a>. All Right Reserved WEBSITENHAHANG.COM
+                    </div>
+                </span>
+            </div>
+        </section>
+
+        <a class="on_top" href="#top" style="display: block;" id="on_top">
+            <span class="fa-stack fa-lg" style="font-size: 2em">
+                <i class="fa fa-circle fa-stack-2x" style="color:#2A4A5B"></i>
+                <i class="fa fa-angle-double-up fa-stack-1x fa-inverse"></i>
+            </span>
+        </a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+    <script src="~/Content/js/main.js"></script>
+
+    @*Xóa session giỏ hàng*@
+    <script>
+
+        $('#clearSessionButton').click(
+            function () {
+                $.ajax('/DestroySession');
+            });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#on_top').fadeIn();
+                } else {
+                    $('#on_top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#on_top').click(function () {
+                $('#on_top').tooltip('hide');
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+
+            $('#on_top').tooltip('show');
+
+        });
+
+    </script>
+    @RenderSection("script", false)
+</body>
+</html>
+

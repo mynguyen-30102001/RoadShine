@@ -1,0 +1,89 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Models
+@using TeamplateHotel.Controllers
+
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    var lan = Request.Cookies["LanguageID"].Value;
+    lan = "en";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> menuChilds = CommentController.GetMenuChild(lan, menu.ID);
+    List<Menu> menuSecond = CommentController.GetSecondMenus(lan);
+    List<Menu> menuAboutandArticle = CommentController.GetMenuAboutandArticle(lan);
+    ShowObject aboutArticles = CommentController.AboutArticles(lan, menu.ID);
+    Menu getMenuAbout = CommentController.GetMenuAbout(lan);
+}
+
+
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-about&newproduct.jpg">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-about">
+        <div class="container">
+            <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+
+                <h2> @getMenuAbout.Title</h2>
+                @*@foreach (var itemMenu in menuAboutandArticle.Where(a => a.ParentID == 0).ToList())
+                    {
+                        <h2>@itemMenu.Title</h2>
+                        @Html.Raw(itemMenu.Description)
+                    }*@
+            </div>
+            <div class="wrap-sort wow fadeInUp" data-wow-duration=".8s">
+                <ul>
+                    @foreach (var item in menuAboutandArticle.Where(a => a.ParentID == 0).ToList())
+                    {
+                        var menuChild = menuAboutandArticle.Where(a => a.ParentID == item.ID).ToList();
+                        if (menuChild.Count > 0)
+                        {
+                            foreach (var item1 in menuChild)
+                            {
+                                if (item1.Alias == menu.Alias)
+                                {
+                                    <li class="active">
+                                        <a href="@item1.Alias">@item1.Title</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="">
+                                        <a href="@item1.Alias">@item1.Title</a>
+                                    </li>
+                                }
+                            }
+                        }
+                    }
+
+                </ul>
+            </div>
+
+            <div class="about">
+                <div class="wleft wow fadeInUp" data-wow-duration=".8s">
+                    <div class="pic">
+                        <a class="img-box">
+                            <img class="lazy" src="@aboutArticles.Image" width="620" height="460" />
+                        </a>
+                    </div>
+                    @Html.Raw(@aboutArticles.Description)
+                    <!--<div class="text">-->
+                        @*<h3>@aboutArticles.Title</h3>*@
+
+                    <!--</div>-->
+                </div>
+                <div class="wright wow fadeInUp" data-wow-duration=".8s">
+                    <div class="text">
+                        @Html.Raw(aboutArticles.Content)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

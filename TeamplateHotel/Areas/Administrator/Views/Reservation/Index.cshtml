@@ -1,0 +1,130 @@
+﻿@model TeamplateHotel.Areas.Administrator.EntityModel.EReservation
+
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<style>
+    .az {
+        float: left;
+        margin: 5px 10px;
+    }
+</style>
+<div>
+    <div style="margin-left: 66%">
+        <div class="az">
+            NAME:
+            <input type="text" name="name" id="name">
+        </div>
+        <div class="az">
+            <button type="submit" class="btn btn-danger" id="LoadRecordsButton">Load records</button>
+        </div>
+
+    </div>
+    <div id="jtable-main-container"></div>
+</div>
+<form action="" method="get" id="">
+    <div id="jtable-main-container"></div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#jtable-main-container').jtable({
+            title: '@ViewBag.Title',
+            paging: true, //Enable paging
+            pageSize: 20, //Set page size (default: 10)
+            sorting: true, //Enable sorting
+            defaultSorting: 'Name ASC', //Set default sorting
+            selecting: true, //Enable selecting
+            multiselect: true, //Allow multiple selecting
+            selectingCheckboxes: true, //Show checkboxes on first column
+            columnResizable: true, //Actually, no need to set true since it's default
+            columnSelectable: true, //Actually, no need to set true since it's default
+            saveUserPreferences: true, //Actually, no need to set true since it's default
+
+            actions: {
+                listAction: '@Url.Action("List", "Reservation")',
+                deleteAction: '@Url.Action("Delete", "Reservation")'
+            },
+            
+            fields: {
+                ReservationId: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Name: {
+                    title: 'Name',
+                    width: '5%',
+                    sorting: false,
+                    display: function (data) {
+                        return '<a href="/admin/Reservation/Detail/' + data.record.ReservationId + '">' + data.record.Name + '</a>';
+                    }
+                },
+                DateBook: {
+                    title: 'Ngày khởi tạo',
+                    width: '5%',
+                    sorting: false
+                },
+
+                checkin: {
+                    title: 'Bàn đặt vào ngày',
+                    width: '4%',
+                    sorting: false,
+
+                },
+                timebook: {
+                    title: 'Thời gian đặt',
+                    width: '2%',
+                    sorting: false
+                },
+
+                MessageB: {
+                    title: 'Lời nhắn',
+                    width: '10%',
+                    sorting: false
+                },
+                check: {
+                    title: 'Trạng thái',
+                    width: '3%',
+                    display: function (data) {
+                        if (data.record.Seen == true)
+                            return '<span> Đã Xem </span>';
+                        else {
+                            return '<b> Chưa Xem </b>';
+                        }
+                    }
+                },
+
+                '':
+                {
+                    title: '',
+                    width: '2%',
+                    sorting: false,
+                    display: function (data) {
+                        return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="detailRecord(' + data.record.ReservationId + ')"><span>Edit</span></button>';
+                    }
+                },
+            },
+
+        });
+        $('#jtable-main-container').jtable('load', { reservationsOnline: '@ViewBag.ReservationsOnline' });
+    });
+    </script>
+
+    </form>
+    <script>
+
+        function detailRecord(ReservationId) {
+            window.location = '@Url.Action("Detail","Reservation")' + '/' + ReservationId;
+        }
+
+        $('#LoadRecordsButton').click(function (e) {
+            e.preventDefault();
+            $('#jtable-main-container').jtable('load', {
+                name: $('#name').val(),
+            });
+        });
+
+        $('#LoadRecordsButton').click();
+
+
+    </script>

@@ -1,0 +1,270 @@
+﻿@using ProjectLibrary.Database
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+
+}
+
+@section css{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">*@
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+
+
+    <link href="~/Content/css/feature.css" rel="stylesheet" />
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 49px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        .error {
+            color: red;
+        }
+        .button {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .updatecart:hover {
+            border-color: #f42643;
+            background-color: rgba(0, 0, 0, 0);
+            color: #34384c;
+        }
+
+        .updatecart {
+            line-height: 1 !important;
+            padding: 0;
+            border-width: 0;
+            border-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-color: #b8b8b8;
+            border-bottom-style: solid;
+        }
+
+            .updatecart,
+            .updatecart:hover {
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+    </style>
+}
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">Reservation</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section id="cmsmasters_row_feature" style="height: auto;">
+    <div class="cmsmasters_row_outer_parent">
+        <div class="cmsmasters_row_outer">
+            <div class="cmsmasters_row_inner">
+                <div class="cmsmasters_ss">
+                    <div class="cmsmasters_heading_w">
+                        <h5 class="cmsmasters_heading">9 DOYERS ST #1, NEW YORK, NY 10013</h5>
+                    </div>
+                    <div class="cmsmasters_heading_wb2sroyyd9">
+                        <h2 class="cmsmasters_heading">Hurry Up! Reserve a Table.</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="form_feature">
+    <div class="cmsmasters_row_inner">
+        <div class="cmsmasters_ss">
+            <form style="text-align: left;" action="/ReservationBook/SendReservation" method="POST" id="Reservation">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Name">YOUR NAME</label>
+                        <input type="text" class="form-control" name="Name" id="" placeholder="">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Email">YOUR EMAIL</label>
+                        <input type="text" class="form-control" name="Email" id="" placeholder="">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="NumberPeople">PEOPLE</label>
+                        <input type="number" class="form-control" name="NumberPeople" id="" placeholder="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Tel">PHONE NUMBER</label>
+                        <input type="number" class="form-control" name="Tel" id="" placeholder="">
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <div id="TimeStart" class='input-group date datetimepicker3' name="TimeB">
+                                <input class="form-control" name="TimeB" placeholder="00:00" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <div class='input-group date datetimepicker5'>
+
+                                <input type="text" class="form-control" name="CheckIn" id="CheckIn" placeholder="09/08/2019" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>MESSAGE</label>
+                        <textarea class="form-control" name="MessageB" id="MessageB" rows="5"></textarea>
+
+                    </div>
+
+                </div>
+                <div class="cmsmasters_submit">
+                    <div class="form_info submit_wrap">
+                        @*<a id="cmsmasters_13610_formsend" class="cmsmasters_button" href="#"><span>Send Message</span></a>*@
+                        <button type="submit" class="updatecart button"> Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div id="wraploadding">
+    <div id="imgloadding"><img src="/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading" /></div>
+</div>
+
+
+@section script {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            //$('.datetimepicker5').datetimepicker({
+            //    disabledDates: [
+            //        new Date()
+            //    ],
+            //    enabledHours: false,
+            //    format: 'DD/MM/YYYY',
+
+
+            //});
+            $("#CheckIn").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(),
+                dateFormat: "mm/dd/yy"
+
+            });
+
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+            $(function () {
+                $('#TimeStart').datetimepicker({
+                    format: 'HH:mm'
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function LoadingSendEmail() {
+            $("#wraploadding").show();
+            $("#wraploadding").css("width", $(window).width());
+            $("#wraploadding").css("height", $(window).height());
+            $("#imgloadding ").css("top", ($(window).height() / 2) - 80);
+        }
+
+        $(window).load(function () {
+
+            $("#Reservation").validate({
+                rules: {
+                    'Name': {
+                        required: true,
+                    },
+                    'Email': {
+                        required: true,
+                        email: true
+                    },
+                    'NumberPeople': {
+                        required: true,
+                    },
+                    'Tel': {
+                        required: true,
+                    },
+                    'CheckIn': {
+                        required: true,
+
+                    }
+
+                },
+                messages: {
+                    'Name': "Vui lòng nhập họ tên",
+                    'Email': {
+                        required: "Vui lòng nhập email",
+                        email: "Email không đúng định dạng"
+                    },
+
+                    'NumberPeople': "Vui lòng nhập số người",
+                    'Tel': "Vui lòng nhập số điện thoại",
+                    'CheckIn': "Vui lòng chọn ngày đặt bàn",
+
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                    LoadingSendEmail();
+
+                }
+            });
+        });
+
+
+    </script>
+
+}

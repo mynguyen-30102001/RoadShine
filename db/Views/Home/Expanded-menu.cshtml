@@ -1,0 +1,187 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var language = Request.Cookies["LanguageID"].Value;
+    Menu menu = ViewBag.Menu ?? new Menu();
+
+    List<TypeMenu> typeMenus = CommentController.GetAllTypeMenus(language);
+    List<TheDish> dishes = CommentController.GetTheMenuShowHome();
+    int total = 2;
+
+     List<TheDish>[] dishes1 = CommentController.Partition(dishes,total);
+}
+@section css{
+
+    <link href="~/Content/css/menupage.css" rel="stylesheet" />
+}
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">@menu.Title</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach (var item in typeMenus)
+{
+    <section class="text-center">
+        <div class="cmsmasters_row_inner" style="padding-top: 160px;">
+            <div class="cmsmasters_s">
+                <div class="cmsmasters_heading_w">
+                    <h5 class="cmsmasters_heading">DAILY 11:00 AM – 01:00 PM</h5>
+                </div>
+                <div class="cmsmasters_heading_wb2sroyyd9">
+                    <h2 class="cmsmasters_heading">@item.NameTypeMenu</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 20px">
+            <div class="row">
+
+                <div class="col-md-6 col-xs-12">
+                    <div class="cmsmasters_column one_half">
+                        <div class="cmsmasters_column_inner1">
+                            <div class="cmsmasters_menu">
+
+                                @foreach (var itemDish in dishes.Where(a => a.Type == item.Id).Take(4))
+                                {
+                                    if (itemDish.PromotionPrice == null || itemDish.PromotionPrice == 0)
+                                    {
+                                        <div class="cmsmasters_menu_item">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title" style="text-transform: capitalize !important;">@itemDish.NameMenu</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.Price</h6>
+                                                </div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="cmsmasters_menu_item menu_best">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title" style="text-transform: capitalize !important;">@itemDish.NameMenu</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.PromotionPrice</h6>
+                                                </div>
+                                                <div class="cmsmasters_menu_best_feature">RECOMMENDED</div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="cmsmasters_column one_half">
+                        <div class="cmsmasters_column_inner1">
+                            <div class="cmsmasters_menu">
+
+                                @foreach (var itemDish in dishes.Where(a => a.Type == item.Id).Skip(4))
+                                {
+                                    if (itemDish.PromotionPrice == null || itemDish.PromotionPrice == 0)
+                                    {
+                                        <div class="cmsmasters_menu_item">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title" style="text-transform: capitalize !important;">@itemDish.NameMenu</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.Price</h6>
+                                                </div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="cmsmasters_menu_item menu_best">
+                                            <div>
+                                                <div class="menu_title_wrap">
+                                                    <h4 class="menu_title" style="text-transform: capitalize !important;">@itemDish.NameMenu</h4>
+                                                    <h6 class="cmsmasters_menu_price">$@itemDish.PromotionPrice</h6>
+                                                </div>
+                                                <div class="cmsmasters_menu_best_feature">RECOMMENDED</div>
+                                                <div class="menu_feature_list_wrap">
+                                                    <ul class="menu_feature_list">
+                                                        <li>@Html.Raw(@itemDish.Description).</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cmsmasters_row_outer">
+        <div class="cmsmasters_row_inner" id="padding-bn">
+            <div class="cmsmasters_row_margin cmsmasters_11">
+                <div id="banner-bg1" class="cmsmasters_column one_first" style=" background-image: url(@item.Image);">
+                    <div class="cmsmasters_column_inner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+} 
+<div id="cmsmasters_column_en2foykow" class="cmsmasters_column one_first">
+    <div class="cmsmasters_column_inner" id="Reserve">
+        <div id="cmsmasters_heading_qm72mypqiv" class="cmsmasters_heading_wrap cmsmasters_heading_align_center">
+            <h5 class="cmsmasters_heading">MONDAY - SATURDAY : SERVICE 24:00 PM</h5>
+        </div>
+        <div id="cmsmasters_heading_3xi9m9ms3o" class="cmsmasters_heading_wrap cmsmasters_heading_align_center">
+            <h2 class="cmsmasters_heading">Reserve a Table</h2>
+        </div>
+        <div id="cmsmasters_fb_dghedqs03" class="cmsmasters_featured_block">
+            <div class="featured_block_inner">
+                <div class="featured_block_text">
+                    <div style="text-align: center;">
+                        <span style="color: rgba(255,255,255,0.8); font-size: 18px; line-height: 28px;">
+                            Asian
+                            heritage Bustling cities, delicious food, fascinating culture! Get ready for the
+                            trip of a lifetime with our restaurant team. We are always glad to see you.
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="cmsmasters_button_s9fjhv4xnj" class="button_wrap">
+            <a href="/reservation/" class="cmsmasters_button cmsmasters_but_clear_styles cmsmasters_but_bd_underline">
+                <span>
+                    Make a
+                    Reservation
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

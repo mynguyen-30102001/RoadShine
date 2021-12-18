@@ -1,0 +1,147 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@using TeamplateHotel.Models
+@model TeamplateHotel.Models.DetaiProduct
+@{
+    ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    var lan = Request.Cookies["LanguageID"].Value;
+    Menu contactMenu = CommentController.ContactMenu(lan);
+    List<EF_Product> productshot = CommentController.GetProductHot(lan);
+    List<Menu> menuChild = new List<Menu>();
+    DetaiProduct SortProduct = CommentController.GetSortProductNew(Model.Product.ProductID) ?? new DetaiProduct();
+    //var listSize = CommentController.listSize(Model.Product.ProductID);
+    if (menu.ParentID == 0)
+    {
+        menuChild = CommentController.GetMenuChild(lan, menu.ID);
+    }
+    else
+    {
+        menuChild = CommentController.GetMenuChild(lan, menu.ParentID);
+    }
+}
+
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-contact.jpg">
+
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-product-show">
+        <div class="container">
+            <div class="product-sort wow fadeInUp" data-wow-duration=".8s">
+                <ul class="row">
+                    @foreach (var itemPro in menuChild)
+                    {
+                        <li>
+                            <div class="item">
+                                <a class="img-box" href="/@itemPro.Alias">
+                                    <img class="lazy" src="@itemPro.Image" width="330" height="120" alt="@itemPro.Title" />
+                                </a>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+            <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+                <h2>@menu.Title</h2>
+                <p>@Html.Raw(menu.Description)</p>
+            </div>
+            <div class="wrap-sort wow fadeInUp" data-wow-duration=".8s">
+                <ul>
+                    <li class="active">
+                        <a href="#">Tractor and trailer</a>
+                    </li>
+                    <li class="">
+                        <a href="tires/c1-3.html">Passenger Car Radial</a>
+                    </li>
+                    <li class="">
+                        <a href="tires/c1-2.html">Off The Road</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="product-show wow fadeInUp" data-wow-duration=".8s">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-5">
+                        <div class="album">
+                            <div id="sync3" class="sync1 owl-carousel">
+                                <div class="item">
+                                    <a class="img-box">
+                                        <img class="jqzoom" src="@Model.Product.Image" width="570" height="600" rel="/data/thumb/res/en/20200530/d0ba960360046c28.jpg_20200530102045_570x600.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-7">
+                        <div class="info">
+                            <div class="title-pro">
+                                <h1>@Model.Product.ProductName </h1>
+                                <div class="prev-next">
+                                    <ul>
+                                        @if (SortProduct.ProductLast == null)
+                                        {
+                                            <li class="prev">
+                                                <a href="">Last Product</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="prev">
+                                                <a href="/@menu.Alias/@SortProduct.ProductLast.ProductID/@SortProduct.ProductLast.Alias">Last Product</a>
+                                            </li>
+                                        }
+                                        @if (SortProduct.ProductNext == null)
+                                        {
+                                            <li class="next">
+                                                <a href="">Next Product</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="next">
+                                                <a href="/@menu.Alias/@SortProduct.ProductNext.ProductID/@SortProduct.ProductNext.Alias">Next Product</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="note">
+                                @Html.Raw(Model.Product.Content)
+
+                                <div class="link">
+                                    <a class="btn-inquiry" href="http://www.hongtyre.com/contact.html#inquiry">Inquiry Now</a>
+                                    <a class="btn-relate" href="javascript:;">Related product</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="parameter">
+                    <div class="title-pro-show wow fadeInUp" data-wow-duration=".8s">
+                        <h3>Product Parameters</h3>
+                    </div>
+                    @Html.Raw(Model.Product.Technicadata)
+
+                </div>
+                <div class="relate" id="relate">
+                    <div class="title-pro-show wow fadeInUp" data-wow-duration=".8s">
+                        <h3>Related Product</h3>
+                    </div>
+                    <div class="row wow fadeInUp" data-wow-duration=".8s">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

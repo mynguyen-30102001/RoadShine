@@ -1,0 +1,152 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    Menu menu = ViewBag.Menu ?? new Menu();
+    string check = (string)TempData["check"];
+}
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-contact.jpg">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-contact">
+        <div class="container">
+            <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+                <h2>CONTACT</h2>
+                <p>We are one of the largest tire companies in China with more than 40 years history. We focus on supplying high quality tires with most competitive price, fastest delivery and best service.</p>
+            </div>
+            <div class="contact wow fadeInUp" data-wow-duration=".8s">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="map">
+                            <!-- <img src="tpl/en_hongtyre/assets/images/img/map.jpg" alt="" /> -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8087466963843!2d105.77227781429795!3d21.04033719276031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c9755033dd%3A0xf13b328d1266f239!2zMTQ3IFBo4buRIE1haSBE4buLY2gsIE1haSBE4buLY2gsIEPhuqd1IEdp4bqleSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1634181091694!5m2!1svi!2s"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="text">
+                            <!-- <h3>HONGTYER INTERNATIONAL FZE</h3> -->
+                            <h3>@company.Name</h3>
+                            <!-- <p class="address">Hongkong Office:<br></p> -->
+                            <!-- <p class="address">Qingdao Office:<br></p> -->
+                            <p class="tel">
+                                <a href="tel:+86-532-86768852">@company.Tel</a>
+                                <a href="tel:+86-532-86768126">+86-532-@company.Hotline</a>
+                            </p>
+                            <p class="email">
+                                <a href="cdn-cgi/l/email-protection#d3a1bcb2b7a0bbbabdb693bbbcbdb4a7aaa1b6fdb0bcbe"><span class="__cf_email__" data-cfemail="7d0f121c190e151413183d1512131a09040f18531e1210">@company.Email</span></a>
+                                @*<a href="cdn-cgi/l/email-protection#086067656d7a486067666f7c717a6d266b6765"><span class="__cf_email__" data-cfemail="096166646c7b496166676e7d707b6c276a6664">info2@webhotel.vn</span></a>*@
+                                @*<a href="cdn-cgi/l/email-protection#6a1d06135a5c5d5d2a0205040d1e13180f44090507"><span class="__cf_email__" data-cfemail="02756e7b32343535426a6d6c65767b70672c616d6f">info3@webhotel.vn</span></a>*@
+                            </p>
+                            <p class="fax">+86-532-@company.Fax</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap wrap-message" id="inquiry">
+        <div class="container">
+            <div class="title-message wow fadeInUp" data-wow-duration=".8s">
+                <h2>Inquiry Now</h2>
+                <p>If you have any questions, feedback or comments, please fill in the form below and we will reply you as soon as possible.</p>
+            </div>
+            <div class="message wow fadeInUp" data-wow-duration=".8s">
+                <form action="/send-contact" method="post" class="row form1" id="form-contact">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="text" placeholder="Your Name:" name="fullname" id="yourName" />
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="text" placeholder="Address:" name="address" id="address" />
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="text" placeholder="E-Mail:*" name="email" id="email" />
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="text" placeholder="Tel:" name="tel" id="tel" />
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="text" placeholder="Phone:" name="mobile" id="mobile" />
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="text" placeholder="Country:" name="country" id="country" />
+                    </div>
+                    <div class="col-xs-12">
+                        <textarea name="content" cols="30" rows="5" placeholder="Message:"></textarea>
+                    </div>
+                    <div class="col-xs-12">
+                        <input type="hidden" name="id" value="book">
+                        <input type="hidden" name="_spam" value="OoP45EFE4s">
+                        <button class="btn submit send1" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(function () {
+            if (@check == "check") {
+                var myEle = document.querySelector(".wrap-message");
+                if (myEle) {
+                    var offset = $(".wrap-message").offset();
+                    var top = offset.top;
+                    $('body, html').animate({ scrollTop: top }, 'slow');
+                }
+
+            }
+        })
+
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $('#form-contact').validate({
+            rules: {
+                'fullname': {
+                    required: true,
+                },
+                'address': {
+                    required: true,
+                },
+                'email': {
+                    required: true,
+                    email: true,
+                },
+                //'mobile': {
+                //    required: true,
+                //},
+                'tel': {
+                    required: true,
+
+                }
+            },
+            messages: {
+                'fullname': 'Please enter your name',
+                'address': 'Please enter your address',
+                'email': 'Please enter your email',
+                //'mobile': 'Please enter your phone',
+                'tel': 'Please enter your phone',
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        })
+
+        
+
+    </script>
+}

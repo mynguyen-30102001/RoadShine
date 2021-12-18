@@ -1,0 +1,228 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Company hotel = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+@section css{
+    <link href="~/Content/css/menupage.css" rel="stylesheet" />
+    <link href="~/Content/css/contact.css" rel="stylesheet" />
+
+    <style>
+        #map {
+            width: 100%;
+            height: 730px;
+        }
+
+        .col-maps {
+            padding: 0 0px 10px 45px;
+            margin: 0 10px 35px;
+        }
+        .error {
+            color: red !important;
+        }
+        .button {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .updatecart:hover {
+            border-color: #f42643;
+            background-color: rgba(0, 0, 0, 0);
+            color: #34384c;
+        }
+
+        .updatecart {
+            line-height: 1 !important;
+            padding: 0;
+            border-width: 0;
+            border-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-color: #b8b8b8;
+            border-bottom-style: solid;
+        }
+
+        .updatecart,
+        .updatecart:hover {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+    </style>
+}
+
+
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">@menu.MetaTitle</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="content-contact" style="margin-top: 150px;">
+    <div class="container-fluid">
+        @*<div class="col-lg-12">
+                 <div class="">
+                    <h3> Thông tin liên hệ </h3>
+                    <div class="contact-details">
+                        <p><b style="text-transform: uppercase">@hotel.Name</b></p>
+                        <p> <span class="fa fa-phone"> </span> <strong>Phone</strong> : <a href="tel:@hotel.Tel">@hotel.Tel</a></p>
+                        <p> <span class="fa fa-envelope"> </span> <strong>Email</strong> : <a href="mailto:@hotel.Email"> @hotel.Email </a> </p>
+                        <p> <span class="fa fa-globe"> </span> <strong>Website</strong> : <a href="http://@hotel.Website" title=""> @hotel.Website </a> </p>
+                        <p><span class="fa fa-address-card"> </span> <strong>Địa chỉ</strong> : @hotel.Address </p>
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="map" id="map"></div>
+            </div>
+            <div class="col-lg-6" id="cmsmasters_column_6rkvsoqu5i">
+                <div>
+                    <div id="cmsmasters_heading_1yd54a5yeb" class="cmsmasters_heading_wrap cmsmasters_heading_align_center">
+                        <h5 class="cmsmasters_heading">@hotel.Address</h5>
+                    </div>
+                    <div id="cmsmasters_heading_58v9gwc54n" class="cmsmasters_heading_wrap cmsmasters_heading_align_center">
+                        <h2 class="cmsmasters_heading">Get In Touch!</h2>
+                    </div>
+                    <div id="cmsmasters_heading_jd167izfi5" class="cmsmasters_heading_wrap cmsmasters_heading_align_center">
+                        <h2 class="cmsmasters_heading">Try Our Cuisine.</h2>
+                    </div>
+                    <div class="cmsmasters_contact_form">
+                        <div class="cmsmasters-form-builder">
+                            <div class="cmsmasters_notice cmsmasters_notice_success cmsmasters_theme_icon_check success_box" style="display: none;">
+                                <div class="notice_icon"></div>
+                                <div class="notice_content">
+                                    <p>Thank You! <br>Your message has been sent successfully.</p>
+                                </div>
+                            </div>
+
+                            <form action="/contact/SendContact" method="POST" id="contact-form">
+
+                                <div class="form_info cmsmasters_input one_half">
+                                    <label for="FullName">
+                                        Your Name <span class="color_2">*</span>
+                                    </label>
+                                    <div class="form_field_wrap">
+                                        <input type="text" name="FullName" id="" value="" size="35" class="">
+                                    </div>
+                                </div>
+                                <div class="form_info cmsmasters_input one_half">
+                                    <label for="Email">
+                                        Your Email <span class="color_2">*</span>
+                                    </label>
+                                    <div class="form_field_wrap">
+                                        <input type="text" name="Email" id="" value="" size="35" class="">
+                                    </div>
+                                </div>
+                                <div class="form_info cmsmasters_textarea one_first">
+                                    <label for="Request">Request</label>
+                                    <div class="form_field_wrap">
+                                        <textarea name="Request" id="" cols="60"></textarea>
+                                    </div>
+                                </div>
+                                <div class="cl"></div>
+                                <div class="cmsmasters_submit">
+
+                                    <div class="form_info submit_wrap">
+                                        @*<a id="cmsmasters_704_formsend" class="cmsmasters_button" href="#"><span>Send Message</span></a>*@
+                                        <button type="submit" class="updatecart button"> Send Message</button>
+                                    </div>
+                                </div>
+                             </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div id="wraploadding">
+    <div id="imgloadding"><img src="/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading" /></div>
+</div>
+
+
+@section script
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
+    <script>
+        function initMap() {
+            var myLatLng = { @hotel.Location };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: myLatLng,
+             });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: '@hotel.Name'
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkKxeP9U3h8QzyGoPPUuL7prK8pbC8ovg&callback=initMap">
+    </script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#contact-form").validate();
+        });
+
+        function LoadingSendEmail() {
+            $("#wraploadding").show();
+            $("#wraploadding").css("width", $(window).width());
+            $("#wraploadding").css("height", $(window).height());
+            $("#imgloadding ").css("top", ($(window).height() / 2) - 80);
+        }
+        //validate
+        //jQuery.validator.setDefaults({
+        //    debug: true,
+        //    success: "valid"
+        //});
+        $("#contact-form").validate({
+            rules: {
+                'FullName': {
+                    required: true,
+                },
+             
+                'Email': {
+                    required: true,
+                    email: true
+                },
+                'Request': {
+                    required: true,
+                }
+
+            },
+            messages: {
+                'FullName': "Vui lòng nhập họ tên",
+                'Email': "Vui lòng nhập email",
+                'Request': "Vui lòng nhập nội dung",
+            },
+            submitHandler: function (form) {
+                form.submit();
+                LoadingSendEmail();
+            }
+        });
+
+    </script>
+
+}
+
+
+
+
+

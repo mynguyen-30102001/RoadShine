@@ -1,0 +1,123 @@
+﻿@model TeamplateHotel.Areas.Administrator.EntityModel.ETheMenu
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class=" icon-plus-sign"></i>
+            <h3>@ViewBag.Title</h3>
+        </div> <!-- /widget-header -->
+
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Create", "TheDish", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="control-group" id="">
+                    <label class="control-label" for="Type">Nhóm thực đơn<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.DropDownListFor(p => p.Type, new SelectList(ViewBag.ListTypeId, "Value", "Text"), new { @class = "span3" })
+                        @Html.ValidationMessageFor(p => p.Type)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="NameMenu">Tên món ăn <span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.NameMenu, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.NameMenu)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Alias, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Alias, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Alias)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Image, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload" })
+                        @Html.ValidationMessageFor(c => c.Image)
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="Price">Giá<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Price, new { @class = "span4" }) <span>USD</span>
+                        @Html.ValidationMessageFor(c => c.Price)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="PromotionPrice">Giá khuyến mại</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.PromotionPrice, new { @class = "span4" }) <span>USD</span>
+                        @Html.ValidationMessageFor(c => c.PromotionPrice)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Status">Trạng thái hiển thị</label>
+                    <div class="controls">
+                        <label class="radio-inline"> <input type="radio" name="Status" value="True" checked="checked"> có</label>
+                        <label class="radio-inline"> <input type="radio" name="Status" value="false"> Không</label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Hiển thị trang chủ</label>
+                    <div class="controls">
+                        <label class="radio-inline">@Html.RadioButtonFor(m => m.ShowHome, "true", new { @checked = true })  Có</label>
+                        <label class="radio-inline">@Html.RadioButtonFor(m => m.ShowHome, "false") Không</label>
+                    </div>
+                </div>
+
+
+                <div class="control-group" style="margin-top: 40px">
+                    @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(c => c.Description, new { @class = "basic-ckeditor" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-actions">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <a href="@Url.Action("Index", "TheDish")" class="btn">Cancel</a>
+                </div>
+
+                <div class="control-seo">
+                    <h3 class="mg-h">Tối ưu hoá công cụ tìm kiếm(Seo)</h3>
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.MetaTitle)
+                        @Html.TextBoxFor(c => c.MetaTitle, new { @class = "span4" })
+                        @Html.ValidationMessageFor(p => p.MetaTitle)
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.MetaDescription)
+                        <div class="jtable-input jtable-text-input">
+                            @Html.TextAreaFor(c => c.MetaDescription, new { @class = "span4 meta-seo" })
+                            @Html.ValidationMessageFor(p => p.MetaDescription)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        bindUl();
+        AutoAlias("NameMenu", "Alias");
+        CreateCkEditor();
+    });
+
+</script>

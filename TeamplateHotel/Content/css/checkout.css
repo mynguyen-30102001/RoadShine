@@ -1,0 +1,1230 @@
+﻿/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/plugins/woocommerce/assets/css/select2.css?ver=3.6.2 ; media=all */
+@media all {
+    .select2-container {
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+        position: relative;
+        vertical-align: middle;
+    }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 28px;
+            margin: 0 0 -4px;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+            .select2-container .select2-selection--single .select2-selection__rendered {
+                display: block;
+                padding-left: 8px;
+                padding-right: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+    .select2-hidden-accessible {
+        border: 0 !important;
+        clip: rect(0 0 0 0) !important;
+        height: 1px !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        position: absolute !important;
+        width: 1px !important;
+    }
+
+    .select2-container--default .select2-selection--single {
+        background-color: #fff;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #444;
+            line-height: 28px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            width: 20px;
+        }
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow b {
+                border-color: #888 transparent transparent transparent;
+                border-style: solid;
+                border-width: 5px 4px 0 4px;
+                height: 0;
+                left: 50%;
+                margin-left: -4px;
+                margin-top: -2px;
+                position: absolute;
+                top: 50%;
+                width: 0;
+            }
+}
+/*! CSS Used from: Embedded */
+.woocommerce form .form-row .required {
+    visibility: visible;
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/style.css?ver=1.0.0 ; media=screen, print */
+@media screen, print {
+    div, span, h3, p, a, abbr, strong, b, ul, li, form, label, table, tbody, tfoot, thead, tr, th, td {
+        background: transparent;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        vertical-align: baseline;
+        outline: none;
+    }
+
+    *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    abbr {
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    h3 {
+        font-weight: normal;
+    }
+
+    #middle ul:after {
+        content: '.';
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    img {
+        display: inline-block;
+        color: transparent;
+        height: auto;
+        font-size: 0;
+        vertical-align: middle;
+        max-width: 100%;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        image-rendering: auto;
+        image-rendering: auto;
+        -ms-interpolation-mode: bicubic;
+    }
+
+    a {
+        background: transparent;
+    }
+
+        a:active, a:hover {
+            outline: 0;
+        }
+
+    img {
+        border: 0;
+    }
+
+    input {
+        line-height: normal;
+    }
+
+    button, input, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    button {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+        padding: 0;
+    }
+
+    button {
+        overflow: visible;
+    }
+
+    button, select {
+        text-transform: none;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    button::-moz-focus-inner, input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    input[type=text]::-ms-clear {
+        display: none;
+    }
+
+    p:empty {
+        display: none;
+    }
+
+    :focus {
+        outline: 0;
+    }
+
+    b, strong {
+        font-weight: bold;
+    }
+
+    th, td {
+        font-weight: normal;
+    }
+
+    .screen-reader-text {
+        outline: none;
+    }
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/theme-framework/theme-style/css/style.css?ver=1.0.0 ; media=screen, print */
+@media screen, print {
+  
+
+    p {
+        padding: 0 0 20px;
+        margin: 0;
+    }
+
+    h3 {
+        padding: 0;
+        margin: 0 0 20px;
+    }
+
+    ul {
+        list-style-position: inside;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style-type: disc;
+    }
+
+        ul li {
+            position: relative;
+        }
+
+        ul li {
+            padding: 10px 0 0;
+        }
+
+            ul li:first-child {
+                padding-top: 0;
+            }
+
+    img {
+        image-rendering: auto;
+    }
+
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        width: 100%;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+        table th, table td {
+            padding: 10px;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+    .shop_table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        vertical-align: middle;
+        border-width: 0;
+        border-style: solid;
+    }
+
+    input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]), textarea, option {
+        padding: 0 16px;
+        max-width: 100%;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    textarea {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    textarea {
+        overflow: auto;
+    }
+
+    select {
+        line-height: 1em;
+        text-indent: 0.01px;
+        text-overflow: '';
+        min-width: 130px;
+        max-width: 100%;
+        height: 53px;
+        padding: 8px 51px 8px 18px;
+        background-position: right 20px center;
+        background-repeat: no-repeat;
+        appearance: none !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        outline: none;
+        border-width: 1px;
+        border-style: solid;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        background-image: url('https://sushico.cmsmasters.net/wp-content/themes/sushico/img/select.png');
+    }
+
+        select::-ms-expand {
+            display: none;
+        }
+
+    input[type=text], input[type=email], input[type=tel], textarea {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+    }
+
+    input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]) {
+        height: 53px;
+    }
+
+        input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]):focus, textarea:focus {
+            outline: none;
+        }
+
+    button {
+        max-width: 100%;
+        cursor: pointer;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+    }
+
+    option {
+        outline: none;
+    }
+
+    .cl, .clear {
+        display: block;
+        clear: both;
+    }
+
+    .cmsmasters_column {
+        position: relative;
+        min-height: 1px;
+    }
+
+    .cmsmasters_column_inner {
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+    }
+
+    .one_first {
+        margin: 0 1%;
+        position: relative;
+        float: left;
+    }
+
+    .one_first {
+        width: 98%;
+        float: none;
+        position: relative;
+        display: block;
+        clear: both;
+    }
+
+    .middle_content, .middle_inner, .cmsmasters_row, .cmsmasters_row_outer, .cmsmasters_row_outer_parent {
+        width: 100%;
+        position: relative;
+    }
+
+    .content_wrap, .cmsmasters_row_inner {
+        position: relative;
+        width: 980px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
+
+    .cmsmasters_row.cmsmasters_row_top_default.cmsmasters_row_bot_default {
+        z-index: 0;
+    }
+
+    .cmsmasters_row .cmsmasters_row_outer_parent {
+        padding: 0.1px 0;
+        z-index: 2;
+    }
+
+    .cmsmasters_row_margin {
+        margin: 0 -1.07%;
+        position: relative;
+    }
+
+        .middle_inner:after, .middle_content:after, .content_wrap:after, .cmsmasters_row_inner:after, .cmsmasters_row_margin:after, .cmsmasters_column_inner:after {
+            content: '.';
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+            overflow: hidden;
+        }
+
+    .middle_content {
+        padding: 70px 0 40px;
+    }
+
+        .middle_content:empty {
+            display: none;
+        }
+
+    .button, button {
+        display: inline-block;
+        padding: 0 50px;
+        position: relative;
+        white-space: nowrap;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        border-width: 0;
+        border-style: solid;
+        text-align: center;
+    }
+
+    .content_wrap {
+        display: block;
+        min-width: inherit;
+    }
+
+    html.csstransitions input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]), html.csstransitions textarea, html.csstransitions select {
+        -webkit-transition: border-color .2s ease-in-out;
+        -moz-transition: border-color .2s ease-in-out;
+        -ms-transition: border-color .2s ease-in-out;
+        -o-transition: border-color .2s ease-in-out;
+        transition: border-color .2s ease-in-out;
+    }
+
+    html.csstransitions a {
+        -webkit-transition: color 0.3s ease-in-out;
+        -moz-transition: color 0.3s ease-in-out;
+        -ms-transition: color 0.3s ease-in-out;
+        -o-transition: color 0.3s ease-in-out;
+        transition: color 0.3s ease-in-out;
+    }
+
+    html.csstransitions .button, html.csstransitions button {
+        -webkit-transition: all .25s ease;
+        -moz-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+        -o-transition: all .25s ease;
+        transition: all .25s ease;
+    }
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/theme-framework/theme-style/css/adaptive.css?ver=1.0.0 ; media=screen, print */
+@media screen, print {
+    @media only screen and (min-width: 1440px) {
+        .content_wrap, .cmsmasters_row_inner {
+            width: 1200px;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .content_wrap, .cmsmasters_row_inner {
+            width: 100%;
+        }
+
+        .cmsmasters_column {
+            margin-bottom: 20px;
+        }
+
+            .cmsmasters_column.one_first {
+                margin-bottom: 0;
+            }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .cmsmasters_column:last-child {
+            margin-bottom: 0;
+        }
+
+        .one_first {
+            width: 98%;
+            float: none;
+            clear: both;
+        }
+    }
+
+    @media only screen and (max-width: 320px) {
+        .content_wrap, .cmsmasters_row_inner {
+            width: 320px;
+        }
+    }
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/uploads/cmsmasters_styles/sushico.css?ver=1.0.0 ; media=screen */
+@media screen {
+    a {
+        font-family: 'Montserrat', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+        font-style: normal;
+        text-transform: none;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+    h3 {
+        font-family: 'Bellefair', Times, 'Century Schoolbook L', serif;
+        font-size: 30px;
+        line-height: 36px;
+        font-weight: normal;
+        font-style: normal;
+        text-transform: none;
+        text-decoration: none;
+    }
+
+    table thead th {
+        font-family: 'Montserrat', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 600;
+        font-style: normal;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    .button, button {
+        font-family: 'Montserrat', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 16px;
+        line-height: 53px;
+        font-weight: 600;
+        font-style: normal;
+        text-transform: none;
+    }
+
+    input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]), textarea, select, option {
+        font-family: 'Source Sans Pro', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .woocommerce table strong, .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label span, .woocommerce-checkout-payment a, .shop_table tfoot td, .shop_table tfoot th {
+        font-family: 'Source Sans Pro', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label span {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .shop_table tbody td {
+        font-size: 16px;
+        line-height: 23px;
+    }
+
+    .shop_table thead th, .woocommerce .form-row label {
+        font-family: 'Montserrat', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 600;
+        font-style: normal;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    .woocommerce-checkout-review-order .button {
+        font-family: 'Montserrat', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+        font-size: 16px;
+        line-height: 53px;
+        font-weight: 600;
+        font-style: normal;
+        text-transform: none;
+    }
+
+    .woocommerce-checkout-review-order .button {
+        font-size: 14px;
+    }
+
+    .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label span {
+        text-transform: none;
+    }
+
+    .woocommerce-checkout-payment a {
+        font-style: italic;
+    }
+
+    input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]), textarea, select, option {
+        color: #707070;
+    }
+
+    input::-webkit-input-placeholder {
+        color: #707070;
+    }
+
+    input:-moz-placeholder {
+        color: #707070;
+    }
+
+    a {
+        color: #b8b8b8;
+    }
+
+    input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]):focus, textarea:focus {
+        border-color: #b8b8b8;
+    }
+
+    a:hover {
+        color: #2A4A5B;
+    }
+
+    .button:hover, button:hover {
+        background-color: #2A4A5B;
+    }
+
+    .button:hover, button:hover {
+        border-color: #2A4A5B;
+    }
+
+    h3, table thead th, table tfoot td, table tfoot th {
+        color: #34384c;
+    }
+
+    .button, button {
+        background-color: #34384c;
+    }
+
+    .button, button {
+        border-color: #34384c;
+    }
+
+        .button, button, .button:hover, button:hover {
+            color: #ffffff;
+        }
+
+    .middle_inner, input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]), select, textarea, option {
+        background-color: #ffffff;
+    }
+
+    select, table, table tr, table td, table th, input:not([type=button]):not([type=checkbox]):not([type=file]):not([type=hidden]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):not([type=color]):not([type=range]), textarea, option {
+        border-color: #d8d8d8;
+    }
+
+    ::selection {
+        background: #b8b8b8;
+        color: #ffffff;
+    }
+
+    ::-moz-selection {
+        background: #b8b8b8;
+        color: #ffffff;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered, .shop_table, .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label, .shop_table tfoot td, .shop_table tfoot th {
+        color: #707070;
+    }
+
+        .shop_table thead th, .woocommerce .form-row label {
+            color: #34384c;
+        }
+
+    .woocommerce .form-row label {
+        border-color: #34384c;
+    }
+
+    .input-radio + label:after, .input-checkbox + span:after {
+        background-color: #34384c;
+    }
+
+    .select2-container .select2-selection--single {
+        background-color: #ffffff;
+    }
+
+    .input-radio + label:before {
+        background-color: #f9f9f9;
+    }
+
+    .woocommerce-info, .input-radio + label:before, .shop_table th, .shop_table td, .shop_table .cart_item, .select2-container .select2-selection--single, .woocommerce-checkout-payment, .input-checkbox + span:before, .woocommerce-checkout-payment .payment_methods .payment_box, .woocommerce-privacy-policy-text {
+        border-color: #d8d8d8;
+    }
+
+    .woocommerce-checkout-review-order .button {
+        border-color: #d8d8d8;
+        background-color: rgba(0,0,0,0);
+        color: #34384c;
+    }
+
+        .woocommerce-checkout-review-order .button:hover {
+            border-color: #2A4A5B;
+            background-color: rgba(0,0,0,0);
+            color: #34384c;
+        }
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/gutenberg/cmsmasters-framework/theme-style/css/frontend-style.css?ver=1.0.0 ; media=screen */
+@media screen {
+    a {
+        outline: 0;
+        text-decoration: none;
+        transition: color 110ms ease-in-out;
+    }
+
+    select {
+        line-height: 1em;
+        text-indent: 0.01px;
+        text-overflow: '';
+        min-width: 130px;
+        max-width: 100%;
+        height: 53px;
+        padding: 8px 51px 8px 18px;
+        background-image: url('https://sushico.cmsmasters.net/wp-content/themes/sushico/gutenberg/img/select.png');
+        background-position: right 20px center;
+        background-repeat: no-repeat;
+        appearance: none !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        outline: none;
+        border-width: 1px;
+        border-style: solid;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        background-image: url('https://sushico.cmsmasters.net/wp-content/themes/sushico/img/select.png');
+    }
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/woocommerce/cmsmasters-framework/theme-style/css/plugin-style.css?ver=1.0.0 ; media=screen */
+@media screen {
+    .woocommerce:after {
+        content: '.';
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    .woocommerce-page .content_wrap.fullwidth {
+        padding-top: 0;
+        padding-bottom: 40px;
+    }
+
+    .input-checkbox, .input-radio {
+        float: left;
+        opacity: 0;
+        width: 1em;
+        height: 1em;
+        margin: auto !important;
+        position: absolute;
+        left: 0;
+        right: auto;
+        top: 0;
+        bottom: 0;
+    }
+
+        .input-radio + label, .input-checkbox + span {
+            display: inline-block;
+            padding: 0 0 0 25px;
+            position: relative;
+            cursor: pointer;
+        }
+
+            .input-radio + label:before, .input-checkbox + span:before {
+                content: '';
+                border-width: 1px;
+                border-style: solid;
+                width: 17px;
+                height: 17px;
+                margin: auto !important;
+                position: absolute;
+                left: 1px;
+                right: auto;
+                top: 0;
+                bottom: 0;
+            }
+
+            .input-radio + label:after, .input-checkbox + span:after {
+                content: '';
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                transform: scale(0);
+                width: 9px;
+                height: 9px;
+                margin: auto !important;
+                position: absolute;
+                left: 5px;
+                right: auto;
+                top: 0;
+                bottom: 0;
+                opacity: 0;
+            }
+
+        .input-radio:checked + label:after, .input-checkbox:checked + span:after {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            transform: scale(1);
+            opacity: 1;
+        }
+
+    label.checkbox {
+        display: inline-block;
+        padding: 0 0 0 25px;
+    }
+
+        label.checkbox + input {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    .input-radio + label:before, .input-radio + label:after {
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    .woocommerce-info {
+        padding: 20px 25px;
+        margin-bottom: 50px;
+        float: none;
+        position: relative;
+        clear: both;
+        overflow: hidden;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .col2-set {
+        margin: 0 -1% 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .col2-set > * {
+            width: 48%;
+            margin: 0 1%;
+            position: relative;
+            float: left;
+            overflow: hidden;
+        }
+
+    .form-row {
+        width: 48%;
+        margin: 0 1%;
+        padding: 0 0 22px;
+        position: relative;
+        float: left;
+    }
+
+        .form-row:after {
+            content: '.';
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+            overflow: hidden;
+        }
+
+        .form-row.form-row-wide, .form-row.notes, .form-row.place-order {
+            width: 98%;
+            float: none;
+            clear: both;
+        }
+
+        .form-row.place-order {
+            width: auto;
+            padding: 0;
+            margin: 0;
+        }
+
+        .form-row label {
+            display: block;
+            padding: 0 0 10px;
+        }
+
+        .form-row select, .form-row input, .form-row textarea {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .form-row textarea {
+            min-height: 200px;
+        }
+
+        .form-row input[type="checkbox"] {
+            width: auto;
+        }
+
+        .form-row .required {
+            font-size: 0.9em;
+        }
+
+    .amount {
+        white-space: nowrap;
+    }
+
+    .shop_table {
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+        .shop_table thead, .shop_table tr {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .shop_table thead th {
+                border-width: 0;
+                border-style: solid;
+                border-top-width: 1px;
+                border-top-style: solid;
+                padding: 20px 5px;
+                letter-spacing: 0.6px;
+            }
+
+            .shop_table tr:first-child td, .shop_table tr:first-child th {
+                border-top-width: 1px;
+                border-top-style: solid;
+            }
+
+        .shop_table th, .shop_table td {
+            padding: 10px;
+            vertical-align: middle;
+            position: relative;
+            text-align: left;
+            overflow: hidden;
+            border-width: 0;
+            border-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+
+            .shop_table th:first-child, .shop_table td:first-child {
+                border-left-width: 1px;
+                border-left-style: solid;
+            }
+
+            .shop_table th:last-child, .shop_table td:last-child {
+                border-right-width: 1px;
+                border-right-style: solid;
+            }
+
+    .shop_table {
+        width: 100%;
+        margin: 0 0 50px;
+        position: relative;
+        border-width: 0;
+        border-style: solid;
+    }
+
+        .shop_table tbody tr:first-child td {
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+
+        .shop_table th:first-child, .shop_table td:first-child {
+            padding-left: 20px;
+        }
+
+        .shop_table th:last-child, .shop_table td:last-child {
+            padding-right: 20px;
+        }
+
+    .woocommerce-checkout-review-order-table.shop_table th, .woocommerce-checkout-review-order-table.shop_table td {
+        padding: 20px 30px;
+    }
+
+    .shop_table .product-name {
+        outline: none;
+    }
+
+    .shop_table .amount {
+        outline: none;
+    }
+
+    .shop_table strong.product-quantity {
+        font-weight: normal;
+    }
+
+    .woocommerce-checkout-review-order .button {
+        line-height: 1 !important;
+        padding: 0;
+        border-width: 0;
+        border-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+    }
+
+        .woocommerce-checkout-review-order .button, .woocommerce-checkout-review-order .button:hover {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+    .checkout_coupon {
+        margin: 0 -1% 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .checkout_coupon p:not([class]) {
+            width: 98%;
+            margin: 0 1%;
+        }
+
+        .checkout_coupon input, .checkout_coupon button[type=submit] {
+            max-width: 100%;
+        }
+
+    body .select2-container .select2-selection--single {
+        height: 53px;
+        padding: 12px 40px 12px 16px;
+        background-image: url('https://sushico.cmsmasters.net/wp-content/themes/sushico/img/select.png');
+        background-position: right 20px center;
+        background-repeat: no-repeat;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+    }
+
+        body .select2-container .select2-selection--single .select2-selection__arrow {
+            display: none;
+        }
+
+        body .select2-container .select2-selection--single .select2-selection__rendered {
+            line-height: 26px;
+            padding: 0;
+        }
+
+    .checkout {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .woocommerce-billing-fields, .woocommerce-shipping-fields {
+        margin: 0 -1%;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .woocommerce-billing-fields:after, .woocommerce-shipping-fields:after {
+            content: '.';
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+            overflow: hidden;
+        }
+
+        .woocommerce-billing-fields > h3 {
+            margin-left: 1%;
+            margin-right: 1%;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+    .woocommerce-privacy-policy-text {
+        padding: 15px 30px;
+        margin: 20px 0;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    #page .woocommerce-privacy-policy-text:empty {
+        display: none;
+    }
+
+    .woocommerce-privacy-policy-text p {
+        padding: 0;
+    }
+
+    .woocommerce-checkout-payment {
+        padding: 40px;
+        position: relative;
+        border-width: 1px;
+        border-style: solid;
+        overflow: hidden;
+    }
+
+        .woocommerce-checkout-payment .payment_methods {
+            list-style: none;
+            margin: 0 0 20px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .woocommerce-checkout-payment .payment_methods li {
+                position: relative;
+                overflow: hidden;
+            }
+
+                .woocommerce-checkout-payment .payment_methods li:before {
+                    content: none;
+                }
+
+            .woocommerce-checkout-payment .payment_methods label {
+                display: inline-block;
+                float: none;
+            }
+
+                .woocommerce-checkout-payment .payment_methods label img {
+                    display: none;
+                }
+
+            .woocommerce-checkout-payment .payment_methods .payment_box {
+                padding: 15px 30px;
+                margin: 25px 0;
+                position: relative;
+                border-width: 1px;
+                border-style: solid;
+                clear: both;
+            }
+
+                .woocommerce-checkout-payment .payment_methods .payment_box p {
+                    margin: 0;
+                    padding: 0;
+                }
+
+        .woocommerce-checkout-payment .woocommerce-terms-and-conditions-link::after {
+            content: '*';
+        }
+
+        .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper {
+            padding: 0 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper > * {
+                display: inline-block;
+                float: none;
+                vertical-align: middle;
+            }
+
+            .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row {
+                width: auto;
+                display: block;
+                padding: 0;
+                margin: 0 0 20px;
+                direction: rtl;
+                overflow: hidden;
+            }
+
+                .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row > * {
+                    direction: ltr;
+                }
+
+                .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label {
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding: 0;
+                }
+
+                    .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label span {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .form-row label .required {
+                        display: none;
+                    }
+
+            .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .woocommerce-terms-and-conditions {
+                display: block;
+                margin-bottom: 20px;
+                overflow-x: hidden !important;
+                position: relative;
+            }
+
+                .woocommerce-checkout-payment .woocommerce-terms-and-conditions-wrapper .woocommerce-terms-and-conditions .cmsmasters_row_inner {
+                    width: 100%;
+                }
+
+    html.csstransitions body .select2-container .select2-selection--single {
+        -webkit-transition: border-color .3s ease-in-out, color .3s ease-in-out;
+        -moz-transition: border-color .3s ease-in-out, color .3s ease-in-out;
+        -ms-transition: border-color .3s ease-in-out, color .3s ease-in-out;
+        -o-transition: border-color .3s ease-in-out, color .3s ease-in-out;
+        transition: border-color .3s ease-in-out, color .3s ease-in-out;
+    }
+
+    html.csstransitions .input-radio + label:after, html.csstransitions .input-checkbox + span:after {
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+}
+/*! CSS Used from: https://sushico.cmsmasters.net/wp-content/themes/sushico/woocommerce/cmsmasters-framework/theme-style/css/plugin-adaptive.css?ver=1.0.0 ; media=screen */
+@media screen {
+    @media only screen and (max-width: 768px) {
+        .col2-set > * {
+            width: 98%;
+            margin-bottom: 40px;
+            float: none;
+            clear: both;
+        }
+
+            .col2-set > *:last-child {
+                margin-bottom: 0;
+            }
+
+        .shop_table.woocommerce-checkout-review-order-table th, .shop_table.woocommerce-checkout-review-order-table td {
+            padding: 10px 15px;
+        }
+    }
+
+    @media only screen and (max-width: 540px) {
+        .form-row {
+            width: 98%;
+            float: none;
+            clear: both;
+        }
+
+        .woocommerce-info {
+            text-align: center;
+        }
+
+        .woocommerce-checkout-payment {
+            padding: 12% 8%;
+        }
+    }
+}
+ 

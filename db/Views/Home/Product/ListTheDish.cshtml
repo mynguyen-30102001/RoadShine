@@ -1,0 +1,103 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    var language = Request.Cookies["LanguageID"].Value;
+    List<EF_TheDishs> list = (List<EF_TheDishs>)ViewData["ListTheDish"];
+}
+@section css{
+    <link href="~/Content/css/menupage.css" rel="stylesheet" />
+    <style>
+
+        .middle_content {
+            padding: 70px 0 40px;
+        }
+
+        .cmsmasters_archive {
+            padding: 50px 0 120px;
+        }
+
+        .cmsmasters_archive_type {
+            padding: 50px 0 0;
+            overflow: hidden;
+        }
+
+        .cmsmasters_archive_item_img_wrap {
+            min-width: 200px;
+            float: left;
+        }
+
+        .cmsmasters_archive_item_title a {
+            font-family: 'Bellefair', Times, 'Century Schoolbook L', serif;
+            font-size: 30px;
+            color: #121825;
+            text-decoration: none;
+        }
+
+            .cmsmasters_archive_item_title a:hover {
+                border-bottom: 2px solid #f42643;
+            }
+
+        .cmsmasters_archive_item_content {
+            padding: 0 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+}
+<div class="headline cmsmasters_color_scheme_default">
+    <div class="headline_outer">
+        <div class="headline_color"></div>
+        <div class="headline_inner align_center">
+            <div class="headline_aligner"></div>
+            <div class="headline_text">
+                <h1 class="entry-title">Project Category: @ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="middle_content entry">
+        <div class="cmsmasters_archive">
+            @foreach (var item in list.Take(5))
+            {
+                <article class="cmsmasters_archive_type">
+                    <div class="row">
+                        <div class="col-lg-4 col-xs-12">
+                            <figure class="cmsmasters_archive_item_img_wrap">
+                                <a href="/@item.MenuAlias/@item.ID/@item.Alias"><img src="@item.Image" width="350" height="300" alt="@item.MetaTitle" /></a>
+                            </figure>
+                        </div>
+                        <div class="col-lg-8 col-xs-12">
+                            <div class="cmsmasters_archive_item_cont_wrap">
+                                <div class="cmsmasters_archive_item_type">
+                                    @item.MetaTitle
+                                </div>
+                                <header class="cmsmasters_archive_item_header entry-header">
+                                    <h2 class="cmsmasters_archive_item_title entry-title">
+                                        <a href="/@item.MenuAlias/@item.ID/@item.Alias">
+                                            @item.NameMenu
+                                        </a>
+                                    </h2>
+                                </header>
+                                <div class="cmsmasters_archive_item_content entry-content">
+                                    <p style="font-size: 16px;">
+                                     @Html.Raw(item.Description)
+                                    </p>
+                                </div>
+                                <footer class="cmsmasters_archive_item_info entry-meta" style="font-size: 17px;">
+                                    <span class="cmsmasters_archive_item_category">
+                                        In
+                                        <a href="@item.MenuAlias" class="cmsmasters_cat_color cmsmasters_cat_37" rel="category tag">@ViewBag.Title</a>
+                                    </span>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</div>

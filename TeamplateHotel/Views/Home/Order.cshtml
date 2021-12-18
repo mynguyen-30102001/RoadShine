@@ -1,0 +1,2202 @@
+﻿@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+}
+
+<div class="order-main box scroll-pos">
+    <div class="container">
+        <div class="order-detail">
+            <div class="order-head">
+                <h3 class="order-title">
+                    ORDER REQUEST
+                </h3>
+                <span>
+                    <em>
+                        (Please fill up all fields. Your order may not be processed with incomplete
+                        information)
+                    </em>
+                </span>
+            </div>
+            <form action="/checkout/sendcheckout" method="POST" id="order_form">
+                <div class="order-info order-box">
+                    <h3 class="order-sub_title mb-5">Customer information</h3>
+                    <div class="row ">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>First name</label>
+                                <input type="text" name="FirstName" id="firstName" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Last name</label>
+                                <input type="text" name="LastName" id="lastName" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Street address</label>
+                                <input type="text" name="Address" id="address" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" name="City" id="city" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" name="Country" id="Country" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" name="Email" id="email" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Phone number</label>
+                                <input type="text" name="Phone" id="Phone" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Date ordered</label>
+                                <input type="text" name="DateBook" id="dateStart" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Completion date requested</label>
+                                <input type="text" name="CompletionDate" id="dateEnd" class="w-100 form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end order-info -->
+                <div class="order-request order-box">
+                    <div class="order-subhead mb-4">
+                        <h3 class="order-sub_title mr-4">
+                            Product Details
+                        </h3>
+                        <div class="nav-order">
+                            <span class="drop-button">
+                                <span class="drop-filter">Select Products</span><span class="fas fa-angle-down ml-2"></span>
+                            </span>
+                            <ul class="nav nav-pills order-dropdown">
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#none">None</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#all">All Product</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Jacket">Jacket</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Suit">Suit</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Vest">Vest</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Shirt">Shirt</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Pants">Pants</a>
+                                </li>
+                                <li class="nav-item product-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Coat">Coat</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane " id="none">
+                        </div>
+                        <div class="tab-pane " id="all">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>JACKET</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityJ">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="jacket_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitJ">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="jacket_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Button</label>
+                                            <div class="form-inner" id="ButtonJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_button">
+                                                    <option selected></option>
+                                                    <option value="1 button">1 button</option>
+                                                    <option value="2 button">2 button</option>
+                                                    <option value="3 button">3 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Lapel</label>
+                                            <div class="form-inner" id="LapelJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_lapel">
+                                                    <option selected></option>
+                                                    <option value="Shawl">Shawl</option>
+                                                    <option value="Notch">Notch</option>
+                                                    <option value="Peak">Peak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_pocket">
+                                                    <option selected></option>
+                                                    <option value="Flap">Flap</option>
+                                                    <option value="Patch">Patch</option>
+                                                    <option value="Ticket">Ticket</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Vents</label>
+                                            <div class="form-inner" id="VentsJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_vents">
+                                                    <option selected></option>
+                                                    <option value="No">No</option>
+                                                    <option value="Central">Central</option>
+                                                    <option value="Sided">Sided</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Breasted</label>
+                                            <div class="form-inner" id="BreastedJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_breasted">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-style">
+                                <h3 class="small-title"><span>Pants</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityP">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="QuantityPants">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="FitPants">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pleat</label>
+                                            <div class="form-inner" id="PleatP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="PleatPants">
+                                                    <option selected></option>
+                                                    <option value="No">No</option>
+                                                    <option value="1 pleat">1 pleat</option>
+                                                    <option value="2 pleat">2 pleat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Back Pocket</label>
+                                            <div class="form-inner" id="BackP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="BackPocket">
+                                                    <option selected></option>
+                                                    <option value="2 pockets">2 pockets</option>
+                                                    <option value="1 right">1 right</option>
+                                                    <option value="1 left">1 left</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="">
+                                                    <option selected></option>
+                                                    <option value="On seam">On seam</option>
+                                                    <option value="1/4 top">1/4 top</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Cuff</label>
+                                            <div class="form-inner" id="CuffP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="CuffPants">
+                                                    <option selected></option>
+                                                    <option value="With">With</option>
+                                                    <option value="Without">Without</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-style">
+                                <h3 class="small-title"><span>VEST</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityV">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="vest_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Number of Button</label>
+                                            <div class="form-inner" id="NumberOfB">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="vest_button">
+                                                    <option selected></option>
+                                                    <option value="5 button">5 button</option>
+                                                    <option value="6 button">6 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Breasted</label>
+                                            <div class="form-inner" id="BreastedV">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="vest_breasted">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-style">
+                                <h3 class="small-title"><span>SHIRT</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityS">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="shirt_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Collar</label>
+                                            <div class="form-inner" id="CollarS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_button">
+                                                    <option selected></option>
+                                                    <option value="Classic">Classic</option>
+                                                    <option value="Spread">Spread</option>
+                                                    <option value="Button down">Button down</option>
+                                                    <option value="Long point">Long point</option>
+                                                    <option value="Wing tip">Wing tip</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_lapel">
+                                                    <option selected></option>
+                                                    <option value="With">With</option>
+                                                    <option value="Without">Without</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Cuff</label>
+                                            <div class="form-inner" id="CuffS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_pocket">
+                                                    <option selected></option>
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="French">French</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-style">
+                                <h3 class="small-title"><span>COAT</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityC">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="coat_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Button</label>
+                                            <div class="form-inner" id="ButtonC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_button">
+                                                    <option selected></option>
+                                                    <option value="2 button">2 button</option>
+                                                    <option value="3 button">3 button</option>
+                                                    <option value="4 button">4 button</option>
+                                                    <option value="6 button">6 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Breast</label>
+                                            <div class="form-inner" id="BreastC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_breast">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Lapel</label>
+                                            <div class="form-inner" id="LapelC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_lapel">
+                                                    <option selected></option>
+                                                    <option value="Notch">Notch</option>
+                                                    <option value="Peak">Peak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Jacket">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>JACKET</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityJ">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="jacket_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitJ">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="jacket_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Button</label>
+                                            <div class="form-inner" id="ButtonJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_button">
+                                                    <option selected></option>
+                                                    <option value="1 button">1 button</option>
+                                                    <option value="2 button">2 button</option>
+                                                    <option value="3 button">3 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Lapel</label>
+                                            <div class="form-inner" id="LapelJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_lapel">
+                                                    <option selected></option>
+                                                    <option value="Shawl">Shawl</option>
+                                                    <option value="Notch">Notch</option>
+                                                    <option value="Peak">Peak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_pocket">
+                                                    <option selected></option>
+                                                    <option value="Flap">Flap</option>
+                                                    <option value="Patch">Patch</option>
+                                                    <option value="Ticket">Ticket</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Vents</label>
+                                            <div class="form-inner" id="VentsJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_vents">
+                                                    <option selected></option>
+                                                    <option value="No">No</option>
+                                                    <option value="Central">Central</option>
+                                                    <option value="Sided">Sided</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Breasted</label>
+                                            <div class="form-inner" id="BreastedJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_breasted">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane  fade " id="Suit">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>JACKET</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityJ">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="jacket_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitJ">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="jacket_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Button</label>
+                                            <div class="form-inner" id="ButtonJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_button">
+                                                    <option selected></option>
+                                                    <option value="1 button">1 button</option>
+                                                    <option value="2 button">2 button</option>
+                                                    <option value="3 button">3 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Lapel</label>
+                                            <div class="form-inner" id="LapelJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_lapel">
+                                                    <option selected></option>
+                                                    <option value="Shawl">Shawl</option>
+                                                    <option value="Notch">Notch</option>
+                                                    <option value="Peak">Peak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_pocket">
+                                                    <option selected></option>
+                                                    <option value="Flap">Flap</option>
+                                                    <option value="Patch">Patch</option>
+                                                    <option value="Ticket">Ticket</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Vents</label>
+                                            <div class="form-inner" id="VentsJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_vents">
+                                                    <option selected></option>
+                                                    <option value="No">No</option>
+                                                    <option value="Central">Central</option>
+                                                    <option value="Sided">Sided</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Breasted</label>
+                                            <div class="form-inner" id="BreastedJ">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="jacket_breasted">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-style">
+                                <h3 class="small-title"><span>Pants</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityP">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="QuantityPants">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="FitPants">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pleat</label>
+                                            <div class="form-inner" id="PleatP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="PleatPants">
+                                                    <option selected></option>
+                                                    <option value="No">No</option>
+                                                    <option value="1 pleat">1 pleat</option>
+                                                    <option value="2 pleat">2 pleat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Back Pocket</label>
+                                            <div class="form-inner" id="BackP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="BackPocket">
+                                                    <option selected></option>
+                                                    <option value="2 pockets">2 pockets</option>
+                                                    <option value="1 right">1 right</option>
+                                                    <option value="1 left">1 left</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="">
+                                                    <option selected></option>
+                                                    <option value="On seam">On seam</option>
+                                                    <option value="1/4 top">1/4 top</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Cuff</label>
+                                            <div class="form-inner" id="CuffP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="CuffPants">
+                                                    <option selected></option>
+                                                    <option value="With">With</option>
+                                                    <option value="Without">Without</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Vest">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>VEST</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityV">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="vest_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Number of Button</label>
+                                            <div class="form-inner" id="NumberOfB">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="vest_button">
+                                                    <option selected></option>
+                                                    <option value="5 button">5 button</option>
+                                                    <option value="6 button">6 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Breasted</label>
+                                            <div class="form-inner" id="BreastedV">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="vest_breasted">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Shirt">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>SHIRT</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityS">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="shirt_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Collar</label>
+                                            <div class="form-inner" id="CollarS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_button">
+                                                    <option selected></option>
+                                                    <option value="Classic">Classic</option>
+                                                    <option value="Spread">Spread</option>
+                                                    <option value="Button down">Button down</option>
+                                                    <option value="Long point">Long point</option>
+                                                    <option value="Wing tip">Wing tip</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_lapel">
+                                                    <option selected></option>
+                                                    <option value="With">With</option>
+                                                    <option value="Without">Without</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Cuff</label>
+                                            <div class="form-inner" id="CuffS">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="shirt_pocket">
+                                                    <option selected></option>
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="French">French</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Pants">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>Pants</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityP">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="QuantityPants">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="FitPants">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pleat</label>
+                                            <div class="form-inner" id="PleatP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="PleatPants">
+                                                    <option selected></option>
+                                                    <option value="No">No</option>
+                                                    <option value="1 pleat">1 pleat</option>
+                                                    <option value="2 pleat">2 pleat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Back Pocket</label>
+                                            <div class="form-inner" id="BackP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="BackPocket">
+                                                    <option selected></option>
+                                                    <option value="2 pockets">2 pockets</option>
+                                                    <option value="1 right">1 right</option>
+                                                    <option value="1 left">1 left</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Pocket</label>
+                                            <div class="form-inner" id="PocketP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="">
+                                                    <option selected></option>
+                                                    <option value="On seam">On seam</option>
+                                                    <option value="1/4 top">1/4 top</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Cuff</label>
+                                            <div class="form-inner" id="CuffP">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="CuffPants">
+                                                    <option selected></option>
+                                                    <option value="With">With</option>
+                                                    <option value="Without">Without</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Coat">
+                            <div class="product-style">
+                                <h3 class="small-title"><span>COAT</span></h3>
+                                <div class="row no-gutters">
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Quantity</label>
+                                            <div class="form-inner" id="QuantityC">
+                                                <select class="form-control hidden-arrow" name=""
+                                                        id="coat_quantity">
+                                                    <option selected></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Fit</label>
+                                            <div class="form-inner" id="FitC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_fit">
+                                                    <option selected></option>
+                                                    <option value="Regular">Regular</option>
+                                                    <option value="Semi slim">Semi slim</option>
+                                                    <option value="Slim">Slim</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Button</label>
+                                            <div class="form-inner" id="ButtonC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_button">
+                                                    <option selected></option>
+                                                    <option value="2 button">2 button</option>
+                                                    <option value="3 button">3 button</option>
+                                                    <option value="4 button">4 button</option>
+                                                    <option value="6 button">6 button</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Breast</label>
+                                            <div class="form-inner" id="BreastC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_breast">
+                                                    <option selected></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Lapel</label>
+                                            <div class="form-inner" id="LapelC">
+                                                <select class=" form-control hidden-arrow" name=""
+                                                        id="coat_lapel">
+                                                    <option selected></option>
+                                                    <option value="Notch">Notch</option>
+                                                    <option value="Peak">Peak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end order-Measurement  -->
+
+
+                <div class="order-material order-box">
+                    <div class="order-subhead mb-4">
+                        <h3 class="order-sub_title mr-4">
+                            Material Selection
+                        </h3>
+                        <div class="nav-order">
+                            <span class="drop-button">
+                                <span class="drop-filter">Select MATERIAL</span><span class="fas fa-angle-down ml-2"></span>
+                            </span>
+                            <ul class="nav nav-pills order-dropdown">
+                                <li class="nav-item material-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#none2">NONE</a>
+                                </li>
+                                <li class="nav-item material-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Suit_m">
+                                        Suit + Vest +
+                                        Pants
+                                    </a>
+                                </li>
+                                <li class="nav-item material-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Shirts_m">Shirts</a>
+                                </li>
+                                <li class="nav-item material-drop">
+                                    <a class="nav-link order-link" data-toggle="pill" href="#Coat_m">Coat</a>
+                                </li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane " id="none2">
+                        </div>
+                        <div class="tab-pane " id="Suit_m">
+                            <div class="d-none d-md-block">
+                                <h4 class="small-title">
+                                    <span>Suit material</span>
+                                </h4>
+                                <div class="swatch_container">
+                                    <ul class="no-bullet " id="swatch_material">
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                                                <img src="/Files/Images/w1.jpg" alt="swatch_thumb" id="swatch_thumb_material" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w1.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: blue">
+                                                <img src="/Files/Images/w2.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: blue</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w2.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: earth brown">
+                                                <img src="/Files/Images/w3.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: earth brown</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w3.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: purple">
+                                                <img src="/Files/Images/w4.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: purple</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w4.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="color : Silver">
+                                                <img src="/Files/Images/w5.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w5.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                                                <img src="/Files/Images/w1.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w1.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: blue">
+                                                <img src="/Files/Images/w2.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: blue</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w2.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: earth brown">
+                                                <img src="/Files/Images/w3.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: earth brown</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w3.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: purple">
+                                                <img src="/Files/Images/w4.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: purple</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w4.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="color : Silver">
+                                                <img src="/Files/Images/w5.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="/Files/Images/w5.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <div class="swatch-full">
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="d-block d-md-none">
+                                <div class="mater-slide owl-carousel owl-theme">
+                                    <div class="item">
+                                        <div class="swatch_detail">
+                                            <div class="swatch_description">
+                                                <h3>New color: Silver</h3>
+                                                <p>
+                                                    A rich, deep tan which pairs well with dark browns and grey. From
+                                                    $1250.
+                                                </p>
+                                            </div>
+                                            <img src="/Files/Images/w1.jpg" alt="swatch_1">
+                                            <a href="#" class="view_desc">view swatch description</a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="swatch_detail">
+                                            <div class="swatch_description">
+                                                <h3>New color: Silver</h3>
+                                                <p>
+                                                    A rich, deep tan which pairs well with dark browns and grey. From
+                                                    $1250.
+                                                </p>
+                                            </div>
+                                            <img src="/Files/Images/w2.jpg" alt="swatch_1">
+                                            <a href="#" class="view_desc">view swatch description</a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="swatch_detail">
+                                            <div class="swatch_description">
+                                                <h3>New color: Silver</h3>
+                                                <p>
+                                                    A rich, deep tan which pairs well with dark browns and grey. From
+                                                    $1250.
+                                                </p>
+                                            </div>
+                                            <img src="/Files/Images/w3.jpg" alt="swatch_1">
+                                            <a href="#" class="view_desc">view swatch description</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Shirts_m">
+                            <div class="d-none d-md-block">
+                                <h4 class="small-title">
+                                    <span>Shirts material</span>
+                                </h4>
+                                <div class="swatch_container">
+                                    <ul class="no-bullet " id="swatch_material">
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                                                <img src="./images/w1.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w1.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: blue">
+                                                <img src="./images/w2.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: blue</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w2.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: earth brown">
+                                                <img src="./images/w3.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: earth brown</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w3.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: purple">
+                                                <img src="./images/w4.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: purple</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w4.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="color : Silver">
+                                                <img src="./images/w5.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w5.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                                                <img src="./images/w1.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w1.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: blue">
+                                                <img src="./images/w2.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: blue</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w2.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: earth brown">
+                                                <img src="./images/w3.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: earth brown</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w3.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: purple">
+                                                <img src="./images/w4.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: purple</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w4.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="color : Silver">
+                                                <img src="./images/w5.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w5.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <div class="swatch-full">
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="Coat_m">
+                            <div class="d-none d-md-block">
+                                <h4 class="small-title">
+                                    <span>Coat material</span>
+                                </h4>
+                                <div class="swatch_container">
+                                    <ul class="no-bullet " id="swatch_material">
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                                                <img src="./images/w1.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w1.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: blue">
+                                                <img src="./images/w2.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: blue</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w2.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: earth brown">
+                                                <img src="./images/w3.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: earth brown</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w3.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: purple">
+                                                <img src="./images/w4.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: purple</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w4.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="color : Silver">
+                                                <img src="./images/w5.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w5.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: Silver">
+                                                <img src="./images/w1.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w1.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: blue">
+                                                <img src="./images/w2.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: blue</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w2.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: earth brown">
+                                                <img src="./images/w3.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: earth brown</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w3.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="New color: purple">
+                                                <img src="./images/w4.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: purple</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w4.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <li class="swatch">
+                                            <div class="swatch_thumb tooltipLink" data-tooltip="color : Silver">
+                                                <img src="./images/w5.jpg" alt="swatch_thumb" id="swatch_thumb_material">
+                                            </div>
+                                            <div class="swatch_detail">
+                                                <div class="swatch_description">
+                                                    <h3>New color: Silver</h3>
+                                                    <p>
+                                                        A rich, deep tan which pairs well with dark browns and grey. From
+                                                        $1250.
+                                                    </p>
+                                                </div>
+                                                <img src="./images/w5.jpg" alt="swatch_1">
+                                                <a href="#" class="view_desc">view swatch description</a>
+                                            </div>
+                                        </li>
+                                        <div class="swatch-full">
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end order-material -->
+                <div class="order-Measurement  order-box">
+                    <h3 class="order-sub_title mb-4">
+                        Measurement information
+                    </h3>
+                    <p>
+                        (If you wonder how to measure your body correctly, please see our measurement guide <a class="measur-link" target="_blank"
+                                                                                                               href="https://duccio.net/measurement-guide">Here</a>)
+                    </p>
+                </div>
+                <div class="order-shirt">
+                    <h4 class="order-sub_title">
+                        Jacket/shirt measurements
+                    </h4>
+                    <div class="row no-gutters border-bottom-0">
+                        <div class="col-lg col-md col-12">
+                            <label for="">Total length</label>
+                            <div class="form-inner">
+                                <input type="text" name="TotalLength" id="shirt_t_Length"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Length</label>
+                            <div class="form-inner">
+                                <input type="text" name="LengthJacketShirt" id="shirt_Length" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Shoulder</label>
+                            <div class="form-inner">
+                                <input type="text" name="Shoulder" id="shirt_Shoulder"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">N to S</label>
+                            <div class="form-inner">
+                                <input type="text" name="NToS" id="shirt_ntos" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Sleeve length</label>
+                            <div class="form-inner">
+                                <input type="text" name="SleeveLength" id="shirt_sl_Length"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Sleeve width</label>
+                            <div class="form-inner">
+                                <input type="text" name="SleeveWidth" id="shirt_s_width"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Armshole</label>
+                            <div class="form-inner">
+                                <input type="text" name="Armshole" id="shirt_armshole"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-lg col-md col-12">
+                            <label for="">Chest</label>
+                            <div class="form-inner">
+                                <input type="text" name="Chest" id="shirt_chest" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Waist</label>
+                            <div class="form-inner">
+                                <input type="text" name="WaistJacketShirt" id="shirt_waist" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Hips</label>
+                            <div class="form-inner">
+                                <input type="text" name="HipJacketShirt" id="shirt_hips" class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Chest width</label>
+                            <div class="form-inner">
+                                <input type="text" name="ChestWidth" id="shirt_chest_width"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Around neck</label>
+                            <div class="form-inner">
+                                <input type="text" name="AroundNeck" id="shirt_around_neck"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Back Width</label>
+                            <div class="form-inner">
+                                <input type="text" name="BackWidth" id="shirt_back_width"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12 d-none d-md-block">
+                            <label for="">
+                                <span style="opacity: 0;">space</span>
+                            </label>
+                            <div class="form-inner">
+                                <input type="text" name="shirt_s_width" id="shirt_s_width"
+                                       class="w-100 form-control" style="opacity: 0;" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="my-4">
+                    <p><em style="color: red;">N to S: Neck to shoulder</em></p>
+                </div>
+                <!-- end order-shirt -->
+                <div class="order-trousers mb-5">
+                    <h4 class="order-sub_title">
+                        Trousers measurement
+                    </h4>
+                    <div class="row no-gutters">
+                        <div class="col-lg col-md col-12">
+                            <label for="">Length</label>
+                            <div class="form-inner">
+                                <input type="text" name="LengthTrousers" id="trousers_Length"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Hip</label>
+                            <div class="form-inner">
+                                <input type="text" name="HipTrousers" trousers_hip="trousers_hip"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Crotch</label>
+                            <div class="form-inner">
+                                <input type="text" name="Crotch" id="trousers_crotch"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Thigh width</label>
+                            <div class="form-inner">
+                                <input type="text" name="ThighWidth" id="trousers_t_width"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Calf width</label>
+                            <div class="form-inner">
+                                <input type="text" name="CalfWidth" id="trousers_calf_width"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Ankle widt</label>
+                            <div class="form-inner">
+                                <input type="text" name="AnkleWidth" id="trousers_ankle_width"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md col-12">
+                            <label for="">Waist</label>
+                            <div class="form-inner">
+                                <input type="text" name="WaistWidth" id="trousers_waist"
+                                       class="w-100 form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="order-message  order-box">
+                    <h3 class="order-sub_title mb-4">
+                        Other request
+                    </h3>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <textarea name="Request" id="" cols="30" rows="6" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Trousers -->
+
+                <div class="order-btn text-right">
+                    <button type="submit" class="btn ">Send Request</button>
+                </div>
+                <!-- Product Details -->
+                <select name="productDetails" class="ProductDetails" hidden>
+                    <option value="Jacket">Jacket</option>
+                    <option value="Pants">Pants</option>
+                    <option value="Vest">Vest</option>
+                    <option value="Shirt">Shirt</option>
+                    <option value="Coat">Coat</option>
+                    <option value="All Product">All Product</option>
+                    <option value="Suit">Suit</option>
+                </select>
+                <input name="QuantityJacket" class="QuantityJacket" value="" hidden />
+                <input name="FitJacket" class="FitJacket" value="" hidden />
+                <input name="ButtonJacket" class="ButtonJacket" value="" hidden />
+                <input name="LapelJacket" class="LapelJacket" value="" hidden />
+                <input name="PocketJacket" class="PocketJacket" value="" hidden />
+                <input name="VentsJacket" class="VentsJacket" value="" hidden />
+                <input name="BreastedJacket" class="BreastedJacket" value="" hidden />
+                <input name="QuantityPants" class="QuantityPants" value="" hidden />
+                <input name="FitPants" class="FitPants" value="" hidden />
+                <input name="PleatPants" class="PleatPants" value="" hidden />
+                <input name="BackPocket" class="BackPocket" value="" hidden />
+                <input name="PocketPants" class="PocketPants" value="" hidden />
+                <input name="CuffPants" class="CuffPants" value="" hidden />
+                <input name="QuantityVest" class="QuantityVest" value="" hidden />
+                <input name="NumberOfButton" class="NumberOfButton" value="" hidden />
+                <input name="BreastedVest" class="BreastedVest" value="" hidden />
+                <input name="QuantityShirt" class="QuantityShirt" value="" hidden />
+                <input name="FitShirt" class="FitShirt" value="" hidden />
+                <input name="CollarShirt" class="CollarShirt" value="" hidden />
+                <input name="PocketShirt" class="PocketShirt" value="" hidden />
+                <input name="CuffShirt" class="CuffShirt" value="" hidden />
+                <input name="QuantityCoat" class="QuantityCoat" value="" hidden />
+                <input name="FitCoat" class="FitCoat" value="" hidden />
+                <input name="ButtonCoat" class="ButtonCoat" value="" hidden />
+                <input name="BreastCoat" class="BreastCoat" value="" hidden />
+                <input name="LapelCoat" class="LapelCoat" value="" hidden />
+                <!-- Material Selection -->
+                <select name="material" class="Material" hidden>
+                    <option value="Suit + Vest + Pants">Suit + Vest + Pants</option>
+                    <option value="Shirts">Shirts</option>
+                    <option value="Coat">Coat</option>
+                </select>
+                <input name="ImageMaterial" class="ImageMaterial" value="" hidden />
+                <input name="NameMaterial" class="NameMaterial" value="" hidden />
+            </form>
+        </div>
+    </div>
+</div>
+<div id="wraploadding">
+    <div id="imgloadding"><img src="/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading" /></div>
+</div>
+
+
+@section script {
+    <script src="~/Content/assets/js/Validate/jquery-validation-1.13.1/jquery.validate.min.js"></script>
+    <script>
+        var Jacket = false;
+        $("#wraploadding").hide();
+        function LoadingSendEmail() {
+            $("#wraploadding").show();
+            $("#wraploadding").css("width", $(window).width());
+            $("#wraploadding").css("height", $(window).height());
+            $("#imgloadding ").css("top", ($(window).height() / 2) - 80);
+        }
+        function RemoveValueInput() {
+            $("#Pants select").val('');
+            $("#Jacket select").val('');
+            $("#Vest select").val('');
+            $("#Shirt select").val('');
+            $("#Coat select").val('');
+            $("#Suit select").val('');
+            $("#all select").val('');
+        }
+        
+        $(".material-drop .order-link").click(function () {
+            $("#Jacket, #Pants, #Vest, #Shirt, #Coat, #Suit, #all").each(function () {
+                if ($(this).hasClass('active show')) {
+                    RemoveValueInput();
+                }
+            });
+        });
+        $(".product-drop .order-link").click(function () {
+            $("#Jacket, #Pants, #Vest, #Shirt, #Coat, #Suit, #all").each(function () {
+                if ($(this).hasClass('active show')) {
+                    RemoveValueInput();
+                }
+            });
+        });
+        //validate
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#order_form").validate({
+            rules: {
+                'FirstName': {
+                    required: true,
+                },
+                'LastName': {
+                    required: true,
+                },
+                'Email': {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                'LastName': "This field is required",
+                'FirstName': "This field is required",
+                "Email": {
+                    required: "This field is required",
+                    email: "Please enter a valid email address."
+                },
+            },
+            submitHandler: function (form) {
+                //Product Details
+
+                if ($('#Jacket').hasClass('active show')) {
+                    $('.ProductDetails').val('Jacket');
+                }
+                if ($("#Pants").hasClass('active show')) {
+                    $(".ProductDetails").val('Pants');
+                }
+                if ($("#Vest").hasClass('active show')) {
+                    $(".ProductDetails").val('Vest');
+                }
+                if ($("#Shirt").hasClass('active show')) {
+                    $(".ProductDetails").val('Shirt');
+                }
+                if ($("#Coat").hasClass('active show')) {
+                    $(".ProductDetails").val('Coat');
+                }
+                if ($("#Suit").hasClass('active show')) {
+                    $(".ProductDetails").val('Suit');
+                }
+                if ($("#all").hasClass('active show')) {
+                    $(".ProductDetails").val('All Product');
+                }
+                
+                $("#QuantityJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                       
+                        $(".QuantityJacket").val($(this).val());
+                    }
+                });
+                $("#FitJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".FitJacket").val($(this).val());
+                    }
+                });
+                $("#ButtonJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".ButtonJacket").val($(this).val());
+                    }
+                });
+                $("#LapelJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".LapelJacket").val($(this).val());
+                    }
+                });
+                $("#PocketJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".PocketJacket").val($(this).val());
+                    }
+                });
+                $("#VentsJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".VentsJacket").val($(this).val());
+                    }
+                });
+                $("#BreastedJ select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".BreastedJacket").val($(this).val());
+                    }
+                });
+                $("#QuantityP select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".QuantityPants").val($(this).val());
+                    }
+                });
+                $("#FitP select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".FitPants").val($(this).val());
+                    }
+                });
+                $("#PleatP select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".PleatPants").val($(this).val());
+                    }
+                });
+                $("#BackP select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".BackPocket").val($(this).val());
+                    }
+                });
+                $("#PocketP select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".PocketPants").val($(this).val());
+                    }
+                });
+                $("#CuffP select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".CuffPants").val($(this).val());
+                    }
+                });
+                $("#QuantityV select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".QuantityVest").val($(this).val());
+                    }
+                });
+                $("#NumberOfB select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".NumberOfButton").val($(this).val());
+                    }
+                });
+                $("#BreastedV select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".BreastedVest").val($(this).val());
+                    }
+                });
+                $("#QuantityS select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".QuantityShirt").val($(this).val());
+                    }
+                });
+                $("#FitS select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".FitShirt").val($(this).val());
+                    }
+                });
+                $("#CollarS select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".CollarShirt").val($(this).val());
+                    }
+                });
+                $("#PocketS select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".PocketShirt").val($(this).val());
+                    }
+                });
+                $("#CuffS select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".CuffShirt").val($(this).val());
+                    }
+                });
+                $("#QuantityC select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".QuantityCoat").val($(this).val());
+                    }
+                });
+                $("#FitC select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".FitCoat").val($(this).val());
+                    }
+                });
+                $("#ButtonC select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".ButtonCoat").val($(this).val());
+                    }
+                });
+                $("#BreastC select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".BreastCoat").val($(this).val());
+                    }
+                });
+                $("#LapelC select").each(function () {
+                    if ($(this).val().length > 0) {
+                        $(".LapelCoat").val($(this).val());
+                    }
+                });
+                //Material Selection
+                if ($('#Suit_m').hasClass('active show')) {
+                    $('.Material').val('Suit + Vest + Pants');
+                }
+                if ($("#Shirts_m").hasClass('active show')) {
+                    $(".Material").val('Shirts');
+                }
+                if ($("#Coat_m").hasClass('active show')) {
+                    $(".Material").val('Coat');
+                }
+                $("#swatch_material li").each(function () {
+                    if ($(this).hasClass('open')) {
+                        $(".ImageMaterial").val($(this).find('img').prop('src'));
+                        $(".NameMaterial").val($(this).find('h3').text());
+                    }
+                });
+                form.submit();
+                LoadingSendEmail();
+            }
+        });
+    </script>
+
+}

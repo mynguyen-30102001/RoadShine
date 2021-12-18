@@ -1,0 +1,111 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Areas.Administrator.Controllers
+@model TeamplateHotel.Areas.Administrator.Models.LoginModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập vào trang quản trị</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="~/Areas/Administrator/Content/Owl/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <link href="~/Areas/Administrator/Content/media/system/css/ui.notify.css" rel="stylesheet" />
+    <style>
+        .error {
+            margin: 0px 0px 8px 50px;
+        }
+
+            .error span.field-validation-error {
+                list-style: disc;
+                color: white;
+                display: block;
+            }
+    </style>
+
+
+</head>
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="owl">
+        <div class="hand"></div>
+        <div class="hand hand-r"></div>
+        <div class="arms">
+            <div class="arm"></div>
+            <div class="arm arm-r"></div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+    {
+
+
+        <div class="form">
+            <div class="control">
+                <label for="email" class="fa fa-envelope"></label>
+                @Html.TextBoxFor(a => a.UserName, new { @id = "email", @placeholder = "Tên đăng nhập" })
+
+            </div>
+            <div class="control">
+                <label for="password" class="fa fa-asterisk"></label>
+                @Html.PasswordFor(a => a.Password, new { @id = "password", @placeholder = "Mật khẩu" })
+
+            </div>
+            <div class="control">
+                @Html.DropDownListFor(a => a.LanguageID, new SelectList(ViewBag.ListLanguage, "Value", "Text"), new { @class = "span3" })
+            </div>
+            <div class="control">
+                @if (ViewBag.ShowCaptcha == true)
+                {
+                    <div id="captcha_input">
+                        <div id="captcha_inputleft"></div>
+                        <div id="captcha_inputmiddle">
+                            @Html.TextBoxFor(a => a.Captcha, new { @class = "captcha", @placeholder = "Captcha" })
+                            <img class="url_captcha" src="~/Areas/Administrator/Content/css/images/lock.png" alt="">
+                        </div>
+                        <div id="password_inputright"></div>
+                        <img src="~/Captcha.ashx" width="110" id="captcha-img" />
+                    </div>
+                }
+
+            </div>
+            <div id="submit">
+                <input type="submit" id="submit2" value="Đăng nhập">
+            </div>
+            <br />
+            <div>
+                <div id="links_left">
+                    <a href="@Url.Action("GetPassWord")">Lấy lại mật khẩu?</a>
+                </div>
+            </div>
+        </div>
+
+
+    }
+    <span class="error-login">@Html.ValidationMessageFor(a => a.UserName)</span>
+    <span class="error-login">@Html.ValidationMessageFor(a => a.Password)</span>
+    <span class="error-login">@Html.ValidationMessageFor(a => a.Captcha)</span>
+    <span class="error-login">@Html.ValidationMessageFor(a => a.LanguageID)</span>
+    <!-- partial -->
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="~/Areas/Administrator/Content/Owl/script.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+    <script src="~/Areas/Administrator/Content/media/system/js/jquery.notify.js"></script>
+    <script src="~/Areas/Administrator/Content/media/system/js/JavaScript.js"></script>
+    <script>
+    $(document).ready(function () {
+        var messages = '@ViewBag.Message';
+        if ((messages.trim() != "")) {
+            CreateMessage(messages);
+        }
+    });
+    </script>
+
+
+</body>
+</html>
+
+
+
+

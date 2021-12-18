@@ -1,0 +1,141 @@
+﻿@model TeamplateHotel.Areas.Administrator.EntityModel.ETheMenu
+    @{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<form action="@Url.Action("UpdateIndex", "Product")" method="POST" id="updateIndex">
+    @{
+        <div class="optionShow">
+            <div class="optionShow-title">Lọc</div>
+            <div class="item-option">
+                <div class="title-item-option"> Chuyên mục sản phẩm:</div>
+                <div class="content-item-option">@Html.DropDownList("ListMenu")</div>
+            </div>
+        </div>
+    }
+    <div id="jtable-main-container"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#jtable-main-container').jtable({
+                title: '@ViewBag.Title',
+                paging: true, //Enable paging
+                pageSize: 30, //Set page size (default: 10)
+                sorting: true, //Enable sorting
+                defaultSorting: 'Name ASC', //Set default sorting
+                selecting: true, //Enable selecting
+                multiselect: true, //Allow multiple selecting
+                selectingCheckboxes: true, //Show checkboxes on first column
+                columnResizable: true, //Actually, no need to set true since it's default
+                columnSelectable: true, //Actually, no need to set true since it's default
+                saveUserPreferences: true, //Actually, no need to set true since it's default
+                toolbar: {
+                    items: [{
+                        icon: '/Areas/Administrator/Content/img/add.png',
+                        text: 'Thêm mới',
+                        click: function () {
+                            window.location = '@Url.Action("Create", "Product", new { id = 0 })';
+                        }
+                    }, {
+                        icon: '/Areas/Administrator/Content/img/Ordering.png',
+                        text: 'Sắp xếp',
+                        click: function() {
+                            $("#updateIndex").submit();
+                        }
+
+                    }]
+                },
+                actions: {
+                    listAction: '@Url.Action("List", "Product")',
+                    deleteAction: '@Url.Action("Delete", "Product")',
+                },
+                fields: {
+                    ProductID: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    NameMenu: {
+                        title: 'Tên Sản Phẩm',
+                        width: '20%',
+                        display: function (data) {
+                            return '<a href="/admin/Product/Create/' + data.record.ProductID + '">' + data.record.NameMenu + '</a>';
+                        }
+                    },
+                    NameTypeMenu: {
+                        title: 'Tên chuyên mục',
+                    },
+                    Image: {
+                        title: 'Ảnh',
+                        width: '8%',
+                        display: function (data) {
+                            return '<img src="' + data.record.Image + '" width="60px" height="60px"/>';
+                        },
+                        inputClass: 'upload'
+                    },
+                    //Price: {
+                    //    title: 'Giá',
+                    //    width: '13%',
+                    //},
+                    //PromotionPrice: {
+                    //    title: 'Giá KM',
+                    //    width: '13%',
+                    //},
+                    BestSale: {
+                        title: 'Sản phẩm mới',
+                        width: '20%',
+                        type: 'checkbox',
+                        values: { 'false': 'Không', 'true': 'Có' },
+                        defaultValue: 'true'
+                    },
+                    Status: {
+                        title: 'Trạng Thái',
+                        width: '20%',
+                        type: 'checkbox',
+                        values: { 'false': 'Không', 'true': 'Có' },
+                        defaultValue: 'true'
+                    },
+                    Index: {
+                        title: '@Html.DisplayNameFor(c => c.Index)',
+                        width: '4%',
+                        sorting: false,
+                         display: function(data) {
+                            return '<input type="text" name="sort[' +
+                                data.record.ProductID +
+                                '].Index" style="width:25px" value="' +
+                                data.record.Index +
+                                '"/>';
+                        }
+                    },
+                    '':
+                    {
+                        title: '',
+                        width: '2%',
+                        sorting: false,
+                        display: function (data) {
+                            return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="editRecord(' + data.record.ProductID + ')"><span>Edit</span></button>';
+                        }
+                    }
+                }
+            });
+            $('#jtable-main-container').jtable('load');
+        });
+        function editRecord(id) {
+            window.location = '/Admin/Product/Create/' + id;
+        }
+
+    </script>
+</form>
+
+
+
+<script>
+
+    function editRecord(advId) {
+        window.location = '@Url.Action("Update","Product")' + '/' + advId;
+    }
+
+    $("#ListMenu").change(function () {
+        $('#jtable-main-container').jtable('load', { menuId : $("#ListMenu").val() });
+    });
+</script>

@@ -1,0 +1,34 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@{
+    //List<Menu> menus = CommentController.GetSidebarMenus(Request.Cookies["LanguageID"].Value);
+    List<ShowObject> articles = CommentController.HotArticles(Request.Cookies["LanguageID"].Value).Take(4).ToList();
+}
+
+@*<div class="col-md-3 col-sm-3" style="margin-top:30px;">
+    <aside class="widget stl-menu">
+        <p class="widgettitle">
+            <a href="javascript:(void)">Chuyên mục </a>
+        </p>
+        <ul>
+            @foreach (var item in menus)
+            {
+                <li> <a href="/@item.Alias" title=""> @item.Title  </a> <hr class="style" /></li>
+            }
+            
+        </ul>
+    </aside>
+    <aside class="widget">
+        <p class="widgettitle">
+            <a href="javascript:(void)"> Bài viết mới</a>
+        </p>
+        <ul>
+            @foreach (var item in articles)
+            {
+                <li> <a href="/@item.MenuAlias/@item.ID/@item.Alias" style="color: #0a65b7;"> @item.Title  </a> <hr class="style" /></li>
+            }
+        </ul>
+    </aside>
+  
+</div>*@

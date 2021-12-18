@@ -1,0 +1,92 @@
+﻿
+@using ProjectLibrary.Config
+@using TeamplateHotel.Areas.Administrator.EntityModel
+@model EEmployee
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+
+<form action="@Url.Action("UpdateIndex", "Employee")" method="POST" id="updateIndex">
+
+    <div id="jtable-main-container"></div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#jtable-main-container').jtable({
+                title: '@ViewBag.Title',
+                paging: true, //Enable paging
+                pageSize: 20, //Set page size (default: 10)
+                sorting: true, //Enable sorting
+                defaultSorting: 'Name ASC', //Set default sorting
+                selecting: true, //Enable selecting
+                multiselect: true, //Allow multiple selecting
+                selectingCheckboxes: true, //Show checkboxes on first column
+                columnResizable: true, //Actually, no need to set true since it's default
+                columnSelectable: true, //Actually, no need to set true since it's default
+                saveUserPreferences: true, //Actually, no need to set true since it's default
+
+                actions: {
+               
+                 listAction: '@Url.Action("List", "Employee")',
+                deleteAction: '@Url.Action("Delete", "Employee")',
+                updateAction: '@Url.Action("Edit", "Employee")',
+                createAction: '@Url.Action("Create", "Employee")'
+
+
+            },
+            fields: {
+                Id: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                FullName: {
+                    title: '@Html.DisplayNameFor(c=>c.FullName)',
+                    width: '15%',
+                    inputClass: 'full-width',
+                    sorting: false,
+                },
+                Image: {
+                    title: '@Html.DisplayNameFor(c => c.Image)',
+                    sorting: false,
+                    width: '15%',
+                    inputClass: 'upload',
+                    display: function (data) {
+                        return ' <img src="' + data.record.Image + '" width="80px" height="60px"/>';
+                    },
+                },
+                Job: {
+                    title: '@Html.DisplayNameFor(c => c.Job)',
+                    width: '15%',
+                    inputClass: 'full-width',
+                    sorting: false,
+                    },
+
+                Phone: {
+                    title: '@Html.DisplayNameFor(c => c.Phone)',
+                    width: '15%',
+                    inputClass: 'full-width',
+                    sorting: false,
+                },
+                Skype: {
+                    title: '@Html.DisplayNameFor(c => c.Skype)',
+                    width: '15%',
+                    inputClass: 'full-width',
+                    sorting: false,
+                },
+                Facebook: {
+                    title: '@Html.DisplayNameFor(c => c.Facebook)',
+                    width: '15%',
+                    inputClass: 'full-width',
+                    sorting: false,
+                }
+                }
+            });
+            $('#jtable-main-container').jtable('load');
+        });
+    </script>
+</form>
+
+
+

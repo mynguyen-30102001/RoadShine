@@ -1,0 +1,82 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@using PagedList.Mvc
+@using PagedList
+@model  IPagedList<ShowObject>
+@{
+    //Menu menu = ViewBag.Menu ?? new Menu();
+    var lan = Request.Cookies["LanguageID"].Value;
+    lan = "en";
+    int tbr = TempData["tbr"] != null ? (int)TempData["tbr"] : -1;
+    int pcr = TempData["pcr"] != null ? (int)TempData["pcr"] : -1;
+    int otr = TempData["otr"] != null ? (int)TempData["otr"] : -1;
+    string menuAlias = (string)TempData["menuAlias"];
+    ShowObject menuProduct = CommentController.MenuProduct(lan);
+}
+
+@foreach (var itemProduct in Model)
+{
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 wow fadeInUp" data-wow-duration=".8s">
+        <div class="item">
+            <div class="pic">
+                <a class="img-box" href="/@itemProduct.MenuAlias/@itemProduct.ProductId/@itemProduct.Alias">
+                    <img class="lazy" src="@itemProduct.Image" width="570" height="600" alt="349.html" />
+                </a>
+            </div>
+            <div class="note">
+                <h3>
+                    <a href="/@itemProduct.MenuAlias/@itemProduct.ProductId/@itemProduct.Alias">@itemProduct.NameProduct</a>
+                </h3>
+                <p>
+                    <a href="/@itemProduct.MenuAlias/@itemProduct.ProductId/@itemProduct.Alias"></a>
+                </p>
+                <a class="more" href="/@itemProduct.MenuAlias/@itemProduct.ProductId/@itemProduct.Alias"></a>
+            </div>
+        </div>
+    </div>
+}
+<div class="page wow fadeInUp" data-wow-duration="1s">
+    @if (tbr == -1 && pcr == -1 && otr == -1)
+    {
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                      new PagedListRenderOptions()
+                      {
+                          DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                          DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                          DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                          DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                          LiElementClasses = new List<string> { "" },
+                      })
+    }
+    else
+    {
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+   {
+       page,
+       aliasMenuSub = "" + menuAlias,
+       id = menuProduct.ID,
+   }),
+              new PagedListRenderOptions()
+              {
+                  //LinkToPreviousPageFormat = "<<",
+                  //LinkToNextPageFormat = ">>",
+                  DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                  DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                  DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                  DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                  LiElementClasses = new List<string> { "" },
+              })
+    }
+    @*<a class="first-child" href="tires/roadshine.html?">Prev</a>
+        <a href="tires/roadshine.html?pageid=1" class="active">1</a>
+                <a href="tires/roadshine.html?pageid=2">2</a>
+                <a href="tires/roadshine.html?pageid=3">3</a>
+                <a href="tires/roadshine.html?pageid=4">4</a>
+                <a href="tires/roadshine.html?pageid=5">5</a>
+                <a href="tires/roadshine.html?pageid=6">6</a>
+            <a class="last-child" href="tires/roadshine.html?pageid=2">Next</a>*@
+</div>
+
+
+

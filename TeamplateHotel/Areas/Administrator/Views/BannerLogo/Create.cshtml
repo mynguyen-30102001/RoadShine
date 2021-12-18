@@ -1,0 +1,124 @@
+﻿@using ProjectLibrary.Config
+@using TeamplateHotel.Areas.Administrator.Models
+@model  ProjectLibrary.Database.BannerLogo
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    List<MenuCheck> menuChecks = ViewBag.Menus ?? new List<MenuCheck>();
+}
+
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class=" icon-plus-sign"></i>
+            <h3>@ViewBag.Title</h3>
+        </div> <!-- /widget-header -->  
+        
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Create", "BannerLogo", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="left-control">
+                    <div class="control-group">	
+                        @Html.LabelFor(c => c.BannerName, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.BannerName, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.BannerName)
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextAreaFor(c => c.Description, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.Description)
+                        </div>
+                    </div>
+            
+                    <div class="control-group">	
+                        @Html.LabelFor(c => c.Image, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload" })
+                            @*<p class="help-img">Nên chọn ảnh có kích thước @ConfigImage.InfoImageSlider</p>*@
+                            @Html.ValidationMessageFor(c => c.Image)
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">	
+                        @Html.LabelFor(c => c.Link, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.Link, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.Link)
+                        </div>
+                    </div> 
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="checkbox inline">
+                                <input data-val="true" id="Status" name="Status" type="checkbox" value="true" checked="checked"> Status
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="Title">Hiển thị trang chủ</label>
+                        <div class="controls">
+                            <label class="radio-inline">@Html.RadioButtonFor(m => m.Home, "true")  Có</label>
+                            <label class="radio-inline">@Html.RadioButtonFor(m => m.Home, "false", new { @checked = true }) Không</label>
+                        </div>
+                    </div>
+                
+                   
+                    <div class="form-actions">
+                        <input type="button" value="Submit" class="btn btn-primary"/>
+                        <a href="@Url.Action("Index","BannerLogo")" class="btn">Cancel</a>
+                    </div>
+                </div>
+            
+                 
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    
+    //lấy danh sách menu được chọn
+    function MenuSelect() {
+        var tempMenuSelect = "";
+        $("input.checkMenu").each(function() {
+            if($(this).is(":checked")) {
+                tempMenuSelect += $(this).val() + ",";
+            }
+        });
+        $("#MenuIds").val(tempMenuSelect);
+    }
+    $(document).ready(function() {
+        bindUl();
+        CreateCkEditor();        
+        $(".btn-primary").click(function() {
+            MenuSelect();
+            $(".form-horizontal").submit();
+        });
+
+        if ($("input[name=ViewAll]").filter(':checked').val() == 'True') {
+            $("#right-listMenu").hide();
+        } else {
+            $("#right-listMenu").show();
+        }
+        $("input[name=ViewAll]").change(function () {
+            if ($(this).filter(':checked').val() == 'True') {
+                $("#right-listMenu").hide();
+            } else {
+                $("#right-listMenu").show();
+            }
+        });
+    });
+</script>
+
+<style>
+    .form-actions {
+        border: none;
+        background: none;
+    }
+</style>
+

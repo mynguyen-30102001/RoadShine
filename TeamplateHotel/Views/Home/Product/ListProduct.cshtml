@@ -1,0 +1,107 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@model  TeamplateHotel.Models.ShowObject
+@{
+    Layout = "~/Views/Share/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    var lan = Request.Cookies["LanguageID"].Value;
+    Company company = CommentController.DetailCompany(Request.Cookies["LanguageID"].Value);
+    List<Menu> menuPro = CommentController.GetMenuProduct(lan);
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    List<Product> listProduct = CommentController.GetProducts(menu.ID);
+    List<EF_Product> listProductChild = CommentController.GetProduct(menu.ID);
+    Menu getMenuTBR = CommentController.GetMenuTBR(lan);
+    Menu getMenuPCR = CommentController.GetMenuPCR(lan);
+    Menu getMenuOTR = CommentController.GetMenuOTR(lan);
+    List<Menu> menuChild = new List<Menu>();
+    if (menu.ParentID == 0)
+    {
+        menuChild = CommentController.GetMenuChild(lan, menu.ID);
+    }
+    else
+    {
+        menuChild = CommentController.GetMenuChild(lan, menu.ParentID);
+    }
+    int tbr = TempData["tbr"] != null ? (int)TempData["tbr"] : -1;
+    int pcr = TempData["pcr"] != null ? (int)TempData["pcr"] : -1;
+    int otr = TempData["otr"] != null ? (int)TempData["otr"] : -1;
+}
+
+@*@Html.Partial("~/Views/Share/Banner.cshtml")*@
+
+<div class="banner banner-in">
+    <div class="owl-theme">
+        <div class="item">
+            <a href="javascript:;">
+
+                <img class="lazyOwl img-responsive" src="~/Content/assets/image/banner-tires.jpg" />
+            </a>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrap wrap-product">
+        <div class="container">
+            <div class="product-sort wow fadeInUp" data-wow-duration=".8s">
+                <ul class="row">
+                    @foreach (var itemPro in menuChild)
+                    {
+                        <li>
+                            <div class="item">
+                                <a class="img-box" href="@itemPro.Alias">
+                                    <img class="lazy" src="@itemPro.Image" width="330" height="120" alt="@itemPro.Title" />
+                                </a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="title-in wow fadeInUp" data-wow-duration=".8s">
+                <h2>@menu.Title</h2>
+                @Html.Raw(menu.Description)
+            </div>
+            <div class="wrap-sort wow fadeInUp" data-wow-duration=".8s">
+                <ul>
+                    <li class="TBR" id="TBR">
+                        <a href="javascript:void(0);" onClick="listTBR()">@getMenuTBR.Title</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0)" onClick="listPCR()">@getMenuPCR.Title</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0)" onClick="listOTR()">@getMenuOTR.Title</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="product">
+                <div class="row" id="listProduct">
+                    @Html.Action("FilterProduct", "Home", new { id = menu.ID,tbr = tbr,pcr = pcr, otr=otr });
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        function listTBR(){
+            $('#listProduct').load('/filter-product', {
+                id:@menu.ID,
+                tbr: 1,
+            })
+        }
+        function listPCR(){
+            $('#listProduct').load('/filter-product', {
+                id:@menu.ID,
+                pcr: 1,
+            })
+        }
+        function listOTR(){
+            $('#listProduct').load('/filter-product', {
+                id:@menu.ID,
+                otr: 1,
+            })
+        }
+    </script>
+}
+
